@@ -19,7 +19,23 @@
 		</jsp-property-group>
 	</jsp-config>
 
-	
-	
+ 	<!-- Servlets -->
+	<servlet>
+		<servlet-name>Autenticar</servlet-name>
+		<servlet-class>controller.Autenticacao</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Autenticar</servlet-name>
+		<url-pattern>/autentica</url-pattern>
+	</servlet-mapping>
 
+	<!-- Filtros -->
+	<filter>
+		<filter-name>FiltroAutenticado</filter-name>
+		<filter-class>filter.AutenticadoFiltro</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FiltroAutenticado</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

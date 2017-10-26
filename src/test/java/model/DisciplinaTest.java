@@ -1,7 +1,7 @@
 package model;
 
 import org.junit.Test;
-import br.com.n2s.model.*;
+
 public class DisciplinaTest {
 
 	Disciplina disciplina = new Disciplina();
