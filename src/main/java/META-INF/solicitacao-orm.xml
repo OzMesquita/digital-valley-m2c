@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+	<persistence-unit-metadata>
+		<persistence-unit-defaults>
+			<access>FIELD</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<package>digital-valley-m2c</package>
+	<entity class="br.com.n2s.model.Solicitacao" name="Solicitacao" access="FIELD" >
+		<table name="solicitacao" />
+		<attributes>
+			<id name="id">
+				<column name="id" unique="true" nullable="false" />
+				<generated-value strategy="SEQUENCE" generator="TODO_ID_GENERATOR" />
+				<sequence-generator name="TODO_ID_GENERATOR" allocation-size="1" sequence-name="todos_id_seq" />
+			</id>
+
+			<basic name="dataSolicitacao" optional="false">
+				<column name="dataSolicitacao" />
+			</basic>
+			<basic name="dataProva" optional="false">
+				<column name="dataProva" />
+			</basic>
+			<basic name="justificativa" optional="true">
+				<column name="justificativa" />
+			</basic>
+
+			<many-to-one name="aluno" optional="false" >
+				<join-column name="id_aluno" />
+			</many-to-one>
+			
+			<many-to-one name="professor" optional="false" >
+				<join-column name="id_professor" />
+			</many-to-one>
+			
+			<many-to-one name="disciplina" optional="false" >
+				<join-column name="id_disciplina" />
+			</many-to-one>
+			
+		</attributes>	
+	</entity>
+</entity-mappings>
