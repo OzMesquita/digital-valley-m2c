@@ -1,7 +1,6 @@
 package model;
 
 import org.junit.Test;
-import br.com.n2s.model.*;
 import java.time.LocalDate;
 
 public class SolicitacaoTest{

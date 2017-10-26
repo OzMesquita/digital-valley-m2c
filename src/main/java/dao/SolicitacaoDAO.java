@@ -1,9 +1,7 @@
 package dao;
 
-import br.com.n2s.model.Aluno;
-import br.com.n2s.model.EnumSolicitacao;
-import br.com.n2s.model.Professor;
-import br.com.n2s.model.Solicitacao;
+import model.Aluno;
+import model.Professor;
 
 public interface SolicitacaoDAO {
 	
