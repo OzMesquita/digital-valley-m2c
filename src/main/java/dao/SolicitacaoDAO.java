@@ -1,7 +1,9 @@
 package dao;
 
 import model.Aluno;
+import model.EnumSolicitacao;
 import model.Professor;
+import model.Solicitacao;
 
 public interface SolicitacaoDAO {
 	

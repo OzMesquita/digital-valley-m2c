@@ -6,7 +6,7 @@
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
 	<package>digital-valley-m2c</package>
-	<entity class="br.com.n2s.model.Solicitacao" name="Solicitacao" access="FIELD" >
+	<entity class="model.Solicitacao" name="Solicitacao" access="FIELD" >
 		<table name="solicitacao" />
 		<attributes>
 			<id name="id">
