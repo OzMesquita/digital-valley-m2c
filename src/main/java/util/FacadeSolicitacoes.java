@@ -1,9 +1,7 @@
 package util;
 
 
-import model.Servidor;
-import model.Aluno;
-import model.Disciplina;
+import model.Solicitacao;
 import model.Email;
 
 public class FacadeSolicitacoes {
@@ -11,14 +9,14 @@ public class FacadeSolicitacoes {
 		//
 	}
 
-	public static void enviarEmailSolicitacaoSegundaChamada(Aluno aluno, Servidor professor, Disciplina disciplina) {
-		if (aluno != null && professor !=null) {
+	public static void enviarEmailSolicitacaoSegundaChamada(Solicitacao solicitacao) {
+		if (solicitacao.getAluno() != null) {
 			
 			Email e = new Email();
-			e.sendEmail("Solicitação de Segunda chamada", "O Aluno "+aluno.getNome()+" solicitou a Segunda Chamada da prova de "+disciplina.getId()
-					, professor.getEmail(), "Usuário Controle de Acesso");
+			e.sendEmail("Solicitação de Segunda chamada", "O Aluno "+ solicitacao.getAluno().getNome()+" solicitou a Segunda Chamada da prova de "+solicitacao.getDisciplina().getNome()
+					, solicitacao.getProfessor().getEmail(), "Usuário Controle de Acesso");
 		} else {
-			throw new IllegalArgumentException("Erro ao enviar email");
+			throw new IllegalArgumentException("Erro aluno não pode ser vazio");
 		}
 		
 
