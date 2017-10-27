@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 import org.junit.Test;
+import model.Disciplina;
+import model.Professor;;
 
 public class ProfessorTest {
 
