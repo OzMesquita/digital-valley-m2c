@@ -23,7 +23,7 @@ public class Constantes {
 	static {
 		DATABASE_CONF_DIR = "C:\\n2s\\bd.txt";
 		EMAIL_CONF_DIR = "C:\\n2s\\email.txt";
-		APP_URL = "/m2c";
+		APP_URL = "/digital-valley-m2c";
 		ADM_URL = APP_URL + "/view/adm";
 		APP_ASSETS_URL = APP_URL + "/assets2";
 		APP_JS_URL = APP_ASSETS_URL + "/js";
