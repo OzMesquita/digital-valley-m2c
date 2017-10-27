@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import br.com.n2s.model.*;
 import org.junit.Test;
 
 public class ProfessorTest {
