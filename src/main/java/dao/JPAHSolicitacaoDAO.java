@@ -2,10 +2,10 @@ package dao;
 
 import javax.persistence.EntityManager;
 
-import br.com.n2s.model.Aluno;
-import br.com.n2s.model.EnumSolicitacao;
-import br.com.n2s.model.Professor;
-import br.com.n2s.model.Solicitacao;
+import model.Aluno;
+import model.EnumSolicitacao;
+import model.Professor;
+import model.Solicitacao;
 
 public class JPAHSolicitacaoDAO extends JPADAO implements SolicitacaoDAO {
 
