@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import model.Disciplina;;
+import model.Disciplina;
 public class Solicitacao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
