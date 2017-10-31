@@ -21,7 +21,7 @@
 			<basic name="dataProva" optional="false">
 				<column name="dataProva" />
 			</basic>
-			<basic name="justificativa" optional="true">
+			<basic name="justificativa" optional="false">
 				<column name="justificativa" />
 			</basic>
 
