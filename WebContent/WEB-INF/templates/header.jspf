@@ -26,7 +26,7 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" id="brand"
-					href="<%=Constantes.getAppUrl()%>/view/telaInicial.jsp">SISTEMA</a>
+					href="<%=Constantes.getAppUrl()%>/view/homeSolicitacao.jsp">SISTEMA</a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">

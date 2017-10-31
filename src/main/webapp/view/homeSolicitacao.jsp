@@ -228,13 +228,3 @@
 	</div>
 	<!-- container col-md-offset-3" id="formulario_solicitacao -->
 
-
-</body>
-
-<script type="text/javascript">
-	var perfil = $("#perfil");
-	perfil.on("click", function(event) {
-		perfil.css('background-color', 'steelblue');
-	});
-</script>
-</html>
