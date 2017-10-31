@@ -1,4 +1,3 @@
-
 	<div
 		class="container col-md-offset-3 sem-padding-left sem-padding-right"
 		id="formulario_solicitacao">
@@ -89,7 +88,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2  sem-padding-left">
-										<input class="form-control" type="Data" id="nascimento"
+										<input class="form-control" type="date" id="nascimento"
 											name="inputDataProva">
 									</div>
 									<!--col-md-2-->
