@@ -16,6 +16,7 @@ public class Constantes {
 	private static String USER_PROFILE_IMAGES_DIR;
 	private static String USER_PROFILE_NONE_IMAGE_DIR;
 	private static String APP_IMG_USER_DIR;
+	private static String APP_GUARDIAO_URL;
 	private Constantes() {
 		//
 	}
@@ -24,6 +25,7 @@ public class Constantes {
 		DATABASE_CONF_DIR = "C:\\n2s\\bd.txt";
 		EMAIL_CONF_DIR = "C:\\n2s\\email.txt";
 		APP_URL = "/digital-valley-m2c";
+		setAPP_GUARDIAO_URL("/Controle_de_Acesso");
 		ADM_URL = APP_URL + "/view/adm";
 		APP_ASSETS_URL = APP_URL + "/assets2";
 		APP_JS_URL = APP_ASSETS_URL + "/js";
@@ -158,5 +160,13 @@ public class Constantes {
 
 	public static void setAppImgUserDir(String aPP_IMG_USER_DIR) {
 		APP_IMG_USER_DIR = aPP_IMG_USER_DIR;
+	}
+
+	public static String getAPP_GUARDIAO_URL() {
+		return APP_GUARDIAO_URL;
+	}
+
+	public static void setAPP_GUARDIAO_URL(String aPP_GUARDIAO_URL) {
+		APP_GUARDIAO_URL = aPP_GUARDIAO_URL;
 	}
 }

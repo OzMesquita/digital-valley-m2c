@@ -19,7 +19,7 @@ public enum EnumSolicitacao {
 		case "Segunda chamada":
 			return EnumSolicitacao.SEGUNDACHAMADA;
 				
-		case "Funcionário":
+		case "Recorreção":
 			return EnumSolicitacao.RECORRECAO;		
 
 		default:
