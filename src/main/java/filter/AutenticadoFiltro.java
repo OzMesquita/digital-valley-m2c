@@ -36,10 +36,13 @@ public class AutenticadoFiltro implements Filter {
 			if(request.getParameter("token") != null && request.getParameter("id") != null){
 				String token = request.getParameter("token");
 				int id = Integer.parseInt(request.getParameter("id"));
-				Pessoa user = Facade.buscarPessoaPorId(id);
-				if (token.equals(user.getUsuario().getTokenUsuario()) && id == user.getId() && !token.equals("null")) {
-					UsuarioDAO userDAO = DAOFactory.criarUsuarioDAO();
-					session.setAttribute("usuario", user.getUsuario());
+				Pessoa pessoa = Facade.buscarPessoaPorId(id);
+				Usuario user = Facade.buscarPorLogin(pessoa.getUsuario().getLogin());
+				user.setTokenUsuario(pessoa.getUsuario().getTokenUsuario());
+				System.out.println(user.getLogin());
+				System.out.println(user.getTokenUsuario());
+				if (token.equals(user.getTokenUsuario()) && id == user.getPessoa().getId() && !token.equals("null")) {
+					session.setAttribute("usuario", user);
 					chain.doFilter(request, response);
 				}else {
 					((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/");

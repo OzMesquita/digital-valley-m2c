@@ -9,6 +9,11 @@ version="2.5">
 	<welcome-file-list>
 		<welcome-file>view/homeSolicitacao.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
 
 
 	<jsp-config>
@@ -20,15 +25,30 @@ version="2.5">
 	</jsp-config>
 
  	<!-- Servlets -->
+ 	<!-- 1 -->
 	<servlet>
 		<servlet-name>Autenticar</servlet-name>
 		<servlet-class>controller.Autenticacao</servlet-class>
 	</servlet>
+	<!-- 2 -->
+	<servlet>
+		<servlet-name>SalvarSolicitacao</servlet-name>
+		<servlet-class>controller.SalvarSolicitacaoController</servlet-class>
+	</servlet>
+	
+	
+	<!-- Mapeamento do Servlet -->
+	<!-- 1 -->
 	<servlet-mapping>
 		<servlet-name>Autenticar</servlet-name>
 		<url-pattern>/autentica</url-pattern>
 	</servlet-mapping>
-
+	<!-- 2 -->
+	<servlet-mapping>
+		<servlet-name>SalvarSolicitacao</servlet-name>
+		<url-pattern>/salvarSolicitacao</url-pattern>
+	</servlet-mapping>
+	
 	<!-- Filtros -->
 	<filter>
 		<filter-name>FiltroAutenticado</filter-name>

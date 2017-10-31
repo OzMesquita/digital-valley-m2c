@@ -1,4 +1,5 @@
-	<div class="container col-md-offset-3 sem-padding-left sem-padding-right" id="formulario_solicitacao">
+	<%@page import="model.Aluno"%>
+<div class="container col-md-offset-3 sem-padding-left sem-padding-right" id="formulario_solicitacao">
 		<div class="wizard-navigation">
 			<ul class="nav nav-pills" id="tipo_solicitacao">
 				<li style="width: 49%;" class="active"><a href="#aluno"
@@ -10,12 +11,20 @@
 				style="width: 375px; transform: translate3d(0px, 0px, 0px); transition: transform 0s;">
 			</div>
 
-
+<%
+String codigoInterno = "teste";
+if (usuario.getPessoa() instanceof Aluno) {
+	Aluno aluno = (Aluno) usuario.getPessoa();
+	codigoInterno = aluno.getMatricula();
+}
+%>
+<%=codigoInterno %>
 
 			<div class="tab-content">
 				<div class="tab-pane active" id="Segunda Chamada">
 					<div class="row">
-						<form>
+					
+						<form action="salvarSolicitacao">
 							<div class="row">
 								<div class="form-group col-md-12">
 									<div class="col-md-2" >
@@ -23,7 +32,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-10 sem-padding-left">
-										<input class="form-control " type="text" name="inputName">
+										<input value="<%=usuario.getPessoa().getNome() %>" class="form-control " type="text" name="inputName" <%="disabled" %> >
 									</div>
 									<!--col-md-10-->
 								</div>
@@ -38,7 +47,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2 sem-padding-left">
-										<input class="form-control" type="text" id="matricula"
+										<input class="form-control" type="text" value="<%=usuario.getPessoa() instanceof Aluno ? usuario :"s" %>" id="matricula"
 											name="inputMatricula">
 									</div>
 									<!--col-md-2-->
