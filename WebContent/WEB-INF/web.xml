@@ -7,7 +7,7 @@ version="2.5">
 	<display-name>digital-valley-m2c</display-name>
 
 	<welcome-file-list>
-		<welcome-file>view/home.jsp</welcome-file>
+		<welcome-file>view/homeSolicitacao.jsp</welcome-file>
 	</welcome-file-list>
 
 

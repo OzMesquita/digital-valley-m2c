@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import dao.UsuarioDAO;
 import model.Pessoa;
+import model.Usuario;
 import dao.DAOFactory;
 import util.Facade;
 
@@ -38,12 +39,12 @@ public class AutenticadoFiltro implements Filter {
 				Pessoa user = Facade.buscarPessoaPorId(id);
 				if (token.equals(user.getUsuario().getTokenUsuario()) && id == user.getId() && !token.equals("null")) {
 					UsuarioDAO userDAO = DAOFactory.criarUsuarioDAO();
-					session.setAttribute("usuario", user);
+					session.setAttribute("usuario", user.getUsuario());
 					chain.doFilter(request, response);
 				}else {
 					((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/");
 				}
-			}else if(session.getAttribute("usuario")!= null && DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Pessoa)session.getAttribute("usuario")).getId())!=null && ((Pessoa)session.getAttribute("usuario")).getUsuario().getTokenUsuario().equals(DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Pessoa)session.getAttribute("usuario")).getId()))){
+			}else if(session.getAttribute("usuario")!= null && DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Usuario)session.getAttribute("usuario")).getPessoa().getId())!=null && ((Usuario)session.getAttribute("usuario")).getTokenUsuario().equals(DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Usuario)session.getAttribute("usuario")).getPessoa().getId()))){
 				chain.doFilter(request, response);
 			}else {
 				((HttpServletResponse) response).sendRedirect("/Controle_de_Acesso/");
