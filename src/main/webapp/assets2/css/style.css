@@ -19,6 +19,33 @@ header{
 }
 
 
+#formulario_solicitacao{
+	margin-left:auto;
+    position: absolute;
+    margin-top: 200px;
+    background-color: white;
+}
+
+#tipo_solicitacao{
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+}
+
+.sem-padding-left {
+    padding-left: 0;
+}
+
+
+.sem-padding-right {
+    padding-right: 0;
+}
+
+#textarea{
+    resize: none;
+    width: 100%;
+    height: 100px;
+}
+
 #perfil{
    
     float: left;

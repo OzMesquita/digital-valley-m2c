@@ -1,8 +1,6 @@
-	<div
-		class="container col-md-offset-3 sem-padding-left sem-padding-right"
-		id="formulario_solicitacao">
+	<div class="container col-md-offset-3 sem-padding-left sem-padding-right" id="formulario_solicitacao">
 		<div class="wizard-navigation">
-			<ul class="nav nav-pills">
+			<ul class="nav nav-pills" id="tipo_solicitacao">
 				<li style="width: 49%;" class="active"><a href="#aluno"
 					data-toggle="tab" aria-expanded="true">Segunda Chamada</a></li>
 				<li style="width: 49%;" class=""><a href="#servidor"
@@ -20,8 +18,8 @@
 						<form>
 							<div class="row">
 								<div class="form-group col-md-12">
-									<div class="col-md-2">
-										<label for="inputName" class="margem-esquerda">Aluno:</label>
+									<div class="col-md-2" >
+										<label for="inputName">Aluno:</label>
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-10 sem-padding-left">
@@ -35,8 +33,8 @@
 
 							<div class="row">
 								<div class="form-group col-md-12">
-									<div class="col-md-2 ">
-										<label for="inputMatricula" class="margem-esquerda">Matrícula:</label>
+									<div class="col-md-2">
+										<label for="inputMatricula" >Matrícula:</label>
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2 sem-padding-left">
@@ -60,7 +58,7 @@
 							<div class="row">
 								<div class="form-group col-md-12">
 									<div class="col-md-2">
-										<label for="inputProfessor" class="margem-esquerda">Professor:</label>
+										<label for="inputProfessor" >Professor:</label>
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-10 sem-padding-left">
