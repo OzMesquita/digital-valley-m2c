@@ -11,7 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import dao.UsuarioDAO;
 import model.Pessoa;
 import model.Usuario;
 import dao.DAOFactory;
@@ -39,8 +38,6 @@ public class AutenticadoFiltro implements Filter {
 				Pessoa pessoa = Facade.buscarPessoaPorId(id);
 				Usuario user = Facade.buscarPorLogin(pessoa.getUsuario().getLogin());
 				user.setTokenUsuario(pessoa.getUsuario().getTokenUsuario());
-				System.out.println(user.getLogin());
-				System.out.println(user.getTokenUsuario());
 				if (token.equals(user.getTokenUsuario()) && id == user.getPessoa().getId() && !token.equals("null")) {
 					session.setAttribute("usuario", user);
 					chain.doFilter(request, response);
