@@ -56,6 +56,10 @@ header{
 	height: 100px;
 }
 
+#tab-direita{
+	margin-left: 0;
+}
+
 .btn-importar{
 	color: white;
 	background-color: steelblue;
