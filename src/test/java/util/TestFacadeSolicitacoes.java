@@ -25,7 +25,7 @@ public class TestFacadeSolicitacoes {
 		s.setProfessor(p);
 		s.setDataProva("10/09/2017");
 		s.setDisciplina(d);
-		s.setJustificativa("Teste da justificatica");
+		s.setJustificativa("Teste da justificatica"); 
 		s.setTipoSolicitacao(EnumSolicitacao.RECORRECAO);
 		util.FacadeSolicitacoes.enviarEmailSolicitacao(s);
 		

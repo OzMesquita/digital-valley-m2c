@@ -18,6 +18,9 @@ header{
     background-color: steelblue;
 }
 
+.tab-menu {
+	background-color: rgb(234,234,234);
+}
 
 #formulario_solicitacao{
 	margin-left:auto;
@@ -54,6 +57,10 @@ header{
 #img_pessoa{
 	width: 100px;
 	height: 100px;
+}
+
+#tab-direita{
+	margin-left: 0;
 }
 
 .btn-importar{
@@ -102,7 +109,7 @@ header ul li {
 	height: 110px;
 }
 
-#brand,#link-importar-matriculas,#link-modulos,#link-usuarios,#perfil,#ver-perfil,#sair,#atribuir-modulos,#cadastrar-modulo,#listar-usuarios,#importar-alunos,#importar-servidores {
+#listar-solicitacoes,#brand,#link-importar-matriculas,#link-modulos,#link-usuarios,#perfil,#ver-perfil,#sair,#atribuir-modulos,#cadastrar-modulo,#listar-usuarios,#importar-alunos,#importar-servidores {
 	color: white;	
 	font-family: 'Righteous', cursive;
 }

@@ -1,6 +1,9 @@
+<%@page import="model.EnumCargo"%>
+<%@page import="model.Servidor"%>
 <%@page import="model.EnumNivel"%>
 <%@page import="model.Usuario"%>
 <%@page import="util.Constantes"%>
+<%@page import="model.Aluno"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -33,33 +36,25 @@
 				<%
 				Usuario usuario = (Usuario) session.getAttribute("usuario");
 					
-					if ( usuario != null && usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
+					if ( usuario.getPessoa() instanceof Servidor) {
+						if(((Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO)|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)){
 				%>
 				<ul class="nav navbar-nav" id="menu-left">
-					<li class="dropdown"><a href="#" id="link-modulos"
-						class="dropdown-toggle" data-toggle="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Módulos</a>
-						<ul class="dropdown-menu">
-							<li><a id="atribuir-modulos"
-								href="<%=Constantes.getAdmUrl()%>/atribuir_modulos">Atribuir Módulos</a></li>
-							<li><a id="cadastrar-modulo"
-								href="<%=Constantes.getAdmUrl()%>/cadastrarModulo.jsp">Cadastrar Módulos</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" id="link-usuarios"
-						class="dropdown-toggle" data-toggle="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Usuários</a>
-						<ul class="dropdown-menu">
-							<li><a id="listar-usuarios"
-								href="<%=Constantes.getAdmUrl()%>/listar_usuarios">Listar Usuários</a></li>
-							<li><a id="importar-alunos"
-								href="<%=Constantes.getAdmUrl()%>/importarAlunos.jsp">Importar Alunos</a></li>
-							<li><a id="importar-servidores"
-								href="<%=Constantes.getAdmUrl()%>/importarServidores.jsp">Importar Servidores</a></li>
-						</ul></li>
+					<li><a id="listar-solicitacoes"
+								href="<%=Constantes.getAdmUrl()%>/listar_solicitacoes.jsp">Listar Solicitacoes</a></li>		
 				</ul>
+				
 				<%
-					}
+						}
+					} else if ( usuario.getPessoa() instanceof Aluno) {
 				%>
+				
+								<ul class="nav navbar-nav" id="menu-left">
+					<li><a id="listar-solicitacoes"
+								href="<%=Constantes.getAdmUrl()%>/listar_solicitacoes.jsp">Histórico de Solicitações</a></li>		
+				</ul>
+				<%} %>
+				
 				<ul class="nav navbar-nav navbar-right">
 					<li><img
 						src="<%=Constantes.getAPP_GUARDIAO_URL()%>/view/imagem_perfil_usuario?id_usuario=<%=usuario.getPessoa().getId()%>"
