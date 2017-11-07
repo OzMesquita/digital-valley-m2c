@@ -5,13 +5,12 @@
 		class=" col-md-6 col-md-offset-3 sem-padding-left sem-padding-right"
 		id="formulario_solicitacao">
 		<div class="wizard-navigation">
-			<ul class="nav nav-pills" id="tipo_solicitacao">
-				<li class="active col-md-6 sem-padding-left sem-padding-right"><a
-					href="#segunda_chamada" data-toggle="tab" aria-expanded="true">Segunda
-						Chamada</a></li>
+			<ul class="nav nav-pills tab-menu" id="tipo_solicitacao">
+				<li class="active  col-md-6 sem-padding-left sem-padding-right"><a
+					href="#segunda_chamada" data-toggle="tab" aria-expanded="true">SEGUNDA CHAMADA</a></li>
 				<li class="col-md-6 sem-padding-left sem-padding-right"
 					id="tab-direita"><a href="#recorrecao" data-toggle="tab"
-					aria-expanded="false">Recorreção</a></li>
+					aria-expanded="false">RECORREÇÃO</a></li>
 			</ul>
 			<div class="moving-tab"
 				style="width: 375px; transform: translate3d(0px, 0px, 0px); transition: transform 0s;">
@@ -108,8 +107,8 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2  sem-padding-left">
-										<input class="form-control" type="date" id="inputDataProva"
-											placeholder="dd/mm/aaaa" data-mask="00/00/0000"
+										<input class="form-control inputData" type="date" id="inputDataProva"
+											placeholder="dd/mm/aaaa" 
 											maxlength="10" autocomplete="off" type="text"
 											name="inputDataProva">
 									</div>
@@ -125,7 +124,7 @@
 										<label for="justificativa" class="margem-esquerda">Justificativa:</label>
 									</div>
 									<div class="col-md-10 sem-padding-left">
-										<textarea id="textarea" name="justificativa"
+										<textarea id="textarea" name="justificativa" maxlength="280" 
 											placeholder="Digite sua justificativa da solicitação"></textarea>
 									</div>
 								</div>
@@ -139,6 +138,11 @@
 						</form>
 					</div>
 				</div>
+				
+				
+				
+				
+				
 				<div class="tab-pane col-md-12" id="recorrecao">
 					<div class="row">
 						<form action="salvarSolicitacao">
@@ -220,8 +224,8 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2  sem-padding-left">
-										<input class="form-control" type="date" id="inputDataProva"
-											placeholder="dd/mm/aaaa" data-mask="00/00/0000"
+										<input class="form-control inputData" type="date" id="inputDataProva"
+											placeholder="dd/mm/aaaa" 
 											maxlength="10" autocomplete="off" type="text"
 											name="inputDataProva">
 									</div>
@@ -237,7 +241,7 @@
 										<label for="justificativa" class="margem-esquerda">Justificativa:</label>
 									</div>
 									<div class="col-md-10 sem-padding-left">
-										<textarea id="textarea" name="justificativa"
+										<textarea id="textarea" name="justificativa" maxlength="280"
 											placeholder="Digite sua justificativa da solicitação"></textarea>
 									</div>
 								</div>
