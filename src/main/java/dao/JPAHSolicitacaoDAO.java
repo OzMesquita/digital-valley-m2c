@@ -1,6 +1,12 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import model.Aluno;
 import model.EnumSolicitacao;
@@ -22,33 +28,55 @@ public class JPAHSolicitacaoDAO extends JPADAO implements SolicitacaoDAO {
 		} else {
 			throw new NullPointerException("Erro: A solicitação não pode ser nula.");
 		}
-
 	}
 
 	@Override
-	public void buscarPorId(int id) {
+	public Solicitacao buscarPorId(int id) {
+		super.open();
+		Solicitacao solicitacao = super.getEntityManager().find(Solicitacao.class, id);
+		super.close();
+		return solicitacao;
+	}
+
+	@Override
+	public List<Solicitacao> buscarPorAluno(Aluno aluno) {
+		super.open();
 		EntityManager entityManager = super.getEntityManager();
-		entityManager.find(Solicitacao.class, id);
-
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Solicitacao> criteriaQuery = builder.createQuery(Solicitacao.class);
+		Root<Solicitacao> solicitacao = criteriaQuery.from(Solicitacao.class);
+		List<Solicitacao> solicitacoes = entityManager
+				.createQuery(criteriaQuery.select(solicitacao).where(builder.equal(solicitacao.get("aluno"), aluno)))
+				.getResultList();
+		super.close();
+		return solicitacoes;
 	}
 
 	@Override
-	public void buscarPorAluno(Aluno aluno) {
+	public List<Solicitacao> buscarPorProfessor(Professor professor) {
+		super.open();
 		EntityManager entityManager = super.getEntityManager();
-		entityManager.find(Solicitacao.class, aluno);		
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Solicitacao> criteriaQuery = builder.createQuery(Solicitacao.class);
+		Root<Solicitacao> solicitacao = criteriaQuery.from(Solicitacao.class);
+		List<Solicitacao> solicitacoes = entityManager
+				.createQuery(criteriaQuery.select(solicitacao).where(builder.equal(solicitacao.get("professor"), professor)))
+				.getResultList();
+		super.close();
+		return solicitacoes;
 	}
 
 	@Override
-	public void buscarPorProfessor(Professor professor) {
+	public List<Solicitacao> buscarPorTipo(EnumSolicitacao tipo) {
 		EntityManager entityManager = super.getEntityManager();
-		entityManager.find(Solicitacao.class, professor);
-
-	}
-
-	@Override
-	public void buscarPorTipo(EnumSolicitacao tipo) {
-		// TODO Auto-generated method stub
-
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Solicitacao> criteriaQuery = builder.createQuery(Solicitacao.class);
+		Root<Solicitacao> solicitacao = criteriaQuery.from(Solicitacao.class);
+		List<Solicitacao> solicitacoes = entityManager
+				.createQuery(criteriaQuery.select(solicitacao).where(builder.equal(solicitacao.get("tipoSolicitacao"), tipo)))
+				.getResultList();
+		super.close();
+		return solicitacoes;
 	}
 
 }

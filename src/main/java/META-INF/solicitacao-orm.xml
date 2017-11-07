@@ -10,16 +10,21 @@
 		<table name="solicitacao" />
 		<attributes>
 			<id name="id">
-				<column name="id" unique="true" nullable="false" />
-				<generated-value strategy="SEQUENCE" generator="TODO_ID_GENERATOR" />
-				<sequence-generator name="TODO_ID_GENERATOR" allocation-size="1" sequence-name="todos_id_seq" />
+				<column name="id_solicitacao" unique="true" nullable="false" />
+				<generated-value strategy="SEQUENCE" generator="SOLICITACAO_ID_GENERATOR" />
+				<sequence-generator name="SOLICITACAO_ID_GENERATOR" allocation-size="1" sequence-name="solicitacao_id_solicitacao_seq" />
 			</id>
 
+			<basic name="tipoSolicitacao" optional="false">
+				<column name="tipo" />
+				<enumerated>STRING</enumerated>
+			</basic>
+			
 			<basic name="dataSolicitacao" optional="false">
-				<column name="dataSolicitacao" />
+				<column name="data_solicitacao" />
 			</basic>
 			<basic name="dataProva" optional="false">
-				<column name="dataProva" />
+				<column name="data_prova" />
 			</basic>
 			<basic name="justificativa" optional="false">
 				<column name="justificativa" />
