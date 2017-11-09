@@ -3,7 +3,6 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -13,8 +12,12 @@ import model.EnumSolicitacao;
 import model.Professor;
 import model.Solicitacao;
 
-public class JPAHSolicitacaoDAO extends JPADAO implements SolicitacaoDAO {
-
+public class JPAHSolicitacaoDAO extends JPADAO implements SolicitacaoDAO {		
+	
+	protected JPAHSolicitacaoDAO (){
+		//
+	}
+	
 	@Override
 	public void cadastrar(Solicitacao solicitacao) {
 		if (solicitacao != null) {
