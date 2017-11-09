@@ -2,22 +2,22 @@ package model;
 
 public enum EnumSolicitacao {
 
-	SEGUNDACHAMADA(1), RECORRECAO(2);
+	SEGUNDA_CHAMADA("SEGUNDA_CHAMADA"), RECORRECAO("RECORRECAO");
 	
-	public int valorSolicitacao;
+	public String valorSolicitacao;
 	
-	private EnumSolicitacao(int valor) {
+	private EnumSolicitacao(String valor) {
 		valorSolicitacao=valor;
 	}
 	
-	public int getValorSolicitacao() {
+	public String getValorSolicitacao() {
 		return valorSolicitacao;
 	}
 	
 	public static EnumSolicitacao getByString(String value){
 		switch (value) {
 		case "Segunda chamada":
-			return EnumSolicitacao.SEGUNDACHAMADA;
+			return EnumSolicitacao.SEGUNDA_CHAMADA;
 				
 		case "Recorreção":
 			return EnumSolicitacao.RECORRECAO;		

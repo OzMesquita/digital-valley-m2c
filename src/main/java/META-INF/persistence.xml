@@ -11,6 +11,7 @@
 			<property name="javax.persistence.jdbc.password" value="N2S@UFC" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.default_schema" value="ctrl-acesso" />
 		</properties>
 	</persistence-unit>
 </persistence>
