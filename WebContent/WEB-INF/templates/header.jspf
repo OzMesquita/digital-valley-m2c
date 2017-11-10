@@ -51,7 +51,7 @@
 				
 								<ul class="nav navbar-nav" id="menu-left">
 					<li><a id="listar-solicitacoes"
-								href="<%=Constantes.getAdmUrl()%>/listar_solicitacoes.jsp">Histórico de Solicitações</a></li>		
+								href="<%=Constantes.getAppUrl()%>/view/listar_solicitacoes.jsp">Histórico de Solicitações</a></li>		
 				</ul>
 				<%} %>
 				
