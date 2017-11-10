@@ -8,7 +8,7 @@ import model.Professor;
 import model.Solicitacao;
 
 public interface SolicitacaoDAO {
-	
+		
 	public void cadastrar(Solicitacao solicitacao);
 	
 	public Solicitacao buscarPorId(int id);
