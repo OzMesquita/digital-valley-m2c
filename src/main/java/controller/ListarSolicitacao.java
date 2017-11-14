@@ -35,7 +35,7 @@ public class ListarSolicitacao extends HttpServlet {
 				}else if(request.getParameter("tipoBusca").equals("listarPorProfessor")){
 					solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorProfessor(DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")));
 				}else{
-					//solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().buscar();
+					solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().listar(Integer.parseInt(request.getParameter("inicioPag")), Integer.parseInt(request.getParameter("inicioPag")));
 				}
 			}
 		}else if(usuario.getPessoa() instanceof Aluno){
