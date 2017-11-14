@@ -22,7 +22,7 @@ header{
 	background-color: rgb(234,234,234);
 }
 
-#formulario_solicitacao{
+#formulario_solicitacao,#tabela_solicitacoes{
 	margin-left:auto;
     position: absolute;
     margin-top: 200px;
@@ -37,7 +37,6 @@ header{
 .sem-padding-left {
     padding-left: 0;
 }
-
 
 .sem-padding-right {
     padding-right: 0;
