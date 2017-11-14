@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.Dispatch;
+
+import org.apache.http.HttpRequest;
 
 import dao.DAOFactory;
 import dao.DAOFactoryM2C;
@@ -32,12 +35,13 @@ public class ListarSolicitacao extends HttpServlet {
 				}else if(request.getParameter("tipoBusca").equals("listarPorProfessor")){
 					solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorProfessor(DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")));
 				}else{
-					solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().buscar();
+					//solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().buscar();
 				}
 			}
 		}else if(usuario.getPessoa() instanceof Aluno){
 			solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorAluno((Aluno)usuario.getPessoa());
 		}
 		request.setAttribute("solicitacoes", solicitacoes);
+		request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);
 	}
 }
