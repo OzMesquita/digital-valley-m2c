@@ -14,8 +14,8 @@
 			<property name="hibernate.default_schema" value="ctrl-acesso" />
 		</properties>
 	</persistence-unit>
-	<persistence-unit name="digital-valley">
-		<mapping-file>META-INF/aluno.xml</mapping-file>
+	<persistence-unit name="digital-valley-core">
+		<mapping-file>META-INF/aluno-orm.xml</mapping-file>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.169.1.2:5432/n2s-ufc" />
 			<property name="javax.persistence.jdbc.user" value="n2s" />
