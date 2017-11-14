@@ -82,4 +82,17 @@ public class JPAHSolicitacaoDAO extends JPADAO implements SolicitacaoDAO {
 		return solicitacoes;
 	}
 
+	@Override
+	public List<Solicitacao> listar(int inicio, int fim) {
+		EntityManager entityManager = super.getEntityManager();
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Solicitacao> criteriaQuery = builder.createQuery(Solicitacao.class);
+		Root<Solicitacao> solicitacao = criteriaQuery.from(Solicitacao.class);
+		List<Solicitacao> solicitacoes = entityManager
+				.createQuery(criteriaQuery.select(solicitacao).l)
+				.getResultList();
+		super.close();
+		return solicitacoes;
+	}
+
 }

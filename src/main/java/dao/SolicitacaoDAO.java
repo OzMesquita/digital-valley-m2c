@@ -17,6 +17,7 @@ public interface SolicitacaoDAO {
 	
 	public List<Solicitacao> buscarPorProfessor(Professor professor);
 	
-	public List<Solicitacao> buscarPorTipo(EnumSolicitacao tipo);
+	public List<Solicitacao> buscarPorTipo(EnumSolicitacao tipo);	
 		
+	public List<Solicitacao> listar(int inicio, int fim);
 }

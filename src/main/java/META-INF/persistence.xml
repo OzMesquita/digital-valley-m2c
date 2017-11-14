@@ -14,4 +14,16 @@
 			<property name="hibernate.default_schema" value="ctrl-acesso" />
 		</properties>
 	</persistence-unit>
+	<persistence-unit name="digital-valley">
+		<mapping-file>META-INF/aluno.xml</mapping-file>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.169.1.2:5432/n2s-ufc" />
+			<property name="javax.persistence.jdbc.user" value="n2s" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.password" value="N2S@UFC" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.default_schema" value="public" />
+		</properties>
+	</persistence-unit>
 </persistence>
