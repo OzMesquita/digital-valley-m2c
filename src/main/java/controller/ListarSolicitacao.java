@@ -31,15 +31,15 @@ public class ListarSolicitacao extends HttpServlet {
 		if(usuario.getPessoa() instanceof Servidor){
 			if(((Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO)|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)){
 				if(request.getParameter("tipoBusca").equals("listarPorAluno")){
-					solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorAluno(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")));
+					solicitacoes = DAOFactoryM2C.criarJDBCSolicitacaoDAO().buscarPorAluno(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")));
 				}else if(request.getParameter("tipoBusca").equals("listarPorProfessor")){
-					solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorProfessor(DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")));
+					solicitacoes = DAOFactoryM2C.criarJDBCSolicitacaoDAO().buscarPorProfessor(DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")));
 				}else{
-					solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().listar(Integer.parseInt(request.getParameter("inicioPag")), Integer.parseInt(request.getParameter("fimPag")));
+					solicitacoes = DAOFactoryM2C.criarJDBCSolicitacaoDAO().listar(Integer.parseInt(request.getParameter("inicioPag")), Integer.parseInt(request.getParameter("fimPag")));
 				}
 			}
 		}else if(usuario.getPessoa() instanceof Aluno){
-			solicitacoes = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorAluno((Aluno)usuario.getPessoa());
+			solicitacoes = DAOFactoryM2C.criarJDBCSolicitacaoDAO().buscarPorAluno((Aluno)usuario.getPessoa());
 		}
 		request.setAttribute("solicitacoes", solicitacoes);
 		request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);
