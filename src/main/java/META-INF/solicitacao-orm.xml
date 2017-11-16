@@ -30,18 +30,7 @@
 				<column name="justificativa" />
 			</basic>
 
-			<many-to-one name="aluno" optional="false" >
-				<join-column name="id_aluno" />
-			</many-to-one>
-			
-			<many-to-one name="professor" optional="false" >
-				<join-column name="id_professor" />
-			</many-to-one>
-			
-			<many-to-one name="disciplina" optional="false" >
-				<join-column name="id_disciplina" />
-			</many-to-one>
-			
+
 		</attributes>	
 	</entity>
 </entity-mappings>

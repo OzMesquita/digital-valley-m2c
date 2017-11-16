@@ -9,7 +9,7 @@
 		<%
 		
 		List<Solicitacao> solicitacoes= (List<Solicitacao>) session.getAttribute("solicitacoes");
-				
+			
 			usuario = (Usuario) session.getAttribute("usuario");
 
 			if (usuario.getPessoa() instanceof Servidor) {
