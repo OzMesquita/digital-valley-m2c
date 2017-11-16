@@ -44,6 +44,21 @@ public class Solicitacao implements Serializable {
 		this.tipoSolicitacao = tipoSolicitacao;
 	}
 
+	
+	public void setTipoSolicitacao(String tipoSolicitacao) {
+		switch (tipoSolicitacao) {
+		case "Segunda Chamada":
+			this.tipoSolicitacao = EnumSolicitacao.SEGUNDA_CHAMADA;
+			break;
+		case "Recorrecao":
+			this.tipoSolicitacao = EnumSolicitacao.RECORRECAO;
+			break;
+		default:
+			this.tipoSolicitacao = null;
+		}
+	}
+	
+
 	public Aluno getAluno() {
 		return aluno;
 	}
