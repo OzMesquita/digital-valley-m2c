@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Solicitacao"%>
 
@@ -7,9 +8,8 @@
 		id="formulario_solicitacao">
 
 		<%
-		
-		List<Solicitacao> solicitacoes= (List<Solicitacao>) session.getAttribute("solicitacoes");
-			
+			List<Solicitacao> solicitacoes = (List<Solicitacao>) request.getAttribute("solicitacoes");
+
 			usuario = (Usuario) session.getAttribute("usuario");
 
 			if (usuario.getPessoa() instanceof Servidor) {
@@ -46,35 +46,28 @@
 									<thead>
 										<tr>
 											<th>ID</th>
-											<th>Nome</th>
+											<th>Nome do Aluno</th>
 											<th>Data da Solicitação</th>
-											<th>Professor</th>
+											<th>Nome do Professor</th>
+											<th>Disciplina</th>
 											<th>Tipo da Solicitação</th>
-
 										</tr>
 									</thead>
 									<tbody>
+										<%
+											for (Solicitacao solicitacao : solicitacoes) {
+										%>
 										<tr>
-											<td>1</td>
-											<td>exemplo</td>
-											<td>exempo</td>
-											<td>Nome Professor</td>
-											<td>exemp</td>
+											<td><%=solicitacao.getId()%></td>
+											<td><%=solicitacao.getAluno().getNome()%></td>
+											<td><%=solicitacao.getDataSolicitacao()%></td>
+											<td><%=solicitacao.getProfessor().getNome()%></td>											
+											<td><%=solicitacao.getDisciplina().getNome()%></td>
+											<td><%=solicitacao.getTipoSolicitacao().getValorSolicitacao()%></td>
 										</tr>
-										<tr>
-											<td>1</td>
-											<td>exemplo</td>
-											<td>exempo</td>
-											<td>exemp</td>
-											<td>exemp</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>exemplo</td>
-											<td>exempo</td>
-											<td>exemp</td>
-											<td>exemp</td>
-										</tr>
+										<%
+											}
+										%>
 									</tbody>
 								</table>
 							</div>
@@ -94,35 +87,28 @@
 									<thead>
 										<tr>
 											<th>ID</th>
-											<th>Nome</th>
+											<th>Nome do Aluno</th>
 											<th>Data da Solicitação</th>
-											<th>Professor</th>
+											<th>Nome do Professor</th>
+											<th>Disciplina</th>
 											<th>Tipo da Solicitação</th>
-
 										</tr>
 									</thead>
 									<tbody>
+										<%
+											for (Solicitacao solicitacao : solicitacoes) {
+										%>
 										<tr>
-											<td>3</td>
-											<td>Nome Aluno</td>
-											<td>qqqqqqqqq</td>
-											<td>Nome Professor</td>
-											<td>ewewqeqwep</td>
+											<td><%=solicitacao.getId()%></td>
+											<td><%=solicitacao.getAluno().getNome()%></td>
+											<td><%=solicitacao.getDataSolicitacao()%></td>
+											<td><%=solicitacao.getProfessor().getNome()%></td>											
+											<td><%=solicitacao.getDisciplina().getNome()%></td>
+											<td><%=solicitacao.getTipoSolicitacao().getValorSolicitacao()%></td>
 										</tr>
-										<tr>
-											<td>1</td>
-											<td>exemplo</td>
-											<td>exemp</td>
-											<td>exempo</td>
-											<td>exemp</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>exemplo</td>
-											<td>exempo</td>
-											<td>exemp</td>
-											<td>exemp</td>
-										</tr>
+										<%
+											}
+										%>
 									</tbody>
 								</table>
 							</div>
@@ -142,35 +128,28 @@
 									<thead>
 										<tr>
 											<th>ID</th>
-											<th>Nome</th>
+											<th>Nome do Aluno</th>
 											<th>Data da Solicitação</th>
-											<th>Professor</th>
+											<th>Nome do Professor</th>
+											<th>Disciplina</th>
 											<th>Tipo da Solicitação</th>
-
 										</tr>
 									</thead>
 									<tbody>
+										<%
+											for (Solicitacao solicitacao : solicitacoes) {
+										%>
 										<tr>
-											<td>1</td>
-											<td>exemplo</td>
-											<td>exempo</td>
-											<td>Nome Professor</td>
-											<td>exemp</td>
+											<td><%=solicitacao.getId()%></td>
+											<td><%=solicitacao.getAluno().getNome()%></td>
+											<td><%=solicitacao.getDataSolicitacao()%></td>
+											<td><%=solicitacao.getProfessor().getNome()%></td>											
+											<td><%=solicitacao.getDisciplina().getNome()%></td>
+											<td><%=solicitacao.getTipoSolicitacao().getValorSolicitacao()%></td>
 										</tr>
-										<tr>
-											<td>1</td>
-											<td>exemplo</td>
-											<td>exempo</td>
-											<td>exemp</td>
-											<td>exemp</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>exemplo</td>
-											<td>exempo</td>
-											<td>exemp</td>
-											<td>exemp</td>
-										</tr>
+										<%
+											}
+										%>
 									</tbody>
 								</table>
 							</div>
@@ -196,36 +175,28 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Nome</th>
-								<th>Data da Solicitação</th>
 								<th>Professor</th>
+								<th>Data da Solicitação</th>
+								<th>Disciplina</th>
 								<th>Tipo da Solicitação</th>
 
 							</tr>
 						</thead>
-						<tbody>							
-						
+						<tbody>
+							<%
+								for (Solicitacao solicitacao : solicitacoes) {
+							%>
 							<tr>
-								<td>1</td>
-								<td>exemplo</td>
-								<td>exempo</td>
-								<td>Nome Professor</td>
-								<td>exemp</td>
+								<td><%=solicitacao.getId()%></td>
+								<td><%=solicitacao.getAluno().getNome()%></td>
+								<td><%=solicitacao.getDataSolicitacao()%></td>
+								<td><%=solicitacao.getProfessor().getNome()%></td>
+								<td><%=solicitacao.getDisciplina().getNome()%></td>
+								<td><%=solicitacao.getTipoSolicitacao().getValorSolicitacao()%></td>
 							</tr>
-							<tr>
-								<td>1</td>
-								<td>exemplo</td>
-								<td>exempo</td>
-								<td>exemp</td>
-								<td>exemp</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>exemplo</td>
-								<td>exempo</td>
-								<td>exemp</td>
-								<td>exemp</td>
-							</tr>
+							<%
+								}
+							%>
 						</tbody>
 					</table>
 				</div>
