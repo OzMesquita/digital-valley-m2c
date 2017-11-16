@@ -25,12 +25,13 @@
 			<id>snapshots</id>
 			<name>DESKTOP-4SVL9LL-snapshots</name>
 			<url>http://192.169.1.2:8081/artifactory/br.com.n2s</url>
+
 		</snapshotRepository>
 	</distributionManagement>
 
 	<repositories>
 		<repository>
-			<id>central</id>
+			<id>central2</id>
 			<name>Central Repository</name>
 			<url>http://repo.maven.apache.org/maven2</url>
 			<layout>default</layout>
