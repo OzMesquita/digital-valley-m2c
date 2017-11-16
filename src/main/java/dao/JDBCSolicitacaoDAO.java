@@ -19,7 +19,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 	public void cadastrar(Solicitacao solicitacao) {
 		super.open();
 		try {
-			String SQL = "INSERT INTO ctrl-acesso.solicitacao(data_solicitacao, data_prova, justificativa, id_aluno,id_professor, id_disciplina, tipo) VALUES" + "( ?, ?, ?, ?, ?, ?, ?)";
+			String SQL = "INSERT INTO \"ctrl-acesso\".solicitacao(data_solicitacao, data_prova, justificativa, id_aluno,id_professor, id_disciplina, tipo) VALUES" + "( ?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
