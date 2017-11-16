@@ -7,7 +7,6 @@ public abstract class JDBCDAO {
 	
 	private Connection connection;
 	
-	
 
 	public Connection getConnection() {
 		return connection;

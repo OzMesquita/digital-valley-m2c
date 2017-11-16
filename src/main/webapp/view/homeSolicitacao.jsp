@@ -39,7 +39,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-10 sem-padding-left">
-										<input class="form-control " type="text" name="inputName"
+										<input required class="form-control " type="text" name="inputName"
 											value="<%=aluno != null ? aluno.getNome() : ""%>"
 											<%if (aluno != null) {%> <%="disabled"%> <%}%> disabled="disabled">
 									</div>
@@ -56,7 +56,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2 sem-padding-left">
-										<input class="form-control" type="text"
+										<input required class="form-control" type="text"
 											value="<%=aluno != null ? aluno.getMatricula() : ""%>"
 											<%if (aluno != null) {%> <%="disabled"%> <%}%> id="matricula"
 											name="inputMatricula"
@@ -68,7 +68,7 @@
 									</div>
 									<!--col-md-1-->
 									<div class="col-md-7 ">
-										<input class="form-control" type="text" name="inputCurso"
+										<input required class="form-control" type="text" name="inputCurso"
 											value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
 											<%if (aluno != null) {%> <%="disabled"%> <%}%> disabled="disabled">
 									</div>
@@ -85,7 +85,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-10 sem-padding-left">
-										<input class="form-control" type="text" name="inputProfessor"
+										<input required class="form-control" type="text" name="inputProfessor"
 											placeholder="Nome do professor">
 									</div>
 									<!--col-md-10-->
@@ -114,7 +114,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2  sem-padding-left">
-										<input class="form-control inputData" type="date"
+										<input required class="form-control inputData" type="date"
 											id="inputDataProva" placeholder="dd/mm/aaaa" maxlength="10"
 											autocomplete="off" type="text" name="inputDataProva">
 									</div>
@@ -129,7 +129,7 @@
 										<label for="justificativa" class="margem-esquerda">Justificativa:</label>
 									</div>
 									<div class="col-md-10 sem-padding-left">
-										<textarea id="textarea" name="justificativa" maxlength="280"
+										<textarea required id="textarea" name="justificativa" maxlength="280"
 											placeholder="Digite sua justificativa da solicitação"></textarea>
 									</div>
 								</div>
@@ -251,7 +251,7 @@
 										<label for="justificativa" class="margem-esquerda">Justificativa:</label>
 									</div>
 									<div class="col-md-10 sem-padding-left">
-										<textarea id="textarea" name="justificativa" maxlength="280"
+										<textarea required id="textarea" name="justificativa" maxlength="280"
 											placeholder="Digite sua justificativa da solicitação"></textarea>
 									</div>
 								</div>

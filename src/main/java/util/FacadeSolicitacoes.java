@@ -2,8 +2,11 @@ package util;
 
 import model.Solicitacao;
 
-import java.util.spi.TimeZoneNameProvider;
 
+import java.time.LocalDate;
+
+import dao.DAOFactoryM2C;
+import dao.SolicitacaoDAO;
 import model.Email;
 import model.EnumSolicitacao;
 
@@ -43,5 +46,29 @@ public class FacadeSolicitacoes {
 			throw new NullPointerException("Solicitação nula.");
 		}
 
+	}
+	
+	public static boolean verificarDias(LocalDate dataProva){
+		LocalDate hoje = LocalDate.now();
+		if (hoje.getDayOfWeek().name().equals("TUESDAY")) {
+			hoje = hoje.minusDays(2);
+		} else if (hoje.getDayOfWeek().name().equals("MONDAY")) {
+			hoje = hoje.minusDays(2);
+		} else if (hoje.getDayOfWeek().name().equals("SUNDAY")) {
+			hoje = hoje.minusDays(1);
+		}
+
+		if (dataProva.plusDays(4).isAfter(hoje)) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	public static void salvarSolicitacao(Solicitacao solicitacao) {
+		SolicitacaoDAO sDAO = DAOFactoryM2C.criarJDBCSolicitacaoDAO();
+		sDAO.cadastrar(solicitacao);
+		
 	}
 }

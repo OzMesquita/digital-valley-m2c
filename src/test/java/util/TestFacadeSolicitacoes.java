@@ -1,6 +1,10 @@
 package util;
 
 
+import java.time.LocalDate;
+
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import dao.DAOFactory;
@@ -12,6 +16,7 @@ import model.Solicitacao;
 
 public class TestFacadeSolicitacoes {
 	
+	@Ignore
 	@Test
 	public void testEnviarEmailSegundaChamada(){
 		Aluno a = DAOFactory.criarAlunoDAO().buscar(73);
@@ -29,6 +34,10 @@ public class TestFacadeSolicitacoes {
 		s.setTipoSolicitacao(EnumSolicitacao.RECORRECAO);
 		util.FacadeSolicitacoes.enviarEmailSolicitacao(s);
 		
+	}
+	@Test
+	public void testVerificarDias() {
+		Assert.assertTrue(util.FacadeSolicitacoes.verificarDias(LocalDate.of(2017, 11, 6)));
 	}
 	
 }
