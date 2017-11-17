@@ -227,7 +227,7 @@
 											<option value="">3</option>
 											<option value="">4</option>
 											<option value="">5</option>
-										</select><!--col-md-6-->
+											</select><!--col-md-6-->
 									</div><!-- col-md-6 sem-padding-left -->
 
 									<div class="col-md-2 sem-padding-right">
