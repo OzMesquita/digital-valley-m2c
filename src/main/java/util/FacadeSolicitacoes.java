@@ -4,9 +4,12 @@ import model.Solicitacao;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
+import dao.DAOFactory;
 import dao.DAOFactoryM2C;
 import dao.SolicitacaoDAO;
+import model.Aluno;
 import model.Email;
 import model.EnumSolicitacao;
 
@@ -68,7 +71,16 @@ public class FacadeSolicitacoes {
 	
 	public static void salvarSolicitacao(Solicitacao solicitacao) {
 		SolicitacaoDAO sDAO = DAOFactoryM2C.criarJDBCSolicitacaoDAO();
-		sDAO.cadastrar(solicitacao);
-		
+		sDAO.cadastrar(solicitacao);	
+	}
+	
+	public static ArrayList<Solicitacao> buscarPorAluno(Aluno aluno){
+		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarJDBCSolicitacaoDAO().buscarPorAluno(aluno);
+		for(Solicitacao solicitacao : solicitacoes){
+			solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
+			solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
+			solicitacao.getDisciplina().setNome("criarDAO");
+		}
+		return solicitacoes;
 	}
 }
