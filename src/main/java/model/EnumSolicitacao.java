@@ -16,10 +16,10 @@ public enum EnumSolicitacao {
 	
 	public static EnumSolicitacao getByString(String value){
 		switch (value) {
-		case "Segunda chamada":
+		case "SEGUNDA_CHAMADA":
 			return EnumSolicitacao.SEGUNDA_CHAMADA;
 				
-		case "Recorreção":
+		case "RECORRECAO":
 			return EnumSolicitacao.RECORRECAO;		
 
 		default:
