@@ -136,8 +136,20 @@ header ul li {
 }
 /* ---------------------------------------------------------------------*/
 
+#buscaSolicitacao{
+	display: flex;
+}
 
 
+
+#btn-buscarSoli{
+	padding-left: 8px;
+	margin-left:5px;
+}
+
+#labelBuscarSoli{
+	margin-top: 8px;
+}
 					
 footer{
     background-color: steelblue;
