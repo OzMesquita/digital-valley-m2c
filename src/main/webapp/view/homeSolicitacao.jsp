@@ -114,7 +114,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2  sem-padding-left">
-										<input required class="form-control inputData" type="date"
+										<input required class="form-control inputData" 
 											id="inputDataProva" placeholder="dd/mm/aaaa" maxlength="10"
 											autocomplete="off" type="text" name="inputDataProva">
 									</div>
@@ -235,7 +235,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2  sem-padding-left">
-										<input class="form-control inputData" type="date"
+										<input class="form-control inputData" 
 											id="inputDataProva" placeholder="dd/mm/aaaa" maxlength="10"
 											autocomplete="off" type="text" name="inputDataProva">
 									</div>
