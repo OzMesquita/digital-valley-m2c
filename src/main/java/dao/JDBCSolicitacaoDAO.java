@@ -46,8 +46,36 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 
 	@Override
 	public Solicitacao buscarPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s WHERE s.id_solicitacao = ?";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();	
+			Solicitacao solicitacao = new Solicitacao();
+			solicitacao.setAluno(new Aluno());
+			solicitacao.setProfessor(new Professor());
+			solicitacao.setDisciplina(new Disciplina());
+			if (rs.next()) {
+				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
+				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
+				solicitacao.setId(rs.getInt("id_solicitacao"));
+				solicitacao.setJustificativa(rs.getString("justificativa"));
+				solicitacao.setTipoSolicitacao(EnumSolicitacao.getByString(rs.getString("tipo")));
+				solicitacao.getAluno().setId(rs.getInt("id_aluno"));
+				solicitacao.getDisciplina().setId(rs.getInt("id_disciplina"));
+				solicitacao.getProfessor().setId(rs.getInt("id_professor"));
+			}
+			ps.close();
+			rs.close();	
+			return solicitacao;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar solcitacoes em JDBCSolicitacaoDAO", e);
+
+		}finally {
+			super.close();
+		}
+
 	}
 
 	@Override
@@ -132,8 +160,43 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 
 	@Override
 	public List<Solicitacao> listar(int inicio, int fim) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
+		try {
+			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s ORDER BY data_solicitacao DESC LIMIT ? OFFSET ?";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(2, fim - inicio);
+			ps.setInt(3, inicio);
+			ResultSet rs = ps.executeQuery();
+			
+			Solicitacao solicitacao = new Solicitacao();
+			Aluno aluno = new Aluno();
+			Professor professor = new Professor();
+			Disciplina disciplina = new Disciplina();
+			while (rs.next()) {
+				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
+				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
+				solicitacao.setId(rs.getInt("id_solicitacao"));
+				solicitacao.setJustificativa(rs.getString("justificativa"));
+				solicitacao.setTipoSolicitacao(EnumSolicitacao.getByString(rs.getString("tipo")));
+				solicitacao.setProfessor(professor);
+				solicitacao.getProfessor().setId(rs.getInt("id_professor"));
+				solicitacao.setDisciplina(disciplina);
+				solicitacao.getDisciplina().setId(rs.getInt("id_disciplina"));
+				solicitacao.setAluno(aluno);
+				solicitacao.getAluno().setId(rs.getInt("id_aluno"));
+				solicitacoes.add(solicitacao);			
+			}
+			ps.close();
+			rs.close();	
+			return solicitacoes;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar solcitacoes em JDBCSolicitacaoDAO", e);
+
+		}finally {
+			super.close();
+		}
+
 	}
 
 }

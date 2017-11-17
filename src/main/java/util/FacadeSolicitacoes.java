@@ -2,7 +2,6 @@ package util;
 
 import model.Solicitacao;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -12,6 +11,7 @@ import dao.SolicitacaoDAO;
 import model.Aluno;
 import model.Email;
 import model.EnumSolicitacao;
+import model.Professor;
 
 public class FacadeSolicitacoes {
 	private FacadeSolicitacoes() {
@@ -45,13 +45,13 @@ public class FacadeSolicitacoes {
 			} else {
 				throw new IllegalArgumentException("Erro ao enviar o email");
 			}
-		}else {
+		} else {
 			throw new NullPointerException("Solicitação nula.");
 		}
 
 	}
-	
-	public static boolean verificarDias(LocalDate dataProva){
+
+	public static boolean verificarDias(LocalDate dataProva) {
 		LocalDate hoje = LocalDate.now();
 		if (hoje.getDayOfWeek().name().equals("TUESDAY")) {
 			hoje = hoje.minusDays(2);
@@ -66,21 +66,56 @@ public class FacadeSolicitacoes {
 		} else {
 			return false;
 		}
-		
+
 	}
-	
+
 	public static void salvarSolicitacao(Solicitacao solicitacao) {
 		SolicitacaoDAO sDAO = DAOFactoryM2C.criarJDBCSolicitacaoDAO();
-		sDAO.cadastrar(solicitacao);	
+		sDAO.cadastrar(solicitacao);
 	}
-	
-	public static ArrayList<Solicitacao> buscarPorAluno(Aluno aluno){
-		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarJDBCSolicitacaoDAO().buscarPorAluno(aluno);
-		for(Solicitacao solicitacao : solicitacoes){
+
+	public static Solicitacao buscarPorId(int id) {
+		Solicitacao solicitacao = DAOFactoryM2C.criarJDBCSolicitacaoDAO().buscarPorId(id);
+		solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
+		solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
+		solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
+		solicitacao.getDisciplina().setNome("criarDAO");
+		return solicitacao;
+	}	
+
+	public static ArrayList<Solicitacao> buscarPorAluno(Aluno aluno) {
+		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarJDBCSolicitacaoDAO()
+				.buscarPorAluno(aluno);
+		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
 			solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
 			solicitacao.getDisciplina().setNome("criarDAO");
 		}
 		return solicitacoes;
 	}
+
+	public static ArrayList<Solicitacao> buscarPorProfessor(Professor professor) {
+		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarJDBCSolicitacaoDAO()
+				.buscarPorProfessor(professor);
+		for (Solicitacao solicitacao : solicitacoes) {
+			solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
+			solicitacao.getDisciplina().setProfessor(professor);
+			solicitacao.getDisciplina().setNome("criarDAO");
+		}
+		return solicitacoes;
+	}
+	
+	public static ArrayList<Solicitacao> listar(int inicio, int fim) {
+		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarJDBCSolicitacaoDAO()
+				.listar(inicio, fim);
+		for (Solicitacao solicitacao : solicitacoes) {
+			solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
+			solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
+			solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
+			solicitacao.getDisciplina().setNome("criarDAO");
+		}
+		return solicitacoes;
+	}
+
+
 }
