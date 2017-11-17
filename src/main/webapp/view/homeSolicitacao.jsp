@@ -1,6 +1,15 @@
 
 <%@page import="model.Aluno"%>
 <div class="row">
+<div id="page-wrapper">
+				<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="alert alert-danger" role="alert">
+  						<%=session.getAttribute(Constantes.getSessionMsg()) %>
+					</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					
+				<%} %>
+
 	<div
 		class=" col-md-6 col-md-offset-3 sem-padding-left sem-padding-right"
 		id="formulario_solicitacao">
@@ -25,6 +34,8 @@
 
 				}
 			%>
+
+			
 
 
 			<div class="tab-content">
@@ -266,6 +277,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </div>
