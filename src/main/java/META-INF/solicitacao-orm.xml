@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+	<persistence-unit-metadata>
+		<persistence-unit-defaults>
+			<access>FIELD</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<package>digital-valley-m2c</package>
+	<entity class="model.Solicitacao" name="Solicitacao" access="FIELD" >
+		<table name="solicitacao" />
+		<attributes>
+			<id name="id">
+				<column name="id_solicitacao" unique="true" nullable="false" />
+				<generated-value strategy="SEQUENCE" generator="SOLICITACAO_ID_GENERATOR" />
+				<sequence-generator name="SOLICITACAO_ID_GENERATOR" allocation-size="1" sequence-name="solicitacao_id_solicitacao_seq" />
+			</id>
+
+			<basic name="tipoSolicitacao" optional="false">
+				<column name="tipo" />				
+				<enumerated>STRING</enumerated>
+			</basic>
+			
+			<basic name="dataSolicitacao" optional="false">
+				<column name="data_solicitacao" />
+			</basic>
+			<basic name="dataProva" optional="false">
+				<column name="data_prova" />
+			</basic>
+			<basic name="justificativa" optional="false">
+				<column name="justificativa" />
+			</basic>
+			<transient name="disciplina"/>
+			<transient name="professor"/>
+			<transient name="aluno"/>
+
+		</attributes>	
+	</entity>
+</entity-mappings>
