@@ -22,7 +22,7 @@ public class JPAHSolicitacaoDAOTest {
 
 	@Test
 	public void cadastrar() {
-		SolicitacaoDAO jpaHSolicitacaoDAO = DAOFactoryM2C.criarSolicitacaoDAO();
+		SolicitacaoDAO jpaHSolicitacaoDAO = DAOFactoryM2C.criarJPAHSolicitacaoDAO();
 		Aluno aluno = DAOFactory.criarAlunoDAO().listar().get(0);
 		Professor professor = DAOFactory.criarProfessorDAO().listar().get(0);
 		LocalDate dataProva = LocalDate.of(2017, 10, 30);

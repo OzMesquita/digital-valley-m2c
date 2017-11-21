@@ -199,4 +199,11 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 
 	}
 
+
+	@Override
+	public List<Solicitacao> buscarPorTipo(EnumSolicitacao tipo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
