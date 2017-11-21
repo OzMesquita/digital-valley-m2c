@@ -167,8 +167,8 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 		try {
 			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s ORDER BY data_solicitacao DESC LIMIT ? OFFSET ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
-			ps.setInt(2, fim - inicio);
-			ps.setInt(3, inicio);
+			ps.setInt(1, fim - inicio);
+			ps.setInt(2, inicio);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Solicitacao solicitacao = new Solicitacao();

@@ -8,7 +8,7 @@
 		id="formulario_solicitacao">
 
 		<%
-				ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) request.getAttribute("solicitacoes");
+			ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) request.getAttribute("solicitacoes");
 
 			usuario = (Usuario) session.getAttribute("usuario");
 
@@ -16,244 +16,153 @@
 				if (((Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO)
 						|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 		%>
-
-		<div class="wizard-navigation">
-			<ul class="nav nav-pills tab-menu" id="tipo_solicitacao">
-				<li class="active  col-md-4 sem-padding-left sem-padding-right"><a
-					href="#todas_solicitacoes" data-toggle="tab" aria-expanded="true">Todas</a></li>
-				<li class="col-md-4 sem-padding-left sem-padding-right"
-					id="tab-direita"><a href="#listarPorAluno" data-toggle="tab"
-					aria-expanded="false">Buscar Por Aluno</a></li>
-
-				<li class="col-md-4 sem-padding-left sem-padding-right"
-					id="tab-direita"><a href="#listarPorProfessor" data-toggle="tab" 
-					aria-expanded="false">Buscar Por Professor</a></li>
-			</ul>
-			<div class="moving-tab"
-				style="width: 375px; transform: translate3d(0px, 0px, 0px); transition: transform 0s;">
-			</div>
-
-			<div class="tab-content">
-				<div class="tab-pane active col-md-12" id="todas_solicitacoes">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="panel panel-primary">
-								<div class="panel-heading">
-									<h3 class="panel-title" align="center">Solicitações</h3>
-								</div>
-
-								<table class="table table-responsive table-hover" id="dev-table">
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th>Nome do Aluno</th>
-											<th>Data da Solicitação</th>
-											<th>Nome do Professor</th>
-											<th>Disciplina</th>
-											<th>Tipo da Solicitação</th>
-										</tr>
-									</thead>
-									<tbody>
-										<%
-													for (Solicitacao solicitacao : solicitacoes) {
-										%>
-										<tr>
-											<td><%=solicitacao.getId()%></td>
-											<td><%=solicitacao.getAluno().getNome()%></td>
-											<td><%=solicitacao.getDataSolicitacao()%></td>
-											<td><%=solicitacao.getProfessor().getNome()%></td>											
-											<td><%=solicitacao.getDisciplina().getNome()%></td>
-											<td><%=solicitacao.getTipoSolicitacao().getValorSolicitacao()%></td>
-										</tr>
-										<%
-												}
-										%>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-
-
-
-				<div class="tab-pane col-md-12" id="listarPorAluno">
-					<form action="">
-						<div class="row" id="buscaSolicitacao">
-							<div class="col-md-2">
-								<label id="labelBuscarSoli" for="buscarSoliMatricula">Matrícula:</label>
-							</div>
-							<div class="input-group col-md-4">
-								<input class="form-control" placeholder="Buscar Matrícula"
-									name="buscarSoliMatricula" id="buscarSoliMatricula" type="text">
-								<div class="input-group-btn">
-									<button type="button" class="btn btn-primary">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-								</div>
-							</div>
-						</div>
-					</form>
-					<!-- class="row" id="buscaSolicitacao" -->
-
-					<div class="row">
-						<div class="col-md-12">
-
-							<div class="panel panel-primary">
-
-								<div class="panel-heading">
-									<h3 class="panel-title" align="center">Solicitações</h3>
-								</div>
-
-								<table class="table table-responsive table-hover" id="dev-table">
-
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th>Nome do Aluno</th>
-											<th>Data da Solicitação</th>
-											<th>Nome do Professor</th>
-											<th>Disciplina</th>
-											<th>Tipo da Solicitação</th>
-										</tr>
-									</thead>
-									<tbody>
-										<%
-													for (Solicitacao solicitacao : solicitacoes) {
-										%>
-										<tr>
-											<td><%=solicitacao.getId()%></td>
-											<td><%=solicitacao.getAluno().getNome()	%></td>
-											<td><%=solicitacao.getDataSolicitacao()	%></td>
-											<td><%=solicitacao.getProfessor().getNome()	%></td>
-											<td><%=solicitacao.getDisciplina().getNome()%></td>
-											<td><%=solicitacao.getTipoSolicitacao().getValorSolicitacao()%></td>
-										</tr>
-										<%
-												}
-										%>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="tab-pane col-md-12" id="listarPorProfessor">
-					<form action="">
-						<div class="row" id="buscaSolicitacao">
-							<div class="col-md-2">
-								<label id="labelBuscarSoli" for="buscarSoliSiape">Siape:</label>
-							</div>
-							<div class="input-group col-md-4">
-								<input class="form-control" placeholder="Buscar SIAPE"
-									name="buscarSoliSiape" id="buscarSoliSiape" type="text">
-								<div class="input-group-btn">
-									<button type="button" class="btn btn-primary">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-								</div>
-							</div>
-						</div>
-					</form>
-					<!-- class="row" id="buscaSolicitacao" -->
-
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="panel panel-primary">
-								<div class="panel-heading">
-									<h3 class="panel-title" align="center">Solicitações</h3>
-								</div>
-
-								<table class="table table-responsive table-hover" id="dev-table">
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th>Nome do Aluno</th>
-											<th>Data da Solicitação</th>
-											<th>Nome do Professor</th>
-											<th>Disciplina</th>
-											<th>Tipo da Solicitação</th>
-										</tr>
-									</thead>
-									<tbody>
-										<%
-										for (Solicitacao solicitacao : solicitacoes) {
-										%>
-										<tr>
-											<td>
-												<%=solicitacao.getId()%>
-											</td>
-											<td><%=solicitacao.getAluno().getNome()%></td>
-											<td><%=solicitacao.getDataSolicitacao()%></td>
-											<td><%=solicitacao.getProfessor().getNome()%></td>
-											<td><%=solicitacao.getDisciplina().getNome()%></td>
-											<td><%=solicitacao.getTipoSolicitacao().getValorSolicitacao()%></td>
-										</tr>
-										<%
-											}
-										%>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
+		<div class="panel panel-primary" id="sem-margin-botton">
+			<div class="panel-heading">
+				<h2 class="panel-title" align="center">Histórico de Solicitações</h2>
 			</div>
 		</div>
+		<div class="tab-pane active col-md-12" id="todas_solicitacoes">
 
-		<%
-			}
-			} else if (usuario.getPessoa() instanceof Aluno) {
-		%>
-
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title" align="center">Solicitações</h3>
+			<div class="row" id="buscaSolicitacao">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-6 espacamentoHorizontal">
+						<form class="espacamentoHorizontal" action="listarSolicitacao" method="post">
+							<div class="col-md-2">
+								<label id="labelBuscarSoli" for="buscarSoliMatricula">Aluno:</label>
+							</div>
+							<div class="input-group col-md-4">
+								<input class="form-control" placeholder="MATRÍCULA"
+									name="inputMatricula" id="buscarSoliMatricula" type="text">
+								<input type="hidden" value="listarPorAluno" name="tipoBusca">
+								<div class="input-group-btn">
+									<button type="submit" class="btn btn-primary my-btn-primary">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</div>
+							</div>
+						</form>
+						</div>
+						<div class="col-md-6 espacamentoHorizontal">
+						<form class="espacamentoHorizontal" action="listarSolicitacao" method="post">
+							<div class="col-md-3">
+								<label id="labelBuscarSoli" for="buscarSoliSiape">Professor:</label>
+							</div>
+							<div class="input-group col-md-4">
+								<input class="form-control" placeholder="SIAPE"
+									name="inputSiape" id="buscarSoliSiape" type="text">
+								<input type="hidden" value="listarPorProfessor" name="tipoBusca">
+								<div class="input-group-btn">
+									<button type="submit" class="btn btn-primary my-btn-primary">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</div>
+							</div>
+						</form>
+						</div>
 					</div>
 
-					<table class="table table-responsive table-hover" id="dev-table">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Aluno</th>
-								<th>Data da Solicitação</th>
-								<th>Disciplina</th>
-								<th>Professor</th>
-								<th>Tipo da Solicitação</th>
-							</tr>
-						</thead>
-						<tbody>
-							<%
-								for (Solicitacao solicitacao : solicitacoes) {
-							%>
-							<tr>
-								<td><%=solicitacao.getId()%></td>
-								<td><%=solicitacao.getAluno().getNome()%></td>
-								<td><%=solicitacao.getDataSolicitacao()	%></td>
-								<td><%=solicitacao.getDisciplina().getNome()%></td>
-								<td><%=solicitacao.getProfessor().getNome()%></td>
-								<td><%=solicitacao.getTipoSolicitacao()%></td>
-							</tr>
-							<%
+
+
+
+
+
+					<div class="panel panel-primary">
+
+
+
+						<table class="table table-responsive table-hover" id="dev-table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nome do Aluno</th>
+									<th>Data da Solicitação</th>
+									<th>Nome do Professor</th>
+									<th>Disciplina</th>
+									<th>Tipo da Solicitação</th>
+									<th>Detalhes</th>
+									<th>Download</th>
+								</tr>
+							</thead>
+							<tbody>
+								<%
+									for (Solicitacao solicitacao : solicitacoes) {
+								%>
+								<tr>
+									<td><%=solicitacao.getId()%></td>
+									<td><%=solicitacao.getAluno().getNome()%></td>
+									<td><%=solicitacao.getDataSolicitacao()%></td>
+									<td><%=solicitacao.getProfessor().getNome()%></td>
+									<td><%=solicitacao.getDisciplina().getNome()%></td>
+									<td><%=solicitacao.getTipoSolicitacao().getValorSolicitacao()%></td>
+									<td><button type="button" class="btn btn-primary " >
+											<span class="glyphicon glyphicon-option-horizontal"></span>
+										</button></td>
+									<td><button type="button" class="btn btn-primary">
+											<span class="glyphicon glyphicon-save-file"></span>
+										</button></td>
+								</tr>
+								<%
 									}
-							%>
-						</tbody>
-					</table>
+								%>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-		<%
-			}
-		%>
 
 	</div>
-	<!-- formulario_solicitacao -->
+
+	<%
+		}
+		} else if (usuario.getPessoa() instanceof Aluno) {
+	%>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title" align="center">Solicitações</h3>
+				</div>
+
+				<table class="table table-responsive table-hover" id="dev-table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Aluno</th>
+							<th>Data da Solicitação</th>
+							<th>Disciplina</th>
+							<th>Professor</th>
+							<th>Tipo da Solicitação</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							for (Solicitacao solicitacao : solicitacoes) {
+						%>
+						<tr>
+							<td><%=solicitacao.getId()%></td>
+							<td><%=solicitacao.getAluno().getNome()%></td>
+							<td><%=solicitacao.getDataSolicitacao()%></td>
+							<td><%=solicitacao.getDisciplina().getNome()%></td>
+							<td><%=solicitacao.getProfessor().getNome()%></td>
+							<td><%=solicitacao.getTipoSolicitacao()%></td>
+						</tr>
+						<%
+							}
+						%>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<%
+		}
+	%>
+
+</div>
+<!-- formulario_solicitacao -->
 
 
 

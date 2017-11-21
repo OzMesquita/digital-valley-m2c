@@ -140,7 +140,20 @@ header ul li {
 	display: flex;
 }
 
+.espacamentoHorizontal{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	
+}
 
+.my-btn-primary{
+	height: 33.5px;
+	border-radius: 0px;
+}
+
+#sem-margin-botton{
+	margin-bottom: 0px;
+}
 
 #btn-buscarSoli{
 	padding-left: 8px;
