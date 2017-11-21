@@ -46,6 +46,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 
 	@Override
 	public Solicitacao buscarPorId(int id) {
+		super.open();
 		try {
 			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s WHERE s.id_solicitacao = ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
@@ -80,6 +81,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 
 	@Override
 	public List<Solicitacao> buscarPorAluno(Aluno aluno) {
+		super.open();
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		try {
 			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s WHERE s.id_aluno = ?";
@@ -87,11 +89,11 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 			ps.setInt(1, aluno.getId());
 			ResultSet rs = ps.executeQuery();
 			
-			Solicitacao solicitacao = new Solicitacao();
-			solicitacao.setAluno(aluno);
-			Professor professor = new Professor();
-			Disciplina disciplina = new Disciplina();
 			while (rs.next()) {
+				Solicitacao solicitacao = new Solicitacao();
+				solicitacao.setAluno(aluno);
+				Professor professor = new Professor();
+				Disciplina disciplina = new Disciplina();
 				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
@@ -120,18 +122,18 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 
 	@Override
 	public List<Solicitacao> buscarPorProfessor(Professor professor) {
+		super.open();
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		try {
 			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s WHERE s.id_professor = ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, professor.getId());
 			ResultSet rs = ps.executeQuery();
-			
-			Solicitacao solicitacao = new Solicitacao();
-			solicitacao.setProfessor(professor);;
-			Aluno aluno = new Aluno();
-			Disciplina disciplina = new Disciplina();
 			while (rs.next()) {
+				Solicitacao solicitacao = new Solicitacao();
+				solicitacao.setProfessor(professor);;
+				Aluno aluno = new Aluno();
+				Disciplina disciplina = new Disciplina();
 				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
@@ -160,6 +162,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 
 	@Override
 	public List<Solicitacao> listar(int inicio, int fim) {
+		super.open();
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		try {
 			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s ORDER BY data_solicitacao DESC LIMIT ? OFFSET ?";
@@ -167,12 +170,11 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 			ps.setInt(2, fim - inicio);
 			ps.setInt(3, inicio);
 			ResultSet rs = ps.executeQuery();
-			
-			Solicitacao solicitacao = new Solicitacao();
-			Aluno aluno = new Aluno();
-			Professor professor = new Professor();
-			Disciplina disciplina = new Disciplina();
 			while (rs.next()) {
+				Solicitacao solicitacao = new Solicitacao();
+				Aluno aluno = new Aluno();
+				Professor professor = new Professor();
+				Disciplina disciplina = new Disciplina();
 				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));

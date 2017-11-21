@@ -8,7 +8,7 @@
 		id="formulario_solicitacao">
 
 		<%
-				List<Solicitacao> solicitacoes = (List<Solicitacao>) request.getAttribute("solicitacoes");
+				ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) request.getAttribute("solicitacoes");
 
 			usuario = (Usuario) session.getAttribute("usuario");
 
@@ -221,11 +221,11 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Professor</th>
+								<th>Aluno</th>
 								<th>Data da Solicitação</th>
 								<th>Disciplina</th>
+								<th>Professor</th>
 								<th>Tipo da Solicitação</th>
-
 							</tr>
 						</thead>
 						<tbody>
@@ -236,9 +236,9 @@
 								<td><%=solicitacao.getId()%></td>
 								<td><%=solicitacao.getAluno().getNome()%></td>
 								<td><%=solicitacao.getDataSolicitacao()	%></td>
-								<td><%=solicitacao.getProfessor().getNome()%></td>
 								<td><%=solicitacao.getDisciplina().getNome()%></td>
-								<td><%=solicitacao.getTipoSolicitacao().getValorSolicitacao()%></td>
+								<td><%=solicitacao.getProfessor().getNome()%></td>
+								<td><%=solicitacao.getTipoSolicitacao()%></td>
 							</tr>
 							<%
 									}

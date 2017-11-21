@@ -1,9 +1,16 @@
 
 <%@page import="model.Aluno"%>
 <div class="row">
+<div id="page-wrapper">
+
+			
+
 	<div
 		class=" col-md-6 col-md-offset-3 sem-padding-left sem-padding-right"
 		id="formulario_solicitacao">
+		
+			
+				
 		<div class="wizard-navigation">
 			<ul class="nav nav-pills tab-menu" id="tipo_solicitacao">
 				<li class="active  col-md-6 sem-padding-left sem-padding-right" id="tab-esquerda"><a
@@ -26,6 +33,14 @@
 				}
 			%>
 
+			<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="alert alert-danger" role="alert">
+  						<%=session.getAttribute(Constantes.getSessionMsg()) %>
+					</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					
+				<%} %>
+
 
 			<div class="tab-content">
 				<div class="tab-pane active col-md-12" id="segunda_chamada">
@@ -41,7 +56,7 @@
 									<div class="col-md-10 sem-padding-left">
 										<input required class="form-control " type="text" name="inputName"
 											value="<%=aluno != null ? aluno.getNome() : ""%>"
-											<%if (aluno != null) {%> <%="disabled"%> <%}%> disabled="disabled">
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
 									</div>
 									<!--col-md-10-->
 								</div>
@@ -58,9 +73,10 @@
 									<div class="col-md-2 sem-padding-left">
 										<input required class="form-control" type="text"
 											value="<%=aluno != null ? aluno.getMatricula() : ""%>"
-											<%if (aluno != null) {%> <%="disabled"%> <%}%> id="matricula"
-											name="inputMatricula"
-											placeholder="Digite a Matricula do Aluno">
+											 id="matricula"
+											name="matricula"
+											placeholder="Digite a Matricula do Aluno"
+											<%if (aluno != null) {%> <%="readonly"%> <%}%>>
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-1">
@@ -70,7 +86,7 @@
 									<div class="col-md-7 ">
 										<input required class="form-control" type="text" name="inputCurso"
 											value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
-											<%if (aluno != null) {%> <%="disabled"%> <%}%> disabled="disabled">
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
 									</div>
 									<!--col-md-7-->
 								</div>
@@ -161,7 +177,7 @@
 									<div class="col-md-10 sem-padding-left">
 										<input class="form-control " type="text" name="inputName"
 											value="<%=aluno != null ? aluno.getNome() : ""%>"
-											<%if (aluno != null) {%> <%="disabled"%> <%}%> disabled="disabled">
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
 									</div>
 									<!--col-md-10-->
 								</div>
@@ -178,8 +194,8 @@
 									<div class="col-md-2 sem-padding-left">
 										<input class="form-control" type="text"
 											value="<%=aluno != null ? aluno.getMatricula() : ""%>"
-											<%if (aluno != null) {%> <%="disabled"%> <%}%> id="matricula"
-											name="inputMatricula"
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> id="matricula"
+											name="matricula"
 											placeholder="Digite a Matricula do Aluno">
 									</div>
 									<!--col-md-2-->
@@ -190,7 +206,7 @@
 									<div class="col-md-7 ">
 										<input class="form-control" type="text" name="inputCurso"
 											value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
-											<%if (aluno != null) {%> <%="disabled"%> <%}%> disabled="disabled">
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
 									</div>
 									<!--col-md-7-->
 								</div>
@@ -266,6 +282,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </div>
