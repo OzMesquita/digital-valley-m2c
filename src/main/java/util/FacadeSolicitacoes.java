@@ -70,12 +70,12 @@ public class FacadeSolicitacoes {
 	}
 
 	public static void salvarSolicitacao(Solicitacao solicitacao) {
-		SolicitacaoDAO sDAO = DAOFactoryM2C.criarJDBCSolicitacaoDAO();
+		SolicitacaoDAO sDAO = DAOFactoryM2C.criarSolicitacaoDAO();
 		sDAO.cadastrar(solicitacao);
 	}
 
 	public static Solicitacao buscarPorId(int id) {
-		Solicitacao solicitacao = DAOFactoryM2C.criarJDBCSolicitacaoDAO().buscarPorId(id);
+		Solicitacao solicitacao = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorId(id);
 		solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
 		solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
 		solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
@@ -84,7 +84,7 @@ public class FacadeSolicitacoes {
 	}	
 
 	public static ArrayList<Solicitacao> buscarPorAluno(Aluno aluno) {
-		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarJDBCSolicitacaoDAO()
+		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarSolicitacaoDAO()
 				.buscarPorAluno(aluno);
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
@@ -95,7 +95,7 @@ public class FacadeSolicitacoes {
 	}
 
 	public static ArrayList<Solicitacao> buscarPorProfessor(Professor professor) {
-		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarJDBCSolicitacaoDAO()
+		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarSolicitacaoDAO()
 				.buscarPorProfessor(professor);
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
@@ -106,7 +106,7 @@ public class FacadeSolicitacoes {
 	}
 	
 	public static ArrayList<Solicitacao> listar(int inicio, int fim) {
-		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarJDBCSolicitacaoDAO()
+		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarSolicitacaoDAO()
 				.listar(inicio, fim);
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));

@@ -6,11 +6,8 @@ public class DAOFactoryM2C {
 		//
 	}
 	
-	public static SolicitacaoDAO criarJDBCSolicitacaoDAO() {
+	public static SolicitacaoDAO criarSolicitacaoDAO() {
 		return new JDBCSolicitacaoDAO();
 	}
 	
-	public static SolicitacaoDAO criarJPAHSolicitacaoDAO() {
-		return new JPAHSolicitacaoDAO();
-	}
 }
