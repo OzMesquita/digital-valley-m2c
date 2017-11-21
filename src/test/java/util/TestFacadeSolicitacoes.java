@@ -37,7 +37,7 @@ public class TestFacadeSolicitacoes {
 	}
 	@Test
 	public void testVerificarDias() {
-		Assert.assertTrue(util.FacadeSolicitacoes.verificarDias(LocalDate.of(2017, 11, 6)));
+		Assert.assertTrue(util.FacadeSolicitacoes.verificarDias(LocalDate.of(2017, 11, 20)));
 	}
 	
 }

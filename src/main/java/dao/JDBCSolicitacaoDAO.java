@@ -65,10 +65,15 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 				solicitacao.getAluno().setId(rs.getInt("id_aluno"));
 				solicitacao.getDisciplina().setId(rs.getInt("id_disciplina"));
 				solicitacao.getProfessor().setId(rs.getInt("id_professor"));
+				ps.close();
+				rs.close();	
+				return solicitacao;
+			}else {
+				ps.close();
+				rs.close();	
+				return null;
 			}
-			ps.close();
-			rs.close();	
-			return solicitacao;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar solcitacoes em JDBCSolicitacaoDAO", e);

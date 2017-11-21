@@ -257,4 +257,10 @@
 
 
 
+
+
+
 </div>
+<script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"></script>
+<script src="<%=Constantes.getAppJsUrl()%>/bootstrap.min.js"></script>
+<script src="<%=Constantes.getAppJsUrl()%>/verDetalhes.js"></script>

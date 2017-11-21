@@ -10,8 +10,7 @@
 	</div>
 </footer>
 </body>
-<script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"></script>
-<script src="<%=Constantes.getAppJsUrl()%>/bootstrap.min.js"></script>
+
 
 <script src="<%=Constantes.getAppJsUrl()%>/jquery.mask.min.js"></script>
 <script src="<%=Constantes.getAppJsUrl()%>/validacao.js"></script>

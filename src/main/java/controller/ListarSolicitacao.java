@@ -21,7 +21,6 @@ import model.EnumNivel;
 import model.Servidor;
 import model.Solicitacao;
 import model.Usuario;
-import util.FacadeSolicitacoes;
 
 public class ListarSolicitacao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -40,7 +39,7 @@ public class ListarSolicitacao extends HttpServlet {
 				}
 			}
 		}else if(usuario.getPessoa() instanceof Aluno){
-			solicitacoes = FacadeSolicitacoes.buscarPorAluno((Aluno)usuario.getPessoa());
+			solicitacoes = DAOFactoryM2C.criarJDBCSolicitacaoDAO().buscarPorAluno((Aluno)usuario.getPessoa());
 		}
 		request.setAttribute("solicitacoes", solicitacoes);
 		request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);

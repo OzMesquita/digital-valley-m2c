@@ -56,7 +56,7 @@
 									<div class="col-md-10 sem-padding-left">
 										<input required class="form-control " type="text" name="inputName"
 											value="<%=aluno != null ? aluno.getNome() : ""%>"
-											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
 									</div>
 									<!--col-md-10-->
 								</div>
@@ -76,7 +76,7 @@
 											 id="matricula"
 											name="matricula"
 											placeholder="Digite a Matricula do Aluno"
-											<%if (aluno != null) {%> <%="readonly"%> <%}%>>
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-1">
@@ -86,7 +86,7 @@
 									<div class="col-md-7 ">
 										<input required class="form-control" type="text" name="inputCurso"
 											value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
-											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
 									</div>
 									<!--col-md-7-->
 								</div>
@@ -177,7 +177,7 @@
 									<div class="col-md-10 sem-padding-left">
 										<input class="form-control " type="text" name="inputName"
 											value="<%=aluno != null ? aluno.getNome() : ""%>"
-											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
 									</div>
 									<!--col-md-10-->
 								</div>
@@ -196,7 +196,7 @@
 											value="<%=aluno != null ? aluno.getMatricula() : ""%>"
 											<%if (aluno != null) {%> <%="readonly"%> <%}%> id="matricula"
 											name="matricula"
-											placeholder="Digite a Matricula do Aluno">
+											placeholder="Digite a Matricula do Aluno" >
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-1">
@@ -206,7 +206,7 @@
 									<div class="col-md-7 ">
 										<input class="form-control" type="text" name="inputCurso"
 											value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
-											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
 									</div>
 									<!--col-md-7-->
 								</div>
@@ -287,4 +287,5 @@
 	</div>
 </div>
 <!-- container col-md-offset-3" id="formulario_solicitacao -->
-
+<script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"></script>
+<script src="<%=Constantes.getAppJsUrl()%>/bootstrap.min.js"></script>
