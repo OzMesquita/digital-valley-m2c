@@ -32,6 +32,11 @@
 		<servlet-name>ListarSolicitacao</servlet-name>
 		<servlet-class>controller.ListarSolicitacao</servlet-class>
 	</servlet>
+		<!-- 4 -->
+	<servlet>
+		<servlet-name>DetalhesSolicitacao</servlet-name>
+		<servlet-class>controller.DetalhesSolicitacaoController</servlet-class>
+	</servlet>
 
 	<!-- Mapeamento do Servlet -->
 	<!-- 1 -->
@@ -50,7 +55,11 @@
 		<servlet-name>ListarSolicitacao</servlet-name>
 		<url-pattern>/view/listarSolicitacao</url-pattern>
 	</servlet-mapping>
-
+	<!-- 4 -->
+	<servlet-mapping>
+		<servlet-name>DetalhesSolicitacao</servlet-name>
+		<url-pattern>/view/detalhes</url-pattern>
+	</servlet-mapping>
 	<!-- Filtros -->
 	<filter>
 		<filter-name>FiltroAutenticado</filter-name>
