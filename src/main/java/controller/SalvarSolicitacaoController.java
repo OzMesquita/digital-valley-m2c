@@ -22,26 +22,31 @@ public class SalvarSolicitacaoController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//String nome = request.getParameter("inputName");
-		String matricula = request.getParameter("inputMatricula");
+		String nome = request.getParameter("inputName");
+		String matricula = request.getParameter("matricula");
 		String nomeProfessor = request.getParameter("inputProfessor");
 		String siape = request.getParameter("siape");
 		String nomeDisciplina = request.getParameter("inputDisciplina");
 		String dataProva = request.getParameter("inputDataProva");
 		LocalDate data = util.Facade.converterStringParaLocalDate(dataProva);
+		System.out.println("matri "+matricula);
+		System.out.println("nome: "+nome);
+		System.out.println(nomeProfessor);
 		String justificativa = request.getParameter("justificativa");
 		String tipoS = request.getParameter("tipoS");
 		String tipoR = request.getParameter("tipoR");
 		String tipoSolicitacao = "";
 		String pagina = "homeSolicitacao.jsp?erroSalvar=1";
-		if(tipoS.equals("Segunda Chamada")) {
+		if(tipoS != null && tipoS.equals("Segunda Chamada")) {
 			tipoSolicitacao = tipoS;
-		}else if(tipoR.equals("Recorrecao")) {
+		}else if(tipoR != null && tipoR.equals("Recorrecao")) {
 			tipoSolicitacao = tipoR;
 		}
 		HttpSession session = request.getSession();
 		try {
+			System.out.println(matricula);
 			Aluno aluno = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula);
+			System.out.println(aluno.getNome());
 			Professor professor = DAOFactory.criarProfessorDAO().buscarPorSiape("4785698");
 			Disciplina disciplina = new Disciplina(); // CHAMAR DISCIPLINA DAO QUANDO ESTIVER PRONTO
 			disciplina.setNome(nomeDisciplina);
@@ -62,6 +67,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 				
 			} else {
 				session.setAttribute(Constantes.getSessionMsg(), "Prazo de solicitação expirado");
+				pagina = "homeSolicitacao.jsp?erroPrazo=1";
 			}
 
 		} catch (Exception e) {
