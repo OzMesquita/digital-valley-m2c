@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -84,7 +85,7 @@ public class JPAHSolicitacaoDAO extends JPADAO implements SolicitacaoDAO {
 
 	@Override
 	public List<Solicitacao> listar(int inicio, int fim) {
-		EntityManager entityManager = super.getEntityManager();
+		/*EntityManager entityManager = super.getEntityManager();
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Solicitacao> criteriaQuery = builder.createQuery(Solicitacao.class);
 		Root<Solicitacao> solicitacao = criteriaQuery.from(Solicitacao.class);
@@ -92,7 +93,8 @@ public class JPAHSolicitacaoDAO extends JPADAO implements SolicitacaoDAO {
 				.createQuery(criteriaQuery.select(solicitacao).l)
 				.getResultList();
 		super.close();
-		return solicitacoes;
+		return solicitacoes;*/
+		return new ArrayList<Solicitacao> ();
 	}
 
 }

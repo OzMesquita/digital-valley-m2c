@@ -16,7 +16,7 @@
 			</id>
 
 			<basic name="tipoSolicitacao" optional="false">
-				<column name="tipo" />
+				<column name="tipo" />				
 				<enumerated>STRING</enumerated>
 			</basic>
 			
@@ -29,7 +29,9 @@
 			<basic name="justificativa" optional="false">
 				<column name="justificativa" />
 			</basic>
-
+			<transient name="disciplina"/>
+			<transient name="professor"/>
+			<transient name="aluno"/>
 
 		</attributes>	
 	</entity>
