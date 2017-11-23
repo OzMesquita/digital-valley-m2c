@@ -61,16 +61,7 @@
 						</form>
 						</div>
 					</div>
-
-
-
-
-
-
 					<div class="panel panel-primary">
-
-
-
 						<table class="table table-responsive table-hover" id="dev-table">
 							<thead>
 								<tr>
@@ -123,36 +114,44 @@
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title" align="center">Solicitações</h3>
+					<h3 class="panel-title" align="center">Histórico de Solicitações</h3>
 				</div>
 
 				<table class="table table-responsive table-hover" id="dev-table">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Aluno</th>
-							<th>Data da Solicitação</th>
-							<th>Disciplina</th>
-							<th>Professor</th>
-							<th>Tipo da Solicitação</th>
-						</tr>
-					</thead>
-					<tbody>
-						<%
-							for (Solicitacao solicitacao : solicitacoes) {
-						%>
-						<tr>
-							<td><%=solicitacao.getId()%></td>
-							<td><%=solicitacao.getAluno().getNome()%></td>
-							<td><%=solicitacao.getDataSolicitacao()%></td>
-							<td><%=solicitacao.getDisciplina().getNome()%></td>
-							<td><%=solicitacao.getProfessor().getNome()%></td>
-							<td><%=solicitacao.getTipoSolicitacao()%></td>
-						</tr>
-						<%
-							}
-						%>
-					</tbody>
+				<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nome do Aluno</th>
+									<th>Data da Solicitação</th>
+									<th>Nome do Professor</th>
+									<th>Disciplina</th>
+									<th>Tipo da Solicitação</th>
+									<th>Detalhes</th>
+									<th>Download</th>
+								</tr>
+							</thead>
+							<tbody>
+								<%
+									for (Solicitacao solicitacao : solicitacoes) {
+								%>
+								<tr>
+									<td><%=solicitacao.getId()%></td>
+									<td><%=solicitacao.getAluno().getNome()%></td>
+									<td><%=solicitacao.getDataSolicitacao()%></td>
+									<td><%=solicitacao.getProfessor().getNome()%></td>
+									<td><%=solicitacao.getDisciplina().getNome()%></td>
+									<td><%=solicitacao.getTipoSolicitacao()%></td>
+									<td><button type="button" class="btn btn-primary " >
+											<span class="glyphicon glyphicon-option-horizontal"></span>
+										</button></td>
+									<td><button type="button" class="btn btn-primary">
+											<span class="glyphicon glyphicon-save-file"></span>
+										</button></td>
+								</tr>
+								<%
+									}
+								%>
+							</tbody>
 				</table>
 			</div>
 		</div>

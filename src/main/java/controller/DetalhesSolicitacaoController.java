@@ -43,7 +43,8 @@ public class DetalhesSolicitacaoController  extends HttpServlet {
 			    response.getWriter().write(json);
 				
 			}else {
-				session.setAttribute(Constantes.getSessionMsg(), "Erro ao tentar visualizar detalhes");
+				
+
 			}
 					
 			
