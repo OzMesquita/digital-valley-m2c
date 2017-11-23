@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+	<persistence-unit-metadata>
+		<persistence-unit-defaults>
+			<access>FIELD</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<package>digital-valley-core</package>
+	<entity class="model.Pessoa" name="Pessoa" access="FIELD">
+		<table name="pessoa_usuario" />
+		<attributes>
+			<id name="id">
+				<column name="id_pessoa_usuario" unique="true" nullable="false" />
+				<generated-value strategy="SEQUENCE" generator="PESSOA_ID_GENERATOR" />
+				<sequence-generator name="PESSOA_ID_GENERATOR"
+					allocation-size="1" sequence-name="pessoa_usuario_id_seq" />
+			</id>			
+
+			<basic name="imagem" optional="true">
+				<column name="imagem" unique="false" />
+			</basic>
+
+			<basic name="email" optional="true">
+				<column name="email" unique="false" />
+			</basic>
+
+			<basic name="nome" optional="false">
+				<column name="nome" unique="true" />
+			</basic>
+
+			<transient name="dataNascimento"/>
+			<transient name="usuario"/>					
+
+		</attributes>
+	</entity>
+</entity-mappings>

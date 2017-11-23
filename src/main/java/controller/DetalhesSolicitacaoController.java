@@ -30,7 +30,7 @@ public class DetalhesSolicitacaoController  extends HttpServlet {
 		
 		try {
 			
-			Solicitacao solicitacao = DAOFactoryM2C.criarJDBCSolicitacaoDAO().buscarPorId(id);
+			Solicitacao solicitacao = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorId(id);
 			if (solicitacao != null) {
 				solicitacao.getAluno().setUsuario(null);
 				solicitacao.getProfessor().setUsuario(null);
@@ -52,7 +52,7 @@ public class DetalhesSolicitacaoController  extends HttpServlet {
 			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 		}
 		
-		//DAOFactoryM2C.criarJDBCSolicitacaoDAO().
+		//DAOFactoryM2C.criarSolicitacaoDAO().
 	}
 
 }

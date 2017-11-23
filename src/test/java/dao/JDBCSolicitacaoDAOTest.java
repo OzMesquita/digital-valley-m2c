@@ -28,7 +28,7 @@ public class JDBCSolicitacaoDAOTest {
 		solicitacao.setJustificativa("asnhasjaskjdamns djsadnma dlasbnd ");
 		solicitacao.setTipoSolicitacao(EnumSolicitacao.SEGUNDA_CHAMADA);
 		
-		SolicitacaoDAO soliDAO = DAOFactoryM2C.criarJDBCSolicitacaoDAO();
+		SolicitacaoDAO soliDAO = DAOFactoryM2C.criarSolicitacaoDAO();
 		soliDAO.cadastrar(solicitacao);	
 		
 	}

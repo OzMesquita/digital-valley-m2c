@@ -94,7 +94,7 @@
 									<td><%=solicitacao.getDataSolicitacao()%></td>
 									<td><%=solicitacao.getProfessor().getNome()%></td>
 									<td><%=solicitacao.getDisciplina().getNome()%></td>
-									<td><%=solicitacao.getTipoSolicitacao().getValorSolicitacao()%></td>
+									<td><%=solicitacao.getTipoSolicitacao()%></td>
 									<td><button type="button" class="btn btn-primary " >
 											<span class="glyphicon glyphicon-option-horizontal"></span>
 										</button></td>

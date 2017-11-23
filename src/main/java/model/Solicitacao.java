@@ -20,12 +20,13 @@ public class Solicitacao implements Serializable {
 	}
 
 	public Solicitacao(Aluno aluno, Professor professor, LocalDate dataProva, LocalDate dataSolicitacao,
-			String justificativa) {
+			String justificativa, EnumSolicitacao tipoSolicitacao) {
 		this.aluno = aluno;
 		this.professor = professor;
 		this.dataProva = dataProva;
 		this.dataSolicitacao = dataSolicitacao;
 		this.justificativa = justificativa;
+		this.tipoSolicitacao = tipoSolicitacao;
 	}
 
 	public int getId() {

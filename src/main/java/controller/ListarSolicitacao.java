@@ -8,10 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.xml.ws.Dispatch;
-
-import org.apache.http.HttpRequest;
 
 import dao.DAOFactory;
 import dao.DAOFactoryM2C;
@@ -21,6 +17,7 @@ import model.EnumNivel;
 import model.Servidor;
 import model.Solicitacao;
 import model.Usuario;
+import util.FacadeSolicitacoes;
 
 public class ListarSolicitacao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,7 +38,7 @@ public class ListarSolicitacao extends HttpServlet {
 				}
 			}
 		}else if(usuario.getPessoa() instanceof Aluno){
-			solicitacoes = DAOFactoryM2C.criarJDBCSolicitacaoDAO().buscarPorAluno((Aluno)usuario.getPessoa());
+			solicitacoes = FacadeSolicitacoes.buscarPorAluno((Aluno)usuario.getPessoa());
 		}
 		request.setAttribute("solicitacoes", solicitacoes);
 		request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);

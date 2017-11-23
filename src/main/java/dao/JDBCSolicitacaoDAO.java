@@ -29,7 +29,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 			ps.setInt(4, solicitacao.getAluno().getId());
 			ps.setInt(5, solicitacao.getProfessor().getId());
 			ps.setInt(6, solicitacao.getDisciplina().getId());
-			ps.setString(7, solicitacao.getTipoSolicitacao().valorSolicitacao);
+			ps.setString(7, solicitacao.getTipoSolicitacao().toString());
 
 			ps.executeUpdate();
 			ps.close();

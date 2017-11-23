@@ -11,7 +11,8 @@
 			<property name="javax.persistence.jdbc.password" value="N2S@UFC" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.default_schema" value="ctrl-acesso" />
+			<property name="hibernate.default_schema" value='"ctrl-acesso"' />
+			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>
 	<persistence-unit name="digital-valley-core">
@@ -24,6 +25,7 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.default_schema" value="public" />
+			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>
 </persistence>
