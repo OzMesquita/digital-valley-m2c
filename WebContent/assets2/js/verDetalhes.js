@@ -2,7 +2,8 @@ $(function() {
 	
 	$.ajax({
 		type: 'POST',
-		url: 'detalhes'
+		url: '/digital-valley-m2c/view/detalhes'
+		
 	});
 	
 });
