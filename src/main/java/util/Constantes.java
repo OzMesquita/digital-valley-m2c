@@ -17,6 +17,8 @@ public class Constantes {
 	private static String USER_PROFILE_NONE_IMAGE_DIR;
 	private static String APP_IMG_USER_DIR;
 	private static String APP_GUARDIAO_URL;
+	private static String THIS_APP_DATABASE_SCHEMA;
+	private static String PUBLIC_DATABASE_SCHEMA;
 	private Constantes() {
 		//
 	}
@@ -37,6 +39,8 @@ public class Constantes {
 		MODULES_IMAGES_DIR = "C:\\imagens\\modulo";
 		USER_PROFILE_IMAGES_DIR = "C:\\n2s\\img\\";
 		USER_PROFILE_NONE_IMAGE_DIR =  USER_PROFILE_IMAGES_DIR + "none.png";
+		THIS_APP_DATABASE_SCHEMA="ctrl-acesso";
+		PUBLIC_DATABASE_SCHEMA="public";
 	}
 
 	/**
@@ -169,4 +173,33 @@ public class Constantes {
 	public static void setAPP_GUARDIAO_URL(String aPP_GUARDIAO_URL) {
 		APP_GUARDIAO_URL = aPP_GUARDIAO_URL;
 	}
+
+	/**
+	 * @return the tHIS_APP_DATABASE_SCHEMA
+	 */
+	public static String getTHIS_APP_DATABASE_SCHEMA() {
+		return THIS_APP_DATABASE_SCHEMA;
+	}
+
+	/**
+	 * @param tHIS_APP_DATABASE_SCHEMA the tHIS_APP_DATABASE_SCHEMA to set
+	 */
+	public static void setTHIS_APP_DATABASE_SCHEMA(String tHIS_APP_DATABASE_SCHEMA) {
+		THIS_APP_DATABASE_SCHEMA = tHIS_APP_DATABASE_SCHEMA;
+	}
+
+	/**
+	 * @return the pUBLIC_DATABASE_SCHEMA
+	 */
+	public static String getPUBLIC_DATABASE_SCHEMA() {
+		return PUBLIC_DATABASE_SCHEMA;
+	}
+
+	/**
+	 * @param pUBLIC_DATABASE_SCHEMA the pUBLIC_DATABASE_SCHEMA to set
+	 */
+	public static void setPUBLIC_DATABASE_SCHEMA(String pUBLIC_DATABASE_SCHEMA) {
+		PUBLIC_DATABASE_SCHEMA = pUBLIC_DATABASE_SCHEMA;
+	}
+	
 }
