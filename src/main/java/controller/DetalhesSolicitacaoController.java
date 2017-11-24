@@ -6,53 +6,44 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
 import dao.DAOFactoryM2C;
 import model.Solicitacao;
-import util.Constantes;
 
-public class DetalhesSolicitacaoController  extends HttpServlet {
+public class DetalhesSolicitacaoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String codigo = request.getParameter("id");
-		HttpSession session = request.getSession();
-		int id = -1;
-		if(codigo != null && !codigo.equals("")) {
-			id = Integer.valueOf(codigo);
-		}else {
-			
-		}
-		
-		
-		try {
-			
-			Solicitacao solicitacao = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorId(id);
-			if (solicitacao != null) {
-				solicitacao.getAluno().setUsuario(null);
-				solicitacao.getProfessor().setUsuario(null);
-				
-				Gson gson = new Gson();
-				String json = gson.toJson(solicitacao);
-				System.out.println(json);
-				response.setContentType("application/json");
-			    response.setCharacterEncoding("UTF-8");
-			    response.getWriter().write(json);
-				
-			}else {
-				
-
+		response.setCharacterEncoding("UTF-8");
+		if (codigo != null && !codigo.equals("")) {
+			int id = Integer.valueOf(codigo);
+			System.out.println("id: "+ id);
+			try {
+				Solicitacao solicitacao = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorId(id);
+				if (solicitacao != null) {
+					solicitacao.getAluno().setUsuario(null);
+					solicitacao.getProfessor().setUsuario(null);
+					Gson gson = new Gson();
+					String json = gson.toJson(solicitacao);
+					System.out.println(json);
+					response.setContentType("application/json");					
+					response.getWriter().write(json);
+				}else {
+					response.setStatus(500);
+					response.getWriter().write("Solicitação não encontrada");
+				}
+			} catch (Exception e) {
+				response.setStatus(500);
+				response.getWriter().write(e.getMessage());
 			}
-					
-			
-		} catch (Exception e) {
-			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
+		}else {
+			response.setStatus(500);
+			response.getWriter().write("Campo código não encontrado");
 		}
-		
-		//DAOFactoryM2C.criarSolicitacaoDAO().
 	}
 
 }
