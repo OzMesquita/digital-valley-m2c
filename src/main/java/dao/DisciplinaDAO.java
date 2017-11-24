@@ -13,8 +13,8 @@ import model.Disciplina;
  */
 public interface DisciplinaDAO {
 	public void cadastrar(Disciplina disciplina);
-	public List<Disciplina> listar();
+	public List<Disciplina> listar(int inicio, int fim);
 	public void editar(Disciplina disciplina);
 	public void deletar(Disciplina disciplina);
-	public void getById(int id);
+	public Disciplina getById(int id);
 }
