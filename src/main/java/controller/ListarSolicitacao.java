@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DAOFactory;
-import dao.DAOFactoryM2C;
 import model.Aluno;
 import model.EnumCargo;
 import model.EnumNivel;
