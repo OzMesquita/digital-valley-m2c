@@ -8,7 +8,12 @@ $(function() {
 				id : $btnDetalhes.attr('id')
 			},
 			success : function(data) {
-				$("id").text(data.id);
+				$("#id").html("ID: "+data.id);
+				$("#tipoSolicitacao").html("Tipo Solicitação: "+data.tipoSolicitacao);
+				$("#dataProva").html("Data da Prova: "+data.dataProva.day+"/"+data.dataProva.month+"/"+data.dataProva.year);
+				$("#dataSolicitacao").html("Data da Solicitação: "+data.dataSolicitacao.day+"/"+data.dataSolicitacao.month+"/"+data.dataSolicitacao.year);
+				console.log(data.dataSolicitacao);
+				$("#matricula").html("Matricula: "+data.aluno.matricula);
 			}
 		});
 	});

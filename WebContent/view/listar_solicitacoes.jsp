@@ -23,7 +23,6 @@
 			</div>
 		</div>
 		<div class="tab-pane active col-md-12" id="todas_solicitacoes">
-
 			<div class="row" id="buscaSolicitacao">
 				<div class="col-md-12">
 					<div class="row">
@@ -34,7 +33,7 @@
 									<label id="labelBuscarSoli" for="buscarSoliMatricula">Aluno:</label>
 								</div>
 								<div class="input-group col-md-4">
-									<input class="form-control" placeholder="MATRÍCULA"
+									<input class="form-control matricula" placeholder="MATRÍCULA"
 										name="inputMatricula" id="buscarSoliMatricula" type="text">
 									<input type="hidden" value="listarPorAluno" name="tipoBusca">
 									<div class="input-group-btn">
@@ -43,6 +42,7 @@
 										</button>
 									</div>
 								</div>
+
 							</form>
 						</div>
 						<div class="col-md-6 espacamentoHorizontal">
@@ -52,7 +52,9 @@
 									<label id="labelBuscarSoli" for="buscarSoliSiape">Professor:</label>
 								</div>
 								<div class="input-group col-md-4">
-									<input class="form-control" placeholder="SIAPE"
+
+									<input class="form-control siape" placeholder="SIAPE"
+
 										name="inputSiape" id="buscarSoliSiape" type="text"> <input
 										type="hidden" value="listarPorProfessor" name="tipoBusca">
 									<div class="input-group-btn">
@@ -64,6 +66,7 @@
 							</form>
 						</div>
 					</div>
+					
 					<div class="panel panel-primary">
 						<table class="table table-responsive table-hover" id="dev-table">
 							<thead>
@@ -89,12 +92,14 @@
 									<td><%=solicitacao.getProfessor().getNome()%></td>
 									<td><%=solicitacao.getDisciplina().getNome()%></td>
 									<td><%=solicitacao.getTipoSolicitacao()%></td>
+
 									<td>
 										<button type="button" class="btn btn-primary btn_detalhes" id="<%=solicitacao.getId()%>"
 											data-toggle="modal" data-target="#detalhes">
 											<span class="glyphicon glyphicon-option-horizontal  "></span>
 										</button>
 									</td>
+
 									<td><button type="button" class="btn btn-primary">
 											<span class="glyphicon glyphicon-save-file"></span>
 										</button></td>
@@ -118,43 +123,44 @@
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title" align="center">Histórico de Solicitações</h3>
+					<h3 class="panel-title" align="center">Histórico de
+						Solicitações</h3>
 				</div>
 				<table class="table table-responsive table-hover" id="dev-table">
-				<thead>
-								<tr>
-									<th>ID</th>
-									<th>Nome do Aluno</th>
-									<th>Data da Solicitação</th>
-									<th>Nome do Professor</th>
-									<th>Disciplina</th>
-									<th>Tipo da Solicitação</th>
-									<th>Detalhes</th>
-									<th>Download</th>
-								</tr>
-							</thead>
-							<tbody>
-								<%
-									for (Solicitacao solicitacao : solicitacoes) {
-								%>
-								<tr>
-									<td><%=solicitacao.getId()%></td>
-									<td><%=solicitacao.getAluno().getNome()%></td>
-									<td><%=solicitacao.getDataSolicitacao()%></td>
-									<td><%=solicitacao.getProfessor().getNome()%></td>
-									<td><%=solicitacao.getDisciplina().getNome()%></td>
-									<td><%=solicitacao.getTipoSolicitacao()%></td>
-									<td><button type="button" class="btn btn-primary " >
-											<span class="glyphicon glyphicon-option-horizontal"></span>
-										</button></td>
-									<td><button type="button" class="btn btn-primary">
-											<span class="glyphicon glyphicon-save-file"></span>
-										</button></td>
-								</tr>
-								<%
-									}
-								%>
-							</tbody>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nome do Aluno</th>
+							<th>Data da Solicitação</th>
+							<th>Nome do Professor</th>
+							<th>Disciplina</th>
+							<th>Tipo da Solicitação</th>
+							<th>Detalhes</th>
+							<th>Download</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							for (Solicitacao solicitacao : solicitacoes) {
+						%>
+						<tr>
+							<td><%=solicitacao.getId()%></td>
+							<td><%=solicitacao.getAluno().getNome()%></td>
+							<td><%=solicitacao.getDataSolicitacao()%></td>
+							<td><%=solicitacao.getProfessor().getNome()%></td>
+							<td><%=solicitacao.getDisciplina().getNome()%></td>
+							<td><%=solicitacao.getTipoSolicitacao()%></td>
+							<td><button type="button" class="btn btn-primary ">
+									<span class="glyphicon glyphicon-option-horizontal"></span>
+								</button></td>
+							<td><button type="button" class="btn btn-primary">
+									<span class="glyphicon glyphicon-save-file"></span>
+								</button></td>
+						</tr>
+						<%
+							}
+						%>
+					</tbody>
 				</table>
 			</div>
 		</div>
@@ -169,15 +175,22 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Detalhes das
-					solicitação</h5>
+				<h2 class="modal-title" id="exampleModalLabel">Detalhes das
+					solicitação</h2>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				ID:<p id="id"></p>
+				<h4>Dados da Solicitaçao</h4>
+				<p id="id">ID:</p>
+				<p id="tipoSolicitacao">Tipo Solicitaçao:</p>
+				<p id="dataProva">Data da Prova:</p>
+				<p id="dataSolicitacao">Data da Solicitação:</p>
+				
+				<h4>Dados do Aluno</h4>
+				<p id="matricula">Matricula:</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -187,10 +200,6 @@
 	</div>
 </div>
 <!-- formulario_solicitacao -->
-
-
-
-
 
 
 </div>
