@@ -12,14 +12,17 @@ import model.Disciplina;
 import model.EnumSolicitacao;
 import model.Professor;
 import model.Solicitacao;
+import util.Constantes;
 
-public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
+public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 
 	@Override
 	public void cadastrar(Solicitacao solicitacao) {
 		super.open();
 		try {
-			String SQL = "INSERT INTO \"ctrl-acesso\".solicitacao(data_solicitacao, data_prova, justificativa, id_aluno,id_professor, id_disciplina, tipo) VALUES" + "( ?, ?, ?, ?, ?, ?, ?)";
+			String SQL = "INSERT INTO \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
+					+ "\".solicitacao(data_solicitacao, data_prova, justificativa, id_aluno,id_professor, id_disciplina, tipo) VALUES"
+					+ "( ?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 
@@ -43,174 +46,190 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO{
 
 	}
 
-
 	@Override
 	public Solicitacao buscarPorId(int id) {
 		super.open();
 		try {
-			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s WHERE s.id_solicitacao = ?";
+			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
+					+ "\".solicitacao AS s WHERE s.id_solicitacao = ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();	
-			Solicitacao solicitacao = new Solicitacao();
-			solicitacao.setAluno(new Aluno());
-			solicitacao.setProfessor(new Professor());
-			solicitacao.setDisciplina(new Disciplina());
+			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
+				Solicitacao solicitacao = new Solicitacao();
+				solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(rs.getInt("id_aluno")));
+				solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
+				solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(rs.getInt("id_disciplina")));
 				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
 				solicitacao.setTipoSolicitacao(EnumSolicitacao.getByString(rs.getString("tipo")));
-				solicitacao.getAluno().setId(rs.getInt("id_aluno"));
-				solicitacao.getDisciplina().setId(rs.getInt("id_disciplina"));
-				solicitacao.getProfessor().setId(rs.getInt("id_professor"));
 				ps.close();
-				rs.close();	
+				rs.close();
 				return solicitacao;
-			}else {
+			} else {
 				ps.close();
-				rs.close();	
+				rs.close();
 				return null;
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar solcitacoes em JDBCSolicitacaoDAO", e);
 
-		}finally {
+		} finally {
 			super.close();
 		}
 
 	}
 
 	@Override
-	public List<Solicitacao> buscarPorAluno(Aluno aluno) {
+	public List<Solicitacao> buscarPorAluno(Aluno aluno, int inicio, int fim) {
 		super.open();
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		try {
-			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s WHERE s.id_aluno = ?";
+			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
+					+ "\".solicitacao AS s WHERE s.id_aluno = ? LIMIT ? OFFSET ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, aluno.getId());
+			ps.setInt(2, fim - inicio);
+			ps.setInt(3, inicio);
 			ResultSet rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				Solicitacao solicitacao = new Solicitacao();
 				solicitacao.setAluno(aluno);
-				Professor professor = new Professor();
-				Disciplina disciplina = new Disciplina();
 				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
 				solicitacao.setTipoSolicitacao(EnumSolicitacao.getByString(rs.getString("tipo")));
-				solicitacao.setDisciplina(disciplina);
-				solicitacao.getDisciplina().setId(rs.getInt("id_disciplina"));
-				solicitacao.setProfessor(professor);
-				solicitacao.getProfessor().setId(rs.getInt("id_professor"));
+				solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(rs.getInt("id_disciplina")));
+				solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
 				solicitacoes.add(solicitacao);
-				
+
 			}
 			ps.close();
-			rs.close();	
+			rs.close();
 			return solicitacoes;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar solcitacoes em JDBCSolicitacaoDAO", e);
 
-		}finally {
+		} finally {
 			super.close();
 		}
 
 	}
 
 	@Override
-	public List<Solicitacao> buscarPorProfessor(Professor professor) {
+	public List<Solicitacao> buscarPorProfessor(Professor professor, int inicio, int fim) {
 		super.open();
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		try {
-			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s WHERE s.id_professor = ?";
+			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
+					+ "\".solicitacao AS s WHERE s.id_professor = ? LIMIT ? OFFSET ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, professor.getId());
+			ps.setInt(2, fim - inicio);
+			ps.setInt(3, inicio);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Solicitacao solicitacao = new Solicitacao();
-				solicitacao.setProfessor(professor);;
-				Aluno aluno = new Aluno();
-				Disciplina disciplina = new Disciplina();
+				solicitacao.setProfessor(professor);
 				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
 				solicitacao.setTipoSolicitacao(EnumSolicitacao.getByString(rs.getString("tipo")));
-				solicitacao.setDisciplina(disciplina);
-				solicitacao.getDisciplina().setId(rs.getInt("id_disciplina"));
-				solicitacao.setAluno(aluno);
-				solicitacao.getAluno().setId(rs.getInt("id_aluno"));
+				solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(rs.getInt("id_aluno")));
+				solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
+				solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(rs.getInt("id_disciplina")));
 				solicitacoes.add(solicitacao);
-				
 			}
 			ps.close();
-			rs.close();	
+			rs.close();
 			return solicitacoes;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar solcitacoes em JDBCSolicitacaoDAO", e);
-
-		}finally {
+		} finally {
 			super.close();
 		}
-
 	}
-
 
 	@Override
 	public List<Solicitacao> listar(int inicio, int fim) {
 		super.open();
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		try {
-			String SQL = "SELECT * FROM \"ctrl-acesso\".solicitacao AS s ORDER BY data_solicitacao DESC LIMIT ? OFFSET ?";
+			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
+					+ "\".solicitacao AS s ORDER BY data_solicitacao DESC LIMIT ? OFFSET ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, fim - inicio);
 			ps.setInt(2, inicio);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Solicitacao solicitacao = new Solicitacao();
-				Aluno aluno = new Aluno();
-				Professor professor = new Professor();
-				Disciplina disciplina = new Disciplina();
 				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
 				solicitacao.setTipoSolicitacao(EnumSolicitacao.getByString(rs.getString("tipo")));
-				solicitacao.setProfessor(professor);
-				solicitacao.getProfessor().setId(rs.getInt("id_professor"));
-				solicitacao.setDisciplina(disciplina);
-				solicitacao.getDisciplina().setId(rs.getInt("id_disciplina"));
-				solicitacao.setAluno(aluno);
-				solicitacao.getAluno().setId(rs.getInt("id_aluno"));
-				solicitacoes.add(solicitacao);			
+				solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(rs.getInt("id_aluno")));
+				solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
+				solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(rs.getInt("id_disciplina")));
+				solicitacoes.add(solicitacao);
 			}
 			ps.close();
-			rs.close();	
+			rs.close();
 			return solicitacoes;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar solcitacoes em JDBCSolicitacaoDAO", e);
 
-		}finally {
+		} finally {
 			super.close();
 		}
 
 	}
 
-
 	@Override
-	public List<Solicitacao> buscarPorTipo(EnumSolicitacao tipo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Solicitacao> buscarPorTipo(EnumSolicitacao tipo, int inicio, int fim) {
+		super.open();
+		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
+		try {
+			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
+					+ "\".solicitacao AS s WHERE s.tipo = ? ORDER BY data_solicitacao DESC LIMIT ? OFFSET ?";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, tipo.toString());
+			ps.setInt(2, fim - inicio);
+			ps.setInt(3, inicio);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Solicitacao solicitacao = new Solicitacao();
+				solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(rs.getInt("id_aluno")));
+				solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
+				solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(rs.getInt("id_disciplina")));
+				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
+				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
+				solicitacao.setId(rs.getInt("id_solicitacao"));
+				solicitacao.setJustificativa(rs.getString("justificativa"));
+				solicitacao.setTipoSolicitacao(EnumSolicitacao.getByString(rs.getString("tipo")));
+				solicitacoes.add(solicitacao);
+			}
+			ps.close();
+			rs.close();
+			return solicitacoes;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao buscar por tipo solcitacoes em JDBCSolicitacaoDAO", e);
+
+		} finally {
+			super.close();
+		}
 	}
 
 }

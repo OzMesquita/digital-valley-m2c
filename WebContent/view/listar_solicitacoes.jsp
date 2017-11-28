@@ -42,6 +42,7 @@
 										</button>
 									</div>
 								</div>
+
 							</form>
 						</div>
 						<div class="col-md-6 espacamentoHorizontal">
@@ -51,7 +52,9 @@
 									<label id="labelBuscarSoli" for="buscarSoliSiape">Professor:</label>
 								</div>
 								<div class="input-group col-md-4">
+
 									<input class="form-control siape" placeholder="SIAPE"
+
 										name="inputSiape" id="buscarSoliSiape" type="text"> <input
 										type="hidden" value="listarPorProfessor" name="tipoBusca">
 									<div class="input-group-btn">
@@ -89,9 +92,14 @@
 									<td><%=solicitacao.getProfessor().getNome()%></td>
 									<td><%=solicitacao.getDisciplina().getNome()%></td>
 									<td><%=solicitacao.getTipoSolicitacao()%></td>
-									<td><button type="button" class="btn btn-primary ">
-											<span class="glyphicon glyphicon-option-horizontal"></span>
-										</button></td>
+
+									<td>
+										<button type="button" class="btn btn-primary btn_detalhes" id="<%=solicitacao.getId()%>"
+											data-toggle="modal" data-target="#detalhes">
+											<span class="glyphicon glyphicon-option-horizontal  "></span>
+										</button>
+									</td>
+
 									<td><button type="button" class="btn btn-primary">
 											<span class="glyphicon glyphicon-save-file"></span>
 										</button></td>
@@ -102,17 +110,15 @@
 							</tbody>
 						</table>
 					</div>
+
 				</div>
 			</div>
 		</div>
-
 	</div>
-
 	<%
 		}
 		} else if (usuario.getPessoa() instanceof Aluno) {
 	%>
-
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
@@ -120,7 +126,6 @@
 					<h3 class="panel-title" align="center">Histórico de
 						Solicitações</h3>
 				</div>
-
 				<table class="table table-responsive table-hover" id="dev-table">
 					<thead>
 						<tr>
@@ -163,7 +168,36 @@
 	<%
 		}
 	%>
-
+</div>
+<!-- Modal -->
+<div class="modal fade" id="detalhes" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="modal-title" id="exampleModalLabel">Detalhes das
+					solicitação</h2>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<h4>Dados da Solicitaçao</h4>
+				<p id="id">ID:</p>
+				<p id="tipoSolicitacao">Tipo Solicitaçao:</p>
+				<p id="dataProva">Data da Prova:</p>
+				<p id="dataSolicitacao">Data da Solicitação:</p>
+				
+				<h4>Dados do Aluno</h4>
+				<p id="matricula">Matricula:</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- formulario_solicitacao -->
 

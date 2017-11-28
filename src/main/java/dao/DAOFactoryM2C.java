@@ -10,4 +10,8 @@ public class DAOFactoryM2C {
 		return new JDBCSolicitacaoDAO();
 	}
 	
+	public static DisciplinaDAO criarDisciplinaDAO() {
+		return new JDBCDisciplinaDAO();
+	}
+	
 }

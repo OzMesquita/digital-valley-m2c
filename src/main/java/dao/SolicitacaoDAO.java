@@ -13,11 +13,11 @@ public interface SolicitacaoDAO {
 	
 	public Solicitacao buscarPorId(int id);
 	
-	public List<Solicitacao> buscarPorAluno(Aluno aluno);
+	public List<Solicitacao> buscarPorAluno(Aluno aluno, int inicio, int fim);
 	
-	public List<Solicitacao> buscarPorProfessor(Professor professor);
+	public List<Solicitacao> buscarPorProfessor(Professor professor, int inicio, int fim);
 		
 	public List<Solicitacao> listar(int inicio, int fim);
 	
-	public List<Solicitacao> buscarPorTipo(EnumSolicitacao tipo);
+	public List<Solicitacao> buscarPorTipo(EnumSolicitacao tipo, int inicio, int fim);
 }
