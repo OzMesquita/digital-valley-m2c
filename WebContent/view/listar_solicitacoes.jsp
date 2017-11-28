@@ -169,15 +169,22 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Detalhes das
-					solicitação</h5>
+				<h2 class="modal-title" id="exampleModalLabel">Detalhes das
+					solicitação</h2>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				ID:<p id="id"></p>
+				<h4>Dados da Solicitaçao</h4>
+				<p id="id">ID:</p>
+				<p id="tipoSolicitacao">Tipo Solicitaçao:</p>
+				<p id="dataProva">Data da Prova:</p>
+				<p id="dataSolicitacao">Data da Solicitação:</p>
+				
+				<h4>Dados do Aluno</h4>
+				<p id="matricula">Matricula:</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

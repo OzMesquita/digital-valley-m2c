@@ -24,12 +24,14 @@ public class ListarSolicitacao extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
+		int inicio = 0;
+		int fim =20;
 		if(usuario.getPessoa() instanceof Servidor){
 			if(((Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO)|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)){
 				if(request.getParameter("tipoBusca")!= null && request.getParameter("tipoBusca").equals("listarPorAluno")){
-					solicitacoes = FacadeSolicitacoes.buscarPorAluno(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")));
+					solicitacoes = FacadeSolicitacoes.buscarPorAluno(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")),inicio,fim);
 				}else if(request.getParameter("tipoBusca")!= null && request.getParameter("tipoBusca")!= null && request.getParameter("tipoBusca").equals("listarPorProfessor")){
-					solicitacoes = FacadeSolicitacoes.buscarPorProfessor(DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")));
+					solicitacoes = FacadeSolicitacoes.buscarPorProfessor(DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")),inicio,fim);
 				}else if(request.getParameter("inicioPag") != null && request.getParameter("fimPag") != null){
 					solicitacoes = FacadeSolicitacoes.listar(Integer.parseInt(request.getParameter("inicioPag")), Integer.parseInt(request.getParameter("fimPag")));
 				}else{
@@ -37,7 +39,7 @@ public class ListarSolicitacao extends HttpServlet {
 				}
 			}
 		}else if(usuario.getPessoa() instanceof Aluno){
-			solicitacoes = FacadeSolicitacoes.buscarPorAluno((Aluno)usuario.getPessoa());
+			solicitacoes = FacadeSolicitacoes.buscarPorAluno((Aluno)usuario.getPessoa(),inicio,fim);
 		}
 		request.setAttribute("solicitacoes", solicitacoes);
 		request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);
