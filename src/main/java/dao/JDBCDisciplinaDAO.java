@@ -13,6 +13,7 @@ import java.util.List;
 
 import model.Disciplina;
 import model.EnumSolicitacao;
+import model.Professor;
 import model.Solicitacao;
 import util.Constantes;
 
@@ -163,4 +164,34 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 		}
 	}
 
+	@Override
+	public List<Disciplina> buscarPorProfessor(Professor professor, int inicio, int fim) {
+		super.open();
+		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+		try {
+			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
+					+ "\".professor_disciplina AS d WHERE d.id_professor = ? LIMIT ? OFFSET ?";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, professor.getId());
+			ps.setInt(2, fim - inicio);
+			ps.setInt(3, inicio);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Disciplina disciplina = new Disciplina();
+				disciplina.setProfessor(professor);
+			}
+			ps.close();
+			rs.close();
+			return disciplinas;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar disciplinas em JDBCDisciplinaDAO", e);
+
+		} finally {
+			super.close();
+		}
+
+	}
 }
