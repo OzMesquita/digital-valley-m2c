@@ -59,8 +59,8 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 			List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 			String SQL = "SELECT * FROM \"" + Constantes.getPUBLIC_DATABASE_SCHEMA() + "\".disciplina LIMIT ? OFFSET ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
-			ps.setInt(2, fim - inicio);
-			ps.setInt(3, inicio);
+			ps.setInt(1, fim - inicio);
+			ps.setInt(2, inicio);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Disciplina disciplina = new Disciplina();

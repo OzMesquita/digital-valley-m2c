@@ -202,7 +202,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		try {
 			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
-					+ "\".solicitacao AS s WHERE s.tipo = ? LIMIT ? OFFSET ?";
+					+ "\".solicitacao AS s WHERE s.tipo = ? ORDER BY data_solicitacao DESC LIMIT ? OFFSET ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, tipo.toString());
 			ps.setInt(2, fim - inicio);
