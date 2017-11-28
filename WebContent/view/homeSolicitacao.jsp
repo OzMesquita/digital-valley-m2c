@@ -71,11 +71,11 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2 sem-padding-left">
-										<input required class="form-control" type="text"
+										<input required class="form-control matricula" type="text"
 											value="<%=aluno != null ? aluno.getMatricula() : ""%>"
 											 id="matricula"
 											name="matricula"
-											placeholder="Digite a Matricula do Aluno"
+											placeholder="Matricula"
 											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
 									</div>
 									<!--col-md-2-->
@@ -192,11 +192,12 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-2 sem-padding-left">
-										<input class="form-control" type="text"
-											value="<%=aluno != null ? aluno.getMatricula() : ""%>"
-											<%if (aluno != null) {%> <%="readonly"%> <%}%> id="matricula"
-											name="matricula"
-											placeholder="Digite a Matricula do Aluno" >
+										<input class="form-control matricula" type="text"
+											value="<%=aluno != null ? aluno.getMatricula() : ""%>"											
+ 											id="matricula"
+ 											name="matricula"
+											placeholder="Matricula"
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-1">
