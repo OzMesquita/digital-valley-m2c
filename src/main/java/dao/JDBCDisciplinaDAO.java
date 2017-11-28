@@ -165,21 +165,22 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 	}
 
 	@Override
-	public List<Disciplina> buscarPorProfessor(Professor professor, int inicio, int fim) {
+	public List<Disciplina> buscarPorProfessor(int idProfessor) {
 		super.open();
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		try {
-			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
-					+ "\".professor_disciplina AS d WHERE d.id_professor = ? LIMIT ? OFFSET ?";
+			String SQL = "SELECT nome, d.id_disciplina FROM \"" + Constantes.getPUBLIC_DATABASE_SCHEMA()
+					+ "\".professor_disciplina AS pd, "+ Constantes.getPUBLIC_DATABASE_SCHEMA()
+					+ "\".disciplina AS d WHERE pd.id_professor = ? AND pd.id_disciplina = d.id_disciplina";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
-			ps.setInt(1, professor.getId());
-			ps.setInt(2, fim - inicio);
-			ps.setInt(3, inicio);
+			ps.setInt(1, idProfessor);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
 				Disciplina disciplina = new Disciplina();
-				disciplina.setProfessor(professor);
+				disciplina.setNome(rs.getString("nome"));
+				disciplina.setId(rs.getInt("id_disciplina"));
+				disciplinas.add(disciplina);
 			}
 			ps.close();
 			rs.close();
@@ -192,6 +193,8 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 		} finally {
 			super.close();
 		}
-
 	}
+	
+	
+	
 }
