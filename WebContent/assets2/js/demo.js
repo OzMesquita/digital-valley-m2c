@@ -14,18 +14,18 @@ $(function() {
 $(function(){
 	$('#completeprofessor').change(function(){
 		$('#completeprofessor').autocomplete({
-			serviceUrl : 'prof-complete',
+			serviceUrl : 'prof-complete'
 		});
 		if( $(this).val() ) {
 			$.getJSON('disc-complete?idProfessor', function(j){
-				var options = '<option value="">– Escolha uma Disciplina –</option>';	
+				var options = '<option value="">Selecione uma Disciplina</option>';	
 				for (var i = 0; i < j.length; i++) {
 					options += '<option value="' + j[i].value+ '">' + j[i].value + '</option>';
 				}	
 				$('#complete_disciplinas').html(options).show();
 			});
 		} else {
-			$('#complete_disciplinas').html('<option value="">– Escolha uma Disciplina –</option>');
+			$('#complete_disciplinas').html('<option value="">Selecione uma Disciplina</option>');
 		}
 	});
 });

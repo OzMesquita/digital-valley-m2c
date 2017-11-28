@@ -71,33 +71,33 @@
 									</div>
 									<!--form-group col-md-12-->
 								</div>
-								<!--row-->
+								<!--form-group col-md-12-->
+							</div>
+							<!--row-->
 
-								<div class="row">
-									<div class="form-group col-md-12">
-										<div class="col-md-2">
-											<label for="inputMatricula">Matrícula:</label>
-										</div>
-										<!--col-md-2-->
-										<div class="col-md-2 sem-padding-left">
-											<input required class="form-control" type="text"
-												value="<%=aluno != null ? aluno.getMatricula() : ""%>"
-												id="matricula" name="matricula"
-												placeholder="Digite a Matricula do Aluno"
-												<%if (aluno != null) {%> <%="readonly"%> <%}%>>
-										</div>
-										<!--col-md-2-->
-										<div class="col-md-1">
-											<label for="inputCurso">Curso:</label>
-										</div>
-										<!--col-md-1-->
-										<div class="col-md-7 ">
-											<input required class="form-control" type="text"
-												name="inputCurso"
-												value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
-												<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
-										</div>
-										<!--col-md-7-->
+							<div class="row">
+								<div class="form-group col-md-12">
+									<div class="col-md-2">
+										<label for="inputMatricula">Matrícula:</label>
+									</div>
+									<!--col-md-2-->
+									<div class="col-md-2 sem-padding-left">
+										<input required class="form-control matricula" type="text"
+											value="<%=aluno != null ? aluno.getMatricula() : ""%>"
+											 id="matricula"
+											name="matricula"
+											placeholder="Matricula"
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
+									</div>
+									<!--col-md-2-->
+									<div class="col-md-1">
+										<label for="inputCurso">Curso:</label>
+									</div>
+									<!--col-md-1-->
+									<div class="col-md-7 ">
+										<input required class="form-control" type="text" name="inputCurso"
+											value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
 									</div>
 									<!-- form-group col-md-12 -->
 								</div>
@@ -198,32 +198,34 @@
 									</div>
 									<!--form-group col-md-12-->
 								</div>
-								<!--row-->
 
-								<div class="row">
-									<div class="form-group col-md-12">
-										<div class="col-md-2">
-											<label for="inputMatricula">Matrícula:</label>
-										</div>
-										<!--col-md-2-->
-										<div class="col-md-2 sem-padding-left">
-											<input class="form-control" type="text"
-												value="<%=aluno != null ? aluno.getMatricula() : ""%>"
-												<%if (aluno != null) {%> <%="readonly"%> <%}%>
-												id="matricula" name="matricula"
-												placeholder="Digite a Matricula do Aluno">
-										</div>
-										<!--col-md-2-->
-										<div class="col-md-1">
-											<label for="inputCurso">Curso:</label>
-										</div>
-										<!--col-md-1-->
-										<div class="col-md-7 ">
-											<input class="form-control" type="text" name="inputCurso"
-												value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
-												<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
-										</div>
-										<!--col-md-7-->
+								<!--form-group col-md-12-->
+							</div>
+							<!--row-->
+
+							<div class="row">
+								<div class="form-group col-md-12">
+									<div class="col-md-2">
+										<label for="inputMatricula">Matrícula:</label>
+									</div>
+									<!--col-md-2-->
+									<div class="col-md-2 sem-padding-left">
+										<input class="form-control matricula" type="text"
+											value="<%=aluno != null ? aluno.getMatricula() : ""%>"											
+ 											id="matricula"
+ 											name="matricula"
+											placeholder="Matricula"
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> >
+									</div>
+									<!--col-md-2-->
+									<div class="col-md-1">
+										<label for="inputCurso">Curso:</label>
+									</div>
+									<!--col-md-1-->
+									<div class="col-md-7 ">
+										<input class="form-control" type="text" name="inputCurso"
+											value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
+											<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
 									</div>
 									<!-- form-group col-md-12 -->
 								</div>
@@ -238,7 +240,7 @@
 										<div class="col-md-10 sem-padding-left">
 											<form>
 												<input required class="form-control biginput" type="text"
-													name="inputProfessor" id="autocompletemy"
+													name="inputProfessor" id="completeprofessor"
 													placeholder="Nome do professor">
 											</form>
 										</div>
@@ -314,5 +316,4 @@
 <script type="text/javascript" src="<%=Constantes.getAppJsUrl()%>/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="<%=Constantes.getAppJsUrl()%>/jquery.mockjax.js"></script>
 <script type="text/javascript" src="<%=Constantes.getAppJsUrl()%>/jquery.autocomplete.js"></script>
-<script type="text/javascript" src="<%=Constantes.getAppJsUrl()%>/countries.js"></script>
 <script type="text/javascript" src="<%=Constantes.getAppJsUrl()%>/demo.js"></script>

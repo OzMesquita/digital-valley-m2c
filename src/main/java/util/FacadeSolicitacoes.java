@@ -83,9 +83,9 @@ public class FacadeSolicitacoes {
 		return solicitacao;
 	}	
 
-	public static ArrayList<Solicitacao> buscarPorAluno(Aluno aluno) {
+	public static ArrayList<Solicitacao> buscarPorAluno(Aluno aluno, int inicio, int fim) {
 		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarSolicitacaoDAO()
-				.buscarPorAluno(aluno);
+				.buscarPorAluno(aluno, inicio, fim);
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
 			solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
@@ -94,9 +94,9 @@ public class FacadeSolicitacoes {
 		return solicitacoes;
 	}
 
-	public static ArrayList<Solicitacao> buscarPorProfessor(Professor professor) {
+	public static ArrayList<Solicitacao> buscarPorProfessor(Professor professor, int inicio, int fim) {
 		ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) DAOFactoryM2C.criarSolicitacaoDAO()
-				.buscarPorProfessor(professor);
+				.buscarPorProfessor(professor, inicio, fim);
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
 			solicitacao.getDisciplina().setProfessor(professor);
