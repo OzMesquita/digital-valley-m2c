@@ -19,6 +19,9 @@ public class Constantes {
 	private static String APP_GUARDIAO_URL;
 	private static String THIS_APP_DATABASE_SCHEMA;
 	private static String PUBLIC_DATABASE_SCHEMA;
+	private static String TEMP_PDF_SOLICITACAO;
+	private static String LOGO_UFC;
+	
 	private Constantes() {
 		//
 	}
@@ -41,6 +44,8 @@ public class Constantes {
 		USER_PROFILE_NONE_IMAGE_DIR =  USER_PROFILE_IMAGES_DIR + "none.png";
 		THIS_APP_DATABASE_SCHEMA="ctrl-acesso";
 		PUBLIC_DATABASE_SCHEMA="public";
+		TEMP_PDF_SOLICITACAO="C:\\Users\\Matheus Diógenes\\solici.pdf";
+		LOGO_UFC = "C:\\imagens\\ufc.jpg";
 	}
 
 	/**
@@ -200,6 +205,34 @@ public class Constantes {
 	 */
 	public static void setPUBLIC_DATABASE_SCHEMA(String pUBLIC_DATABASE_SCHEMA) {
 		PUBLIC_DATABASE_SCHEMA = pUBLIC_DATABASE_SCHEMA;
+	}
+
+	/**
+	 * @return the tEMP_PDF_SOLICITACAO
+	 */
+	public static String getTEMP_PDF_SOLICITACAO() {
+		return TEMP_PDF_SOLICITACAO;
+	}
+
+	/**
+	 * @param tEMP_PDF_SOLICITACAO the tEMP_PDF_SOLICITACAO to set
+	 */
+	public static void setTEMP_PDF_SOLICITACAO(String tEMP_PDF_SOLICITACAO) {
+		TEMP_PDF_SOLICITACAO = tEMP_PDF_SOLICITACAO;
+	}
+
+	/**
+	 * @return the lOGO_UFC
+	 */
+	public static String getLOGO_UFC() {
+		return LOGO_UFC;
+	}
+
+	/**
+	 * @param lOGO_UFC the lOGO_UFC to set
+	 */
+	public static void setLOGO_UFC(String lOGO_UFC) {
+		LOGO_UFC = lOGO_UFC;
 	}
 	
 }
