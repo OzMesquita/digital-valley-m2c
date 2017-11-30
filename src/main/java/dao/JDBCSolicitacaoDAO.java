@@ -21,7 +21,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 		super.open();
 		try {
 			String SQL = "INSERT INTO \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
-					+ "\".solicitacao(data_solicitacao, data_prova, justificativa, id_aluno,id_professor, id_disciplina, tipo) VALUES"
+					+ "\".solicitacao(data_solicitacao, data_hora_prova, justificativa, id_aluno,id_professor, id_disciplina, tipo) VALUES"
 					+ "( ?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
@@ -60,7 +60,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 				solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(rs.getInt("id_aluno")));
 				solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
 				solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(rs.getInt("id_disciplina")));
-				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
+				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_hora_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
@@ -100,7 +100,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 			while (rs.next()) {
 				Solicitacao solicitacao = new Solicitacao();
 				solicitacao.setAluno(aluno);
-				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
+				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_hora_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
@@ -139,7 +139,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 			while (rs.next()) {
 				Solicitacao solicitacao = new Solicitacao();
 				solicitacao.setProfessor(professor);
-				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
+				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_hora_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
@@ -173,7 +173,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Solicitacao solicitacao = new Solicitacao();
-				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
+				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_hora_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
@@ -213,7 +213,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 				solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(rs.getInt("id_aluno")));
 				solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
 				solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(rs.getInt("id_disciplina")));
-				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_prova")));
+				solicitacao.setDataProva(LocalDate.parse(rs.getString("data_hora_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
