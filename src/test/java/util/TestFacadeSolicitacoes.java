@@ -2,7 +2,9 @@ package util;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import org.hibernate.type.LocalDateTimeType;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -28,7 +30,7 @@ public class TestFacadeSolicitacoes {
 		Solicitacao s = new Solicitacao();
 		s.setAluno(a);
 		s.setProfessor(p);
-		s.setDataProva("10/09/2017");
+		s.setDataEHoraProva("10/09/2017");
 		s.setDisciplina(d);
 		s.setJustificativa("Teste da justificatica"); 
 		s.setTipoSolicitacao(EnumSolicitacao.RECORRECAO);
@@ -38,6 +40,12 @@ public class TestFacadeSolicitacoes {
 	@Test
 	public void testVerificarDias() {
 		Assert.assertTrue(util.FacadeSolicitacoes.verificarDias(LocalDate.of(2017, 11, 20)));
+	}
+	
+	@Test
+	public void testLocalDataTimeToString() {
+		LocalDateTime ld = LocalDateTime.now();
+		System.out.println(FacadeSolicitacoes.converterLocalDateTimeToString(ld));
 	}
 	
 }

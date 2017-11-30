@@ -56,7 +56,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			if (util.FacadeSolicitacoes.verificarDias(data)) {
 				Solicitacao solicitacao = new Solicitacao();
 				solicitacao.setAluno(aluno);
-				solicitacao.setDataProva(data);
+			//	solicitacao.setDataEHoraProva(data);
 				solicitacao.setDisciplina(disciplina);
 				solicitacao.setDataSolicitacao(LocalDate.now());
 				solicitacao.setJustificativa(justificativa);

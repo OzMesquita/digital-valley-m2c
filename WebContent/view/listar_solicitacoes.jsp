@@ -16,17 +16,27 @@
 				if (((Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO)
 						|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 		%>
+		
+		
 		<div class="panel panel-primary" id="sem-margin-botton">
 			<div class="panel-heading">
 				<h2 class="panel-title" align="center">Histórico de
 					Solicitações</h2>
 			</div>
+			
+			
 		</div>
 		<div class="tab-pane active col-md-12" id="todas_solicitacoes">
-
 			<div class="row" id="buscaSolicitacao">
 				<div class="col-md-12">
 					<div class="row">
+					<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="alert alert-danger" role="alert">
+  						<%=session.getAttribute(Constantes.getSessionMsg()) %>
+					</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					
+				<%} %>
 						<div class="col-md-6 espacamentoHorizontal">
 							<form class="espacamentoHorizontal" action="listarSolicitacao"
 								method="post">
@@ -34,7 +44,7 @@
 									<label id="labelBuscarSoli" for="buscarSoliMatricula">Aluno:</label>
 								</div>
 								<div class="input-group col-md-4">
-									<input class="form-control" placeholder="MATRÍCULA"
+									<input class="form-control matricula" placeholder="MATRÍCULA"
 										name="inputMatricula" id="buscarSoliMatricula" type="text">
 									<input type="hidden" value="listarPorAluno" name="tipoBusca">
 									<div class="input-group-btn">
@@ -43,6 +53,7 @@
 										</button>
 									</div>
 								</div>
+
 							</form>
 						</div>
 						<div class="col-md-6 espacamentoHorizontal">
@@ -52,7 +63,9 @@
 									<label id="labelBuscarSoli" for="buscarSoliSiape">Professor:</label>
 								</div>
 								<div class="input-group col-md-4">
-									<input class="form-control" placeholder="SIAPE"
+
+									<input class="form-control siape" placeholder="SIAPE"
+
 										name="inputSiape" id="buscarSoliSiape" type="text"> <input
 										type="hidden" value="listarPorProfessor" name="tipoBusca">
 									<div class="input-group-btn">
@@ -64,6 +77,7 @@
 							</form>
 						</div>
 					</div>
+					
 					<div class="panel panel-primary">
 						<table class="table table-responsive table-hover" id="dev-table">
 							<thead>
@@ -89,12 +103,14 @@
 									<td><%=solicitacao.getProfessor().getNome()%></td>
 									<td><%=solicitacao.getDisciplina().getNome()%></td>
 									<td><%=solicitacao.getTipoSolicitacao()%></td>
+
 									<td>
 										<button type="button" class="btn btn-primary btn_detalhes" id="<%=solicitacao.getId()%>"
 											data-toggle="modal" data-target="#detalhes">
 											<span class="glyphicon glyphicon-option-horizontal  "></span>
 										</button>
 									</td>
+
 									<td><button type="button" class="btn btn-primary">
 											<span class="glyphicon glyphicon-save-file"></span>
 										</button></td>
@@ -118,7 +134,8 @@
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title" align="center">Histórico de Solicitações</h3>
+					<h3 class="panel-title" align="center">Histórico de
+						Solicitações</h3>
 				</div>
 				<table class="table table-responsive table-hover" id="dev-table">
 				<thead>
@@ -210,10 +227,6 @@
 	</div>
 </div>
 <!-- formulario_solicitacao -->
-
-
-
-
 
 
 </div>

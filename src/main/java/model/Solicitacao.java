@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import model.Disciplina;
 
 public class Solicitacao implements Serializable {
@@ -12,9 +15,9 @@ public class Solicitacao implements Serializable {
 	private Aluno aluno;
 	private Professor professor;
 	private Disciplina disciplina;
-	private LocalDate dataProva;
+	private LocalDateTime dataEHoraProva;
 	private LocalDate dataSolicitacao;
-	private String justificativa;
+	private String justificativa;	
 
 	public Solicitacao() {
 	}
@@ -23,7 +26,7 @@ public class Solicitacao implements Serializable {
 			String justificativa, EnumSolicitacao tipoSolicitacao) {
 		this.aluno = aluno;
 		this.professor = professor;
-		this.dataProva = dataProva;
+		this.dataEHoraProva = dataEHoraProva;
 		this.dataSolicitacao = dataSolicitacao;
 		this.justificativa = justificativa;
 		this.tipoSolicitacao = tipoSolicitacao;
@@ -90,24 +93,36 @@ public class Solicitacao implements Serializable {
 		this.disciplina = disciplina;
 	}
 
-	public LocalDate getDataProva() {
-		return dataProva;
+	public LocalDateTime getDataEHoraProva() {
+		return dataEHoraProva;
 	}
 
-	public void setDataProva(LocalDate dataProva) {
-		if (dataProva == null)
+	public void setDataEHoraProva(LocalDateTime dataEHoraProva) {
+		if (dataEHoraProva == null)
 			throw new IllegalArgumentException("Data inválida");
-		this.dataProva = dataProva;
+		this.dataEHoraProva = dataEHoraProva;
 	}
 
-	public void setDataProva(String dataProva) {
-		String[] data = dataProva.split("/");
-		if (data.length == 3) {
-			this.setDataProva(
-					LocalDate.of(Integer.valueOf(data[2]), Integer.valueOf(data[1]), Integer.valueOf(data[0])));
-		} else {
-			throw new RuntimeException("Erro: A data não está no formato correto, valor informado " + dataProva);
+	public void setDataEHoraProva(String dataEHoraProva) {
+		String[] data = dataEHoraProva.split(" ");
+		if (data.length == 2) {
+			LocalDate dataProva = null;
+			//data
+			data = data[0].split("/");
+			if (data.length == 3) {
+				dataProva =LocalDate.of(Integer.valueOf(data[2]), Integer.valueOf(data[1]), Integer.valueOf(data[0]));
+				//hora
+				LocalTime horaProva = null;
+				data = data[1].split(":");
+				if (data.length == 2) {
+					horaProva = LocalTime.of(Integer.valueOf(data[0]), Integer.valueOf(data[1]));
+					//data e hora
+					this.setDataEHoraProva(LocalDateTime.of(dataProva, horaProva));
+					return;
+				}
+			}			
 		}
+		throw new RuntimeException("Erro: A data não está no formato correto, valor informado " + dataEHoraProva);
 	}
 
 	public LocalDate getDataSolicitacao() {

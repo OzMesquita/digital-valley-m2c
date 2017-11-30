@@ -6,6 +6,7 @@ package dao;
 import java.util.List;
 
 import model.Disciplina;
+import model.Professor;
 
 /**
  * @author N2S-PC01
@@ -17,4 +18,5 @@ public interface DisciplinaDAO {
 	public void editar(Disciplina disciplina);
 	public void deletar(Disciplina disciplina);
 	public Disciplina getById(int id);
+	public List<Disciplina> buscarPorProfessor(int idProfessor);
 }
