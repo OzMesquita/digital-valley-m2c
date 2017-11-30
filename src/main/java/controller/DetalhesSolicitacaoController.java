@@ -27,6 +27,7 @@ public class DetalhesSolicitacaoController extends HttpServlet {
 				if (solicitacao != null) {
 					solicitacao.getAluno().setUsuario(null);
 					solicitacao.getProfessor().setUsuario(null);
+					System.out.println("\n\n"+solicitacao.getDisciplina().getNome()+"\n");
 					Gson gson = new Gson();
 					String json = gson.toJson(solicitacao);
 					System.out.println(json);

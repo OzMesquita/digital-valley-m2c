@@ -2,8 +2,15 @@ package model;
 
 public enum EnumSolicitacao {
 
-	SEGUNDA_CHAMADA, 
-	RECORRECAO;
+	SEGUNDA_CHAMADA("Segunda Chamada"), 
+	RECORRECAO("Recorreção");
+	
+	
+	public String tipoSolicitacao;
+	
+	EnumSolicitacao(String tipo) {
+		tipoSolicitacao = tipo;
+	}
 	
 	public static EnumSolicitacao getByString(String value){
 		switch (value) {

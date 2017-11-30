@@ -44,7 +44,7 @@ public class SolicitacaoTest{
 	
 	@Test(expected=RuntimeException.class)
 	public void dataProvaInvalida(){		
-		solicitacao.setDataProva("28-10-17");
+		solicitacao.setDataEHoraProva("28-10-17");
 	}
 
 

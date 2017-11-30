@@ -28,7 +28,7 @@ public class JDBCSolicitacaoDAOTest {
 		EnumSolicitacao enumSolicitacao = EnumSolicitacao.RECORRECAO;
 		
 		Solicitacao solicitacao = new Solicitacao();
-		solicitacao.setDataProva(dataProva);
+		solicitacao.setDataEHoraProva("19/11/2017");
 		solicitacao.setDataSolicitacao(dataSolicitacao);
 		solicitacao.setAluno(aluno);
 		solicitacao.setProfessor(professor);
@@ -39,7 +39,7 @@ public class JDBCSolicitacaoDAOTest {
 		soliDAO.cadastrar(solicitacao);	
 		
 		Solicitacao solicitacaoDoBanco = soliDAO.buscarPorTipo(enumSolicitacao, 0, 1).get(0);		
-		assertTrue ("Verificações ", solicitacaoDoBanco.getAluno().getId() == solicitacao.getAluno().getId() && solicitacaoDoBanco.getDataProva().equals(solicitacao.getDataProva()) &&
+		assertTrue ("Verificações ", solicitacaoDoBanco.getAluno().getId() == solicitacao.getAluno().getId() && solicitacaoDoBanco.getDataEHoraProva().equals(solicitacao.getDataEHoraProva()) &&
 				solicitacaoDoBanco.getDataSolicitacao().equals(solicitacao.getDataSolicitacao()) && solicitacaoDoBanco.getDisciplina().getId() == solicitacao.getDisciplina().getId() &&
 				solicitacaoDoBanco.getId() == solicitacao.getId() && solicitacaoDoBanco.getJustificativa().equals(solicitacao.getJustificativa()) && 
 				solicitacaoDoBanco.getProfessor().getId() == solicitacao.getProfessor().getId() && solicitacaoDoBanco.getTipoSolicitacao().equals(solicitacao.getTipoSolicitacao()));
