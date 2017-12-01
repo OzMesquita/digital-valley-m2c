@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.DAOFactory;
+import dao.DAOFactoryM2C;
 import model.Aluno;
 import model.Disciplina;
 import model.Professor;
@@ -30,13 +31,10 @@ public class SalvarSolicitacaoController extends HttpServlet {
 		String matricula = request.getParameter("matricula");
 		String nomeProfessor = request.getParameter("inputProfessor");
 		String siape = request.getParameter("siape");
-		String nomeDisciplina = request.getParameter("inputDisciplina");
+		String idDisciplina = request.getParameter("inputDisciplina");
 		String dataProva = request.getParameter("inputDataProva");
 		LocalDate data = util.Facade.converterStringParaLocalDate(dataProva);
 		LocalTime lt = LocalTime.of(0, 0);
-		System.out.println("matri "+matricula);
-		System.out.println("nome: "+nome);
-		System.out.println(nomeProfessor);
 		String justificativa = request.getParameter("justificativa");
 		String tipoS = request.getParameter("tipoS");
 		String tipoR = request.getParameter("tipoR");
@@ -58,10 +56,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			Aluno aluno = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula);
 			System.out.println(aluno.getNome());
 			Professor professor = DAOFactory.criarProfessorDAO().buscarPorSiape("4785698");
-			Disciplina disciplina = new Disciplina(); // CHAMAR DISCIPLINA DAO QUANDO ESTIVER PRONTO
-			disciplina.setNome(nomeDisciplina);
-			disciplina.setProfessor(professor);
-			disciplina.setId(1);
+			Disciplina disciplina = DAOFactoryM2C.criarDisciplinaDAO().getById(Integer.valueOf(idDisciplina));
 
 			if (util.FacadeSolicitacoes.verificarDias(data)) {
 				Solicitacao solicitacao = new Solicitacao();
