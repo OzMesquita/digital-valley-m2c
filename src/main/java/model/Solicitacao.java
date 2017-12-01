@@ -17,12 +17,13 @@ public class Solicitacao implements Serializable {
 	private Disciplina disciplina;
 	private LocalDateTime dataEHoraProva;
 	private LocalDate dataSolicitacao;
+	private LocalDate dataDivulgacaoResultadoProva;
 	private String justificativa;	
 
 	public Solicitacao() {
 	}
 
-	public Solicitacao(Aluno aluno, Professor professor, LocalDate dataProva, LocalDate dataSolicitacao,
+	public Solicitacao(Aluno aluno, Professor professor, LocalDateTime dataEHoraProva, LocalDate dataSolicitacao,
 			String justificativa, EnumSolicitacao tipoSolicitacao) {
 		this.aluno = aluno;
 		this.professor = professor;
@@ -145,4 +146,18 @@ public class Solicitacao implements Serializable {
 		this.justificativa = justificativa;
 	}
 
+	/**
+	 * @return the dataDivulgacaoResultadoProva
+	 */
+	public LocalDate getDataDivulgacaoResultadoProva() {
+		return dataDivulgacaoResultadoProva;
+	}
+
+	/**
+	 * @param dataDivulgacaoResultadoProva the dataDivulgacaoResultadoProva to set
+	 */
+	public void setDataDivulgacaoResultadoProva(LocalDate dataDivulgacaoResultadoProva) {
+		this.dataDivulgacaoResultadoProva = dataDivulgacaoResultadoProva;
+	}
+	
 }
