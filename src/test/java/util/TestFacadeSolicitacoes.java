@@ -4,7 +4,6 @@ package util;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import org.hibernate.type.LocalDateTimeType;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;

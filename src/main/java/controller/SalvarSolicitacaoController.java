@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -57,6 +56,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			System.out.println(aluno.getNome());
 			Professor professor = DAOFactory.criarProfessorDAO().buscarPorSiape("4785698");
 			Disciplina disciplina = DAOFactoryM2C.criarDisciplinaDAO().getById(Integer.valueOf(idDisciplina));
+			
 
 			if (util.FacadeSolicitacoes.verificarDias(data)) {
 				Solicitacao solicitacao = new Solicitacao();
