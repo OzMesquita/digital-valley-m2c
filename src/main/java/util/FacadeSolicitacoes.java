@@ -49,38 +49,29 @@ public class FacadeSolicitacoes {
 			// conteudo
 			Aluno aluno = solicitacao.getAluno();
 			LocalDateTime dataEHoraProva = solicitacao.getDataEHoraProva();
+			String dataProvaString = FacadeSolicitacoes.converterLocalDateToString(dataEHoraProva.toLocalDate());
 			Paragraph conteudo = null;
 			if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
 				conteudo = new Paragraph("Eu, " + aluno.getNome() + ", aluno(a) matriculado(a) no " + "Curso de "
 						+ aluno.getCurso() + ", no de matrícula " + aluno.getMatricula() + ", vem mui "
 						+ "respeitosamente, perante Vossa Senhoria requerer recorreção da prova da disciplina "
 						+ solicitacao.getDisciplina().getNome() + ", que realizou-se no dia "
-						+ dataEHoraProva.format(DateTimeFormatter.ofPattern("dd/MM/uuuu")) + ", no " + "horário de "
-						+ dataEHoraProva.format(DateTimeFormatter.ofPattern("hh:mm"))
+						+ dataProvaString + ", no " + "horário de "
+						+ FacadeSolicitacoes.converterLocalTimeToString(dataEHoraProva.toLocalTime())
 						+ ", e tive conhecimento do resultado no dia "
 						+ solicitacao.getDataDivulgacaoResultadoProva()
 								.format(DateTimeFormatter.ofPattern("dd/MM/uuuu"))
 						+ ". Apresento este " + "requerimento devido ao(s) seguinte(s) motivo(s):\n"
-						+ "______________________________________________________________________________"
-						+ "______________________________________________________________________________"
-						+ "______________________________________________________________________________"
-						+ "______________________________________________________________________________"
-						+ "______________________________________________________________________________"
-						+ "______________________________________________________________________________"
-						+ "______________________________________________________________________________"
-						+ "______________________________________________________________________________"
-						+ "______________________________________________________________________________"
-						+ "______________________________________________________________________________"
-						+ "_____________________________________________________________________________.");
+						+ solicitacao.getJustificativa() + ".");
 			} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.SEGUNDA_CHAMADA)) {
 				conteudo = new Paragraph(
-						"Prof.(a): ________________________________________________________________________\r\n"
+						"Prof.(a): "+solicitacao.getProfessor().getNome()+"\r\n"
 								+ "Coordenador do Curso/Prof.(a): _____________________________________\r\n"
-								+ "Nome do aluno: _____________________________________  Matrícula N°: ___________\r\n"
-								+ "Curso: ________________________________  Data da prova: ___/____/_____\r\n"
-								+ "Disciplina: _____________________________________Data deste requerimento: ___/____/_____\r\n"
-								+ "E-mail do aluno: _____________________________________\r\n"
-								+ "Motivo da falta: ___________________________________________________\r\n"
+								+ "Nome do aluno: "+solicitacao.getAluno().getNome()+"  Matrícula N°: "+solicitacao.getAluno().getMatricula()+"\r\n"
+								+ "Curso: "+solicitacao.getAluno().getCurso().getNome()+" Data da prova: "+dataProvaString+"\r\n"
+								+ "Disciplina: "+solicitacao.getDisciplina().getNome()+" Data deste requerimento: "+FacadeSolicitacoes.converterLocalDateToString(dataEHoraProva.toLocalDate())+"\r\n"
+								+ "E-mail do aluno: "+solicitacao.getAluno().getEmail()+"\r\n"
+								+ "Motivo da falta: "+solicitacao.getJustificativa()+"\r\n"
 								+ "Venho por meio do presente, solicitar a realização da prova de segunda chamada da disciplina acima "
 								+ "indicada, levando em conta a previsão do § 3o do Art. 110 do Regimento Geral da UFC, abaixo"
 								+ "transcrito:\n" + "Art. 110...\r\n"
@@ -199,21 +190,28 @@ public class FacadeSolicitacoes {
 		return solicitacoes;
 	}
 
-	public static String converterLocalDateTimeToString(LocalDateTime dataHoraProva) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm");
-		return dataHoraProva.format(formatter);
+	public static String converterLocalDateTimeToString(LocalDateTime dataHora) {
+		return dataHora.format(DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm"));
 	}
 	
+	public static String converterLocalDateToString(LocalDate data) {
+		return data.format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+	}
+	
+	public static String converterLocalTimeToString(LocalTime hora) {
+		return hora.format(DateTimeFormatter.ofPattern("HH:mm"));
+	}
+
 	public static LocalTime converterStringToLocalTime(String horaProva) {
 		String[] hora = horaProva.split(":");
-		if(hora.length == 2) {
+		if (hora.length == 2) {
 			try {
 				return LocalTime.of(Integer.valueOf(hora[0]), Integer.valueOf(hora[1]));
 			} catch (Exception e) {
-				throw new RuntimeException("Horário inválido, valor informado: "+horaProva);
+				throw new RuntimeException("Horário inválido, valor informado: " + horaProva);
 			}
-		}else {
-			throw new RuntimeException("Horário inválido, valor informado: "+horaProva);
+		} else {
+			throw new RuntimeException("Horário inválido, valor informado: " + horaProva);
 		}
 	}
 
