@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -201,6 +202,19 @@ public class FacadeSolicitacoes {
 	public static String converterLocalDateTimeToString(LocalDateTime dataHoraProva) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm");
 		return dataHoraProva.format(formatter);
+	}
+	
+	public static LocalTime converterStringToLocalTime(String horaProva) {
+		String[] hora = horaProva.split(":");
+		if(hora.length == 2) {
+			try {
+				return LocalTime.of(Integer.valueOf(hora[0]), Integer.valueOf(hora[1]));
+			} catch (Exception e) {
+				throw new RuntimeException("Horário inválido, valor informado: "+horaProva);
+			}
+		}else {
+			throw new RuntimeException("Horário inválido, valor informado: "+horaProva);
+		}
 	}
 
 }

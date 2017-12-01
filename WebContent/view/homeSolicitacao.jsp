@@ -92,7 +92,7 @@
 									<label for="inputCurso">Curso:</label>
 								</div>
 								<!--col-md-1-->
-								<div class="col-md-7 ">
+								<div class="col-md-7 sem-padding-right">
 									<input required class="form-control" type="text"
 										name="inputCurso"
 										value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
@@ -220,7 +220,7 @@
 									<label for="inputCurso">Curso:</label>
 								</div>
 								<!--col-md-1-->
-								<div class="col-md-7 ">
+								<div class="col-md-7 sem-padding-right">
 									<input class="form-control" type="text" name="inputCurso"
 										value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
 										<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
@@ -278,23 +278,30 @@
 											Resultado:</label>
 									</div>
 									<!--col-md-4-->
-									<div class="col-md-3  sem-padding-left ">
+									<div class="col-md-2  sem-padding-left ">
 										<input class="form-control inputData" id="inputDataProva"
 											placeholder="dd/mm/aaaa" maxlength="10" autocomplete="off"
 											type="text" name="inputDataProva">
 									</div>
-									<!--col-md-4-->
-									<div class="col-md-2"></div>
-									<div class="col-md-2 sem-padding-right ">
+									<!--col-md-4-->									
+									<div class="col-md-1 sem-padding-right ">
 										<label for="inputDataProva">Data da Prova:</label>
 									</div>
 									<!--col-md-2-->
-									<div class="col-md-3 sem-padding-left ">
+									<div class="col-md-2 sem-padding-left ">
 										<input class="form-control inputData" id="inputDataProva"
 											placeholder="dd/mm/aaaa" maxlength="10" autocomplete="off"
 											type="text" name="inputDataProva">
+									</div><!--col-md-2-->
+									<div class="col-md-2 sem-padding-right">
+										<label for="inputHoraProva">Horário da Prova:</label>
 									</div>
-									<!--col-md-3-->
+									<div class="col-md-2 sem-padding-left ">
+										<input class="form-control inputHoraProva" id="inputHoraProva"
+											placeholder="hh:mm" maxlength="4" autocomplete="off"
+											type="text" name="inputHoraProva">
+									</div><!--col-md-2-->
+									
 								</div>
 								<!--col-md-6-->
 
@@ -307,7 +314,7 @@
 								<div class="col-md-2 sem-padding-right sem-padding-left">
 									<label for="justificativa" class="margem-esquerda">Justificativa:</label>
 								</div>
-								<div class="col-md-10 sem-padding-left">
+								<div class="col-md-10 sem-padding-left sem-padding-right">
 									<textarea required id="textarea" name="justificativa"
 										maxlength="280"
 										placeholder="Digite sua justificativa da solicitação"></textarea>
