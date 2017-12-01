@@ -1,32 +1,29 @@
-﻿/*jslint  browser: true, white: true, plusplus: true */
-/*global $, countries */
-
-$(function() {
-	$('#autocompletemy').autocomplete({
-		serviceUrl : 'prof-complete',
-		onSelect : function(suggestion) {
-			alert('You selected: ' + suggestion.value + ', '
-							+ suggestion.data);
-				}
-	});
-});
+﻿/* 
+ * https://www.devbridge.com/sourcery/components/jquery-autocomplete/ 
+ *  */
 
 $(function(){
-		$('#completeprofessor').autocomplete({
-			serviceUrl : 'prof-complete',
-			onSelect : function(suggestion) {
-				if(suggestion) {			
-					$.getJSON('disc-complete?idProfessor='+suggestion.data, function(j){
-						var options = '<option value="">Selecione uma Disciplina</option>';	
-						for (var i = 0; i < j.length; i++) {
-							options += '<option value="' + j[i].value+ '">' + j[i].value + '</option>';
-						}	
-						$('#complete_disciplinas').html(options).show();
-					});
-				} else {
-					$('#complete_disciplinas').html('<option value="">Selecione uma Disciplina</option>');
-				}
-			},
-		});
-		
+	$('#completeprofessor').keypress(function(){
+			$('#completeprofessor').autocomplete({
+				minChars: 4,
+				serviceUrl : 'prof-complete?nome='+this.value,
+				onSelect : function(suggestion) {
+					if(suggestion!=null) {			
+						$.getJSON('disc-complete?idProfessor='+suggestion.data, function(j){
+							if(j !== null){
+								var options = '<option value="">Selecione uma Disciplina</option>';	
+								for (var i = 0; i < j.length; i++) {
+									options += '<option value="' + j[i].data+ '">' + j[i].value + '</option>';
+								}	
+								$('#complete_disciplinas').html(options).show();
+							}else{
+								$('#complete_disciplinas').html('<option value="">Selecione uma Disciplina</option>').show();
+							}
+						});
+					} else {
+						$('#complete_disciplinas').html('<option value="">Selecione uma Disciplina</option>').show();
+					}
+				},
+			});
+	});
 });

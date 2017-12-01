@@ -110,11 +110,9 @@
 										</div>
 										<!--col-md-2-->
 										<div class="col-md-10 sem-padding-left">
-											<form>
 												<input required class="form-control biginput" type="text"
 													name="inputProfessor" id="completeprofessor"
 													placeholder="Nome do professor">
-											</form>
 										</div>
 										<!--col-md-10-->
 									</div>
@@ -238,11 +236,9 @@
 										</div>
 										<!--col-md-2-->
 										<div class="col-md-10 sem-padding-left">
-											<form>
 												<input required class="form-control biginput" type="text"
 													name="inputProfessor" id="completeprofessor"
 													placeholder="Nome do professor">
-											</form>
 										</div>
 										<!--col-md-10-->
 									</div>
@@ -257,13 +253,9 @@
 										</div>
 										<!--col-md-2-->
 										<div class="col-md-6 sem-padding-left form-group">
-											<select id="selectDisciplina">
+											<select id="complete_disciplinas">
 												<option value="" disabled="disabled" selected="selected">Selecione
 													uma Disciplina</option>
-												<option value="">2</option>
-												<option value="">3</option>
-												<option value="">4</option>
-												<option value="">5</option>
 											</select>
 											<!--col-md-6-->
 										</div>
