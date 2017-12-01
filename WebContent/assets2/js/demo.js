@@ -3,8 +3,8 @@
  *  */
 
 $(function(){
-	$('#completeprofessor').keypress(function(){
-			$('#completeprofessor').autocomplete({
+	$('.completeprofessor').keypress(function(){
+			$('.completeprofessor').autocomplete({
 				minChars: 4,
 				serviceUrl : 'prof-complete?nome='+this.value,
 				onSelect : function(suggestion) {
@@ -15,13 +15,13 @@ $(function(){
 								for (var i = 0; i < j.length; i++) {
 									options += '<option value="' + j[i].data+ '">' + j[i].value + '</option>';
 								}	
-								$('#complete_disciplinas').html(options).show();
+								$('.complete_disciplinas').html(options).show();
 							}else{
-								$('#complete_disciplinas').html('<option value="">Selecione uma Disciplina</option>').show();
+								$('.complete_disciplinas').html('<option value="">Selecione uma Disciplina</option>').show();
 							}
 						});
 					} else {
-						$('#complete_disciplinas').html('<option value="">Selecione uma Disciplina</option>').show();
+						$('.complete_disciplinas').html('<option value="">Selecione uma Disciplina</option>').show();
 					}
 				},
 			});

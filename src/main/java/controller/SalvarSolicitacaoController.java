@@ -1,7 +1,10 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +18,7 @@ import model.Disciplina;
 import model.Professor;
 import model.Solicitacao;
 import util.Constantes;
+import util.FacadeSolicitacoes;
 
 public class SalvarSolicitacaoController extends HttpServlet {
 
@@ -29,6 +33,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 		String nomeDisciplina = request.getParameter("inputDisciplina");
 		String dataProva = request.getParameter("inputDataProva");
 		LocalDate data = util.Facade.converterStringParaLocalDate(dataProva);
+		LocalTime lt = LocalTime.of(0, 0);
 		System.out.println("matri "+matricula);
 		System.out.println("nome: "+nome);
 		System.out.println(nomeProfessor);
@@ -39,9 +44,14 @@ public class SalvarSolicitacaoController extends HttpServlet {
 		String pagina = "homeSolicitacao.jsp?erroSalvar=1";
 		if(tipoS != null && tipoS.equals("Segunda Chamada")) {
 			tipoSolicitacao = tipoS;
+			
 		}else if(tipoR != null && tipoR.equals("Recorrecao")) {
 			tipoSolicitacao = tipoR;
+			lt = FacadeSolicitacoes.converterStringToLocalTime(request.getParameter("inputHoraProva"));
+					
 		}
+		
+		LocalDateTime ldt = LocalDateTime.of(data, lt);
 		HttpSession session = request.getSession();
 		try {
 			System.out.println(matricula);
@@ -56,7 +66,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			if (util.FacadeSolicitacoes.verificarDias(data)) {
 				Solicitacao solicitacao = new Solicitacao();
 				solicitacao.setAluno(aluno);
-				solicitacao.setDataEHoraProva(data);
+				solicitacao.setDataEHoraProva(FacadeSolicitacoes.converterLocalDateTimeToString(ldt));
 				solicitacao.setDisciplina(disciplina);
 				solicitacao.setDataSolicitacao(LocalDate.now());
 				solicitacao.setJustificativa(justificativa);

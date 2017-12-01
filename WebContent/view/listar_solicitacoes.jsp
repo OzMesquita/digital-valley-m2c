@@ -16,16 +16,27 @@
 				if (((Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO)
 						|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 		%>
+		
+		
 		<div class="panel panel-primary" id="sem-margin-botton">
 			<div class="panel-heading">
 				<h2 class="panel-title" align="center">Histórico de
 					Solicitações</h2>
 			</div>
+			
+			
 		</div>
 		<div class="tab-pane active col-md-12" id="todas_solicitacoes">
 			<div class="row" id="buscaSolicitacao">
 				<div class="col-md-12">
 					<div class="row">
+					<%if(session.getAttribute(Constantes.getSessionMsg()) != null){ %>
+					<div class="alert alert-danger" role="alert">
+  						<%=session.getAttribute(Constantes.getSessionMsg()) %>
+					</div>
+					<%session.setAttribute(Constantes.getSessionMsg(), null); %>
+					
+				<%} %>
 						<div class="col-md-6 espacamentoHorizontal">
 							<form class="espacamentoHorizontal" action="listarSolicitacao"
 								method="post">
@@ -127,40 +138,44 @@
 						Solicitações</h3>
 				</div>
 				<table class="table table-responsive table-hover" id="dev-table">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Nome do Aluno</th>
-							<th>Data da Solicitação</th>
-							<th>Nome do Professor</th>
-							<th>Disciplina</th>
-							<th>Tipo da Solicitação</th>
-							<th>Detalhes</th>
-							<th>Download</th>
-						</tr>
-					</thead>
-					<tbody>
-						<%
-							for (Solicitacao solicitacao : solicitacoes) {
-						%>
-						<tr>
-							<td><%=solicitacao.getId()%></td>
-							<td><%=solicitacao.getAluno().getNome()%></td>
-							<td><%=solicitacao.getDataSolicitacao()%></td>
-							<td><%=solicitacao.getProfessor().getNome()%></td>
-							<td><%=solicitacao.getDisciplina().getNome()%></td>
-							<td><%=solicitacao.getTipoSolicitacao()%></td>
-							<td><button type="button" class="btn btn-primary ">
-									<span class="glyphicon glyphicon-option-horizontal"></span>
-								</button></td>
-							<td><button type="button" class="btn btn-primary">
-									<span class="glyphicon glyphicon-save-file"></span>
-								</button></td>
-						</tr>
-						<%
-							}
-						%>
-					</tbody>
+				<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nome do Aluno</th>
+									<th>Data da Solicitação</th>
+									<th>Nome do Professor</th>
+									<th>Disciplina</th>
+									<th>Tipo da Solicitação</th>
+									<th>Detalhes</th>
+									<th>Download</th>
+								</tr>
+							</thead>
+							<tbody>
+								<%
+									for (Solicitacao solicitacao : solicitacoes) {
+								%>
+								<tr>
+									<td><%=solicitacao.getId()%></td>
+									<td><%=solicitacao.getAluno().getNome()%></td>
+									<td><%=solicitacao.getDataSolicitacao()%></td>
+									<td><%=solicitacao.getProfessor().getNome()%></td>
+									<td><%=solicitacao.getDisciplina().getNome()%></td>
+									<td><%=solicitacao.getTipoSolicitacao()%></td>
+									<td><%=solicitacao.getTipoSolicitacao()%></td>
+									<td>
+										<button type="button" class="btn btn-primary btn_detalhes" id="<%=solicitacao.getId()%>"
+											data-toggle="modal" data-target="#detalhes">
+											<span class="glyphicon glyphicon-option-horizontal  "></span>
+										</button>
+									</td>
+									<td><button type="button" class="btn btn-primary">
+											<span class="glyphicon glyphicon-save-file"></span>
+										</button></td>
+								</tr>
+								<%
+									}
+								%>
+							</tbody>
 				</table>
 			</div>
 		</div>
@@ -188,9 +203,21 @@
 				<p id="tipoSolicitacao">Tipo Solicitaçao:</p>
 				<p id="dataProva">Data da Prova:</p>
 				<p id="dataSolicitacao">Data da Solicitação:</p>
+				<p id="justificativa">Justificativa:</p>
 				
 				<h4>Dados do Aluno</h4>
 				<p id="matricula">Matricula:</p>
+				<p id="nome">Nome:</p>
+				<p id="curso">Curso:</p>
+				
+				<h4>Dados do Professor</h4>
+				<p id="siape">Siape:</p>
+				<p id="nomeProfessor">Nome:</p>
+				<p id="email">Email:</p>
+				
+				<h4>Dados da Disciplina</h4>
+				<p id="disciplina">Disciplica:</p>
+				
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

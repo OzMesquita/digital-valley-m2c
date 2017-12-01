@@ -28,7 +28,7 @@ public class JDBCSolicitacaoDAOTest {
 		EnumSolicitacao enumSolicitacao = EnumSolicitacao.RECORRECAO;
 		
 		Solicitacao solicitacao = new Solicitacao();
-		solicitacao.setDataEHoraProva(dataProva);
+		solicitacao.setDataEHoraProva("19/11/2017");
 		solicitacao.setDataSolicitacao(dataSolicitacao);
 		solicitacao.setAluno(aluno);
 		solicitacao.setProfessor(professor);
