@@ -6,4 +6,5 @@ $(document).ready(function($) {
 		$("#nascimento").mask("00/00/0000");
 		$(".inputData").mask("00/00/0000");
 		$("#cpf").mask("000.000.000-00");
+		$(".inputHoraProva").mask("00:00");
 	});
