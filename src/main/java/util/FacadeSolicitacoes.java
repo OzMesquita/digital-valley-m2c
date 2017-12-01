@@ -33,63 +33,70 @@ public class FacadeSolicitacoes {
 			Document document = new Document();
 			PdfWriter.getInstance(document, new FileOutputStream(Constantes.getTEMP_PDF_SOLICITACAO()));
 			document.open();
-			//cabecalho
-				//logo
+			// cabecalho
+			// logo
 			Image image = Image.getInstance(Constantes.getLOGO_UFC());
 			image.setAlignment(Image.MIDDLE);
 			image.scaleAbsoluteWidth(90);
-			image.scaleAbsoluteHeight(60);			
+			image.scaleAbsoluteHeight(60);
 			document.add(image);
-				//campus
-			Paragraph cabecalho = new Paragraph("CAMPUS DA UFC DE RUSSAS\nCOORDENAÇÃO DO CURSO DE ENGENHARIA DE SOFTWARE\n\n\n\n\n");		
+			// campus
+			Paragraph cabecalho = new Paragraph(
+					"CAMPUS DA UFC DE RUSSAS\nCOORDENAÇÃO DO CURSO DE ENGENHARIA DE SOFTWARE\n\n\n\n\n");
 			cabecalho.setAlignment(Paragraph.ALIGN_CENTER);
-			document.add(cabecalho);			
-				//conteudo
+			document.add(cabecalho);
+			// conteudo
 			Aluno aluno = solicitacao.getAluno();
+			LocalDateTime dataEHoraProva = solicitacao.getDataEHoraProva();
 			Paragraph conteudo = null;
 			if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
-				conteudo = new Paragraph("Eu, "+aluno.getNome()+", aluno(a) matriculado(a) no " + 
-						"Curso de "+aluno.getCurso()+", no de matrícula "+aluno.getMatricula()+", vem mui " + 
-						"respeitosamente, perante Vossa Senhoria requerer recorreção da prova da disciplina " + 
-						solicitacao.getDisciplina().getNome()+ ", que realizou-se no dia "+converterLocalDateTimeToString(solicitacao.getDataEHoraProva()) + ", no " + 
-						"horário de ____:____, e tive conhecimento do resultado no dia ___/____/_____. Apresento este " + 
-						"requerimento devido ao(s) seguinte(s) motivo(s):\n" + 
-						"______________________________________________________________________________" + 
-						"______________________________________________________________________________" + 
-						"______________________________________________________________________________" + 
-						"______________________________________________________________________________" + 
-						"______________________________________________________________________________" + 
-						"______________________________________________________________________________" + 
-						"______________________________________________________________________________" + 
-						"______________________________________________________________________________" + 
-						"______________________________________________________________________________" + 
-						"______________________________________________________________________________" + 
-						"_____________________________________________________________________________.");											
+				conteudo = new Paragraph("Eu, " + aluno.getNome() + ", aluno(a) matriculado(a) no " + "Curso de "
+						+ aluno.getCurso() + ", no de matrícula " + aluno.getMatricula() + ", vem mui "
+						+ "respeitosamente, perante Vossa Senhoria requerer recorreção da prova da disciplina "
+						+ solicitacao.getDisciplina().getNome() + ", que realizou-se no dia "
+						+ dataEHoraProva.format(DateTimeFormatter.ofPattern("dd/MM/uuuu")) + ", no " + "horário de "
+						+ dataEHoraProva.format(DateTimeFormatter.ofPattern("hh:mm"))
+						+ ", e tive conhecimento do resultado no dia "
+						+ solicitacao.getDataDivulgacaoResultadoProva()
+								.format(DateTimeFormatter.ofPattern("dd/MM/uuuu"))
+						+ ". Apresento este " + "requerimento devido ao(s) seguinte(s) motivo(s):\n"
+						+ "______________________________________________________________________________"
+						+ "______________________________________________________________________________"
+						+ "______________________________________________________________________________"
+						+ "______________________________________________________________________________"
+						+ "______________________________________________________________________________"
+						+ "______________________________________________________________________________"
+						+ "______________________________________________________________________________"
+						+ "______________________________________________________________________________"
+						+ "______________________________________________________________________________"
+						+ "______________________________________________________________________________"
+						+ "_____________________________________________________________________________.");
 			} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.SEGUNDA_CHAMADA)) {
-				conteudo = new Paragraph("Prof.(a): ________________________________________________________________________\r\n" + 
-							"Coordenador do Curso/Prof.(a): _____________________________________\r\n" + 
-							"Nome do aluno: _____________________________________  Matrícula N°: ___________\r\n" +
-							"Curso: ________________________________  Data da prova: ___/____/_____\r\n" + 
-							"Disciplina: _____________________________________Data deste requerimento: ___/____/_____\r\n" +
-							"E-mail do aluno: _____________________________________\r\n" + 
-							"Motivo da falta: ___________________________________________________\r\n" +
-							"Venho por meio do presente, solicitar a realização da prova de segunda chamada da disciplina acima " + 
-							"indicada, levando em conta a previsão do § 3o do Art. 110 do Regimento Geral da UFC, abaixo" + 
-							"transcrito:\n" + 
-							"Art. 110...\r\n" + 
-							"§ 3o. - Será assegurada ao aluno a segunda chamada das provas, desde que solicitada, por escrito, até" + 
-							"03 (três) dias úteis decorridos após a realização da prova em primeira chamada.\n\n\n\n" +
-							"Atenciosamente,");
+				conteudo = new Paragraph(
+						"Prof.(a): ________________________________________________________________________\r\n"
+								+ "Coordenador do Curso/Prof.(a): _____________________________________\r\n"
+								+ "Nome do aluno: _____________________________________  Matrícula N°: ___________\r\n"
+								+ "Curso: ________________________________  Data da prova: ___/____/_____\r\n"
+								+ "Disciplina: _____________________________________Data deste requerimento: ___/____/_____\r\n"
+								+ "E-mail do aluno: _____________________________________\r\n"
+								+ "Motivo da falta: ___________________________________________________\r\n"
+								+ "Venho por meio do presente, solicitar a realização da prova de segunda chamada da disciplina acima "
+								+ "indicada, levando em conta a previsão do § 3o do Art. 110 do Regimento Geral da UFC, abaixo"
+								+ "transcrito:\n" + "Art. 110...\r\n"
+								+ "§ 3o. - Será assegurada ao aluno a segunda chamada das provas, desde que solicitada, por escrito, até"
+								+ "03 (três) dias úteis decorridos após a realização da prova em primeira chamada.\n\n\n\n"
+								+ "Atenciosamente,");
 			}
 			document.add(conteudo);
-			Paragraph assAluno = new Paragraph("\n\n\n\n\n\n_______________________________________________\n(Assinatura do Aluno)");
+			Paragraph assAluno = new Paragraph(
+					"\n\n\n\n\n\n_______________________________________________\n(Assinatura do Aluno)");
 			assAluno.setAlignment(Paragraph.ALIGN_CENTER);
 			document.add(assAluno);
 			document.close();
 		} catch (DocumentException | IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace(); 
-		} 
+			e.printStackTrace();
+		}
 	}
 
 	public static void enviarEmailSolicitacao(Solicitacao solicitacao) {
@@ -190,7 +197,7 @@ public class FacadeSolicitacoes {
 		}
 		return solicitacoes;
 	}
-	
+
 	public static String converterLocalDateTimeToString(LocalDateTime dataHoraProva) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm");
 		return dataHoraProva.format(formatter);
