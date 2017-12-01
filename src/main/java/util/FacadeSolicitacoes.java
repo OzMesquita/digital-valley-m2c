@@ -101,22 +101,28 @@ public class FacadeSolicitacoes {
 							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
 							+ solicitacao.getDataEHoraProva() + " com a justificativa de : \""
 							+ solicitacao.getJustificativa() + "\"";
+					
+					Email e = new Email();
+					e.sendEmail("Solicitação de Segunda chamada", msg, solicitacao.getProfessor().getEmail(),
+							"Usuário Controle de Acesso");
+					
 				} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
 					msg = "O Aluno " + solicitacao.getAluno().getNome() + " solicitou a Recorreção da prova de "
 							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
 							+ solicitacao.getDataEHoraProva() + " com a justificativa de : \""
 							+ solicitacao.getJustificativa() + "\"";
+					
+					Email e = new Email();
+					e.sendEmail("Solicitação de Segunda chamada", msg, solicitacao.getDisciplina().getCurso().getCoordenador().getEmail(),
+							"Usuário Controle de Acesso");
+					
 				}
 			} else {
 				throw new IllegalArgumentException("Tipo de solicitação não informado corretamente, valor informado: "
 						+ solicitacao.getTipoSolicitacao());
 
 			}
-			if (!msg.equals("")) {
-				Email e = new Email();
-				e.sendEmail("Solicitação de Segunda chamada", msg, solicitacao.getProfessor().getEmail(),
-						"Usuário Controle de Acesso");
-			} else {
+			if (msg.equals("")) {
 				throw new IllegalArgumentException("Erro ao enviar o email");
 			}
 		} else {
