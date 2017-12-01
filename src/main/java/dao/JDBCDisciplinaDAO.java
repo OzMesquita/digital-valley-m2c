@@ -165,9 +165,9 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 		super.open();
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		try {
-			String SQL = "SELECT nome, d.id_disciplina FROM \"" + Constantes.getPUBLIC_DATABASE_SCHEMA()
-					+ "\".professor_disciplina AS pd, "+ Constantes.getPUBLIC_DATABASE_SCHEMA()
-					+ "\".disciplina AS d WHERE pd.id_professor = ? AND pd.id_disciplina = d.id_disciplina";
+			String SQL = "SELECT nome, d.id_disciplina FROM " + Constantes.getPUBLIC_DATABASE_SCHEMA()
+					+ ".professor_disciplina AS pd, "+ Constantes.getPUBLIC_DATABASE_SCHEMA()
+					+ ".disciplina AS d WHERE pd.id_professor = ? AND pd.id_disciplina = d.id_disciplina";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, idProfessor);
 			ResultSet rs = ps.executeQuery();

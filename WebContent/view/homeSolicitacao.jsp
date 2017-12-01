@@ -110,11 +110,9 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-10 sem-padding-left">
-										<form>
-											<input required class="form-control biginput" type="text"
-												name="inputProfessor" id="completeprofessor"
-												placeholder="Nome do professor">
-										</form>
+										<input required class="form-control biginput completeprofessor" type="text"
+											name="inputProfessor"
+											placeholder="Nome do professor">
 									</div>
 									<!--col-md-10-->
 								</div>
@@ -130,7 +128,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-6 sem-padding-left form-group">
-										<select id="complete_disciplinas">
+										<select class="complete_disciplinas">
 											<option value="" disabled="disabled" selected="selected">Selecione
 												uma Disciplina</option>
 										</select>
@@ -236,11 +234,9 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-10 sem-padding-left">
-										<form>
-											<input required class="form-control biginput" type="text"
-												name="inputProfessor" id="completeprofessor"
-												placeholder="Nome do professor">
-										</form>
+										<input required class="form-control biginput completeprofessor" type="text"
+											name="inputProfessor"
+											placeholder="Nome do professor">
 									</div>
 									<!--col-md-10-->
 								</div>
@@ -256,13 +252,9 @@
 									</div>
 									<!--col-md-4-->
 									<div class="col-md-10 sem-padding-left form-group">
-										<select id="selectDisciplina">
+										<select class="complete_disciplinas">
 											<option value="" disabled="disabled" selected="selected">Selecione
 												uma Disciplina</option>
-											<option value="">2</option>
-											<option value="">3</option>
-											<option value="">4</option>
-											<option value="">5</option>
 										</select>
 
 									</div>
@@ -283,7 +275,7 @@
 											placeholder="dd/mm/aaaa" maxlength="10" autocomplete="off"
 											type="text" name="inputDataProva">
 									</div>
-									<!--col-md-4-->									
+									<!--col-md-4-->
 									<div class="col-md-1 sem-padding-right ">
 										<label for="inputDataProva">Data da Prova:</label>
 									</div>
@@ -292,7 +284,8 @@
 										<input class="form-control inputData" id="inputDataProva"
 											placeholder="dd/mm/aaaa" maxlength="10" autocomplete="off"
 											type="text" name="inputDataProva">
-									</div><!--col-md-2-->
+									</div>
+									<!--col-md-2-->
 									<div class="col-md-2 sem-padding-right">
 										<label for="inputHoraProva">Horário da Prova:</label>
 									</div>
@@ -300,48 +293,46 @@
 										<input class="form-control inputHoraProva" id="inputHoraProva"
 											placeholder="hh:mm" maxlength="4" autocomplete="off"
 											type="text" name="inputHoraProva">
-									</div><!--col-md-2-->
-									
+									</div>
+									<!--col-md-2-->
+
 								</div>
 								<!--col-md-6-->
+							</div>
 
+							<div class="row">
+								<div class="form-group col-md-12">
+									<div class="col-md-2 sem-padding-right ">
+										<label for="justificativa" class="margem-esquerda">Justificativa:</label>
+									</div>
+									<div class="col-md-10 sem-padding-left sem-padding-right">
+										<textarea required id="textarea" name="justificativa"
+											maxlength="280"
+											placeholder="Digite sua justificativa da solicitação"></textarea>
+									</div>
+								</div>
+								<!-- form-group col-md-12 -->
+							</div>
+							<!-- row -->
+							<div align="center">
+								<button type="submit" class="btn btn-primary">Enviar
+									Solicitação</button>
 							</div>
 
 						</div>
+						<!-- col-md-6 -->
 
-						<div class="row">
-							<div class="form-group col-md-12">
-								<div class="col-md-2 sem-padding-right sem-padding-left">
-									<label for="justificativa" class="margem-esquerda">Justificativa:</label>
-								</div>
-								<div class="col-md-10 sem-padding-left sem-padding-right">
-									<textarea required id="textarea" name="justificativa"
-										maxlength="280"
-										placeholder="Digite sua justificativa da solicitação"></textarea>
-								</div>
-							</div>
-							<!-- form-group col-md-12 -->
-						</div>
-						<!-- row -->
-						<div align="center">
-							<button type="submit" class="btn btn-primary">Enviar
-								Solicitação</button>
-						</div>
 
 					</div>
-					<!-- col-md-6 -->
-
-
+					<!-- form-group col-md-12 -->
 				</div>
-				<!-- form-group col-md-12 -->
+				<!-- row-->
+
+
+
 			</div>
-			<!-- row-->
-
-
-
 		</div>
 	</div>
-</div>
 </div>
 </div>
 </div>
