@@ -6,7 +6,6 @@ package dao;
 import java.util.List;
 
 import model.Disciplina;
-import model.Professor;
 
 /**
  * @author N2S-PC01

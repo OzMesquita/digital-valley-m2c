@@ -109,14 +109,14 @@ public class Solicitacao implements Serializable {
 		if (data.length == 2) {
 			LocalDate dataProva = null;
 			//data
-			data = data[0].split("/");
-			if (data.length == 3) {
-				dataProva =LocalDate.of(Integer.valueOf(data[2]), Integer.valueOf(data[1]), Integer.valueOf(data[0]));
+			String[] dataP = data[0].split("-");
+			if (dataP.length == 3) {
+				dataProva =LocalDate.of(Integer.valueOf(dataP[0]), Integer.valueOf(dataP[1]), Integer.valueOf(dataP[2]));
 				//hora
 				LocalTime horaProva = null;
-				data = data[1].split(":");
-				if (data.length == 2) {
-					horaProva = LocalTime.of(Integer.valueOf(data[0]), Integer.valueOf(data[1]));
+				String[] horaP = data[1].split(":");
+				if (horaP.length == 3) {
+					horaProva = LocalTime.of(Integer.valueOf(horaP[0]), Integer.valueOf(horaP[1]));
 					//data e hora
 					this.setDataEHoraProva(LocalDateTime.of(dataProva, horaProva));
 					return;
