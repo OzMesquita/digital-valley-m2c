@@ -111,9 +111,9 @@
 										</button>
 									</td>
 
-									<td><button type="button" class="btn btn-primary">
+									<td><a href="gerarPDFSolicitacao?id=<%=solicitacao.getId() %>" target="_blank" class="btn btn-primary">
 											<span class="glyphicon glyphicon-save-file"></span>
-										</button></td>
+										</a></td>
 								</tr>
 								<%
 									}
@@ -168,9 +168,9 @@
 											<span class="glyphicon glyphicon-option-horizontal  "></span>
 										</button>
 									</td>
-									<td><button type="button" class="btn btn-primary">
+									<td><a href="gerarPDFSolicitacao?id=<%=solicitacao.getId() %>" target="_blank" class="btn btn-primary">
 											<span class="glyphicon glyphicon-save-file"></span>
-										</button></td>
+										</a></td>
 								</tr>
 								<%
 									}
