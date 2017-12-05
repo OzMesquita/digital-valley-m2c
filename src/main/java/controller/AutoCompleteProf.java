@@ -12,11 +12,10 @@ import org.json.*;
 import dao.DAOFactory;
 import model.Professor;
 
-public class AutoComplete extends HttpServlet {
+public class AutoCompleteProf extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("nome"));
 		ArrayList<Professor> professores = (ArrayList<Professor>)DAOFactory.criarProfessorDAO().buscarContains(request.getParameter("nome"));
 		String result = "";
 		if(professores.size()>0){
@@ -26,7 +25,6 @@ public class AutoComplete extends HttpServlet {
 			}
 			result+="{\"value\": \""+professores.get(professores.size()-1).getNome()+"\", \"data\": \""+professores.get(professores.size()-1).getId()+"\"}";
 			result+= "]}";
-			System.out.println(result);
 		}
 		response.setContentType("application/json");
 		response.getWriter().print(result);

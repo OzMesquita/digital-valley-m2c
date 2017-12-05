@@ -113,6 +113,7 @@
 										<input required class="form-control biginput completeprofessor" type="text"
 											name="inputProfessor"
 											placeholder="Nome do professor">
+										<input type="hidden" name="valueIdProfessor" class="valueIdProfessor"> 
 									</div>
 									<!--col-md-10-->
 								</div>
@@ -237,6 +238,7 @@
 										<input required class="form-control biginput completeprofessor" type="text"
 											name="inputProfessor"
 											placeholder="Nome do professor">
+										<input type="hidden" name="valueIdProfessor" class="valueIdProfessor"> 
 									</div>
 									<!--col-md-10-->
 								</div>
