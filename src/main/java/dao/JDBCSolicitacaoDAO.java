@@ -66,7 +66,9 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
 				solicitacao.setTipoSolicitacao(EnumSolicitacao.getByString(rs.getString("tipo")));
-				solicitacao.setDataDivulgacaoResultadoProva(LocalDate.parse(rs.getString("data_divulgacao_resultado")));
+				if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
+					solicitacao.setDataDivulgacaoResultadoProva(LocalDate.parse(rs.getString("data_divulgacao_resultado")));
+				}								
 				ps.close();
 				rs.close();
 				return solicitacao;
@@ -109,7 +111,9 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 				solicitacao.setTipoSolicitacao(EnumSolicitacao.getByString(rs.getString("tipo")));
 				solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(rs.getInt("id_disciplina")));
 				solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
-				solicitacao.setDataDivulgacaoResultadoProva(LocalDate.parse(rs.getString("data_divulgacao_resultado")));
+				if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
+					solicitacao.setDataDivulgacaoResultadoProva(LocalDate.parse(rs.getString("data_divulgacao_resultado")));
+				}								
 				solicitacoes.add(solicitacao);
 
 			}
@@ -150,7 +154,9 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 				solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(rs.getInt("id_aluno")));
 				solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
 				solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(rs.getInt("id_disciplina")));
-				solicitacao.setDataDivulgacaoResultadoProva(LocalDate.parse(rs.getString("data_divulgacao_resultado")));
+				if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
+					solicitacao.setDataDivulgacaoResultadoProva(LocalDate.parse(rs.getString("data_divulgacao_resultado")));
+				}								
 				solicitacoes.add(solicitacao);
 			}
 			ps.close();
@@ -177,7 +183,6 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Solicitacao solicitacao = new Solicitacao();
-
 				solicitacao.setDataEHoraProva(LocalDateTime.parse(rs.getString("data_hora_prova")));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
@@ -186,7 +191,9 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 				solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(rs.getInt("id_aluno")));
 				solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
 				solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(rs.getInt("id_disciplina")));
-				solicitacao.setDataDivulgacaoResultadoProva(LocalDate.parse(rs.getString("data_divulgacao_resultado")));
+				if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
+					solicitacao.setDataDivulgacaoResultadoProva(LocalDate.parse(rs.getString("data_divulgacao_resultado")));
+				}								
 				solicitacoes.add(solicitacao);
 			}
 			ps.close();
@@ -224,7 +231,9 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));
 				solicitacao.setTipoSolicitacao(EnumSolicitacao.getByString(rs.getString("tipo")));
-				solicitacao.setDataDivulgacaoResultadoProva(LocalDate.parse(rs.getString("data_divulgacao_resultado")));
+				if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
+					solicitacao.setDataDivulgacaoResultadoProva(LocalDate.parse(rs.getString("data_divulgacao_resultado")));
+				}								
 				solicitacoes.add(solicitacao);
 			}
 			ps.close();
