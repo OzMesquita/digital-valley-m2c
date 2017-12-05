@@ -117,9 +117,9 @@
 										</button>
 									</td>
 
-									<td><button type="button" class="btn btn-primary">
+									<td><a href="gerarPDFSolicitacao?id=<%=solicitacao.getId() %>" target="_blank" class="btn btn-primary">
 											<span class="glyphicon glyphicon-save-file"></span>
-										</button></td>
+										</a></td>
 								</tr>
 								<%
 									}
@@ -144,45 +144,45 @@
 						Solicitações</h3>
 				</div>
 				<table class="table table-responsive table-hover" id="dev-table">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Nome do Aluno</th>
-							<th>Data da Solicitação</th>
-							<th>Nome do Professor</th>
-							<th>Disciplina</th>
-							<th>Tipo da Solicitação</th>
-							<th>Detalhes</th>
-							<th>Download</th>
-						</tr>
-					</thead>
-					<tbody>
-						<%
-							for (Solicitacao solicitacao : solicitacoes) {
-						%>
-						<tr>
-							<td><%=solicitacao.getId()%></td>
-							<td><%=solicitacao.getAluno().getNome()%></td>
-							<td><%=solicitacao.getDataSolicitacao()%></td>
-							<td><%=solicitacao.getProfessor().getNome()%></td>
-							<td><%=solicitacao.getDisciplina().getNome()%></td>
-							<td><%=solicitacao.getTipoSolicitacao()%></td>
-							<td><%=solicitacao.getTipoSolicitacao()%></td>
-							<td>
-								<button type="button" class="btn btn-primary btn_detalhes"
-									id="<%=solicitacao.getId()%>" data-toggle="modal"
-									data-target="#detalhes">
-									<span class="glyphicon glyphicon-option-horizontal  "></span>
-								</button>
-							</td>
-							<td><button type="button" class="btn btn-primary">
-									<span class="glyphicon glyphicon-save-file"></span>
-								</button></td>
-						</tr>
-						<%
-							}
-						%>
-					</tbody>
+
+				<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nome do Aluno</th>
+									<th>Data da Solicitação</th>
+									<th>Nome do Professor</th>
+									<th>Disciplina</th>
+									<th>Tipo da Solicitação</th>
+									<th>Detalhes</th>
+									<th>Download</th>
+								</tr>
+							</thead>
+							<tbody>
+								<%
+									for (Solicitacao solicitacao : solicitacoes) {
+								%>
+								<tr>
+									<td><%=solicitacao.getId()%></td>
+									<td><%=solicitacao.getAluno().getNome()%></td>
+									<td><%=solicitacao.getDataSolicitacao()%></td>
+									<td><%=solicitacao.getProfessor().getNome()%></td>
+									<td><%=solicitacao.getDisciplina().getNome()%></td>
+									<td><%=solicitacao.getTipoSolicitacao()%></td>
+									<td><%=solicitacao.getTipoSolicitacao()%></td>
+									<td>
+										<button type="button" class="btn btn-primary btn_detalhes" id="<%=solicitacao.getId()%>"
+											data-toggle="modal" data-target="#detalhes">
+											<span class="glyphicon glyphicon-option-horizontal  "></span>
+										</button>
+									</td>
+									<td><a href="gerarPDFSolicitacao?id=<%=solicitacao.getId() %>" target="_blank" class="btn btn-primary">
+											<span class="glyphicon glyphicon-save-file"></span>
+										</a></td>
+								</tr>
+								<%
+									}
+								%>
+							</tbody>
 				</table>
 			</div>
 		</div>
