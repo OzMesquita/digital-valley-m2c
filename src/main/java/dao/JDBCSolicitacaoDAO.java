@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import model.Aluno;
@@ -183,7 +182,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Solicitacao solicitacao = new Solicitacao();
-				solicitacao.setDataEHoraProva(LocalDateTime.parse(rs.getString("data_hora_prova")));
+				solicitacao.setDataEHoraProva(rs.getString("data_hora_prova"));
 				solicitacao.setDataSolicitacao(LocalDate.parse(rs.getString("data_solicitacao")));
 				solicitacao.setId(rs.getInt("id_solicitacao"));
 				solicitacao.setJustificativa(rs.getString("justificativa"));

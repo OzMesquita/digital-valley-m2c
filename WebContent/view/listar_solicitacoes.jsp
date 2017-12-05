@@ -216,12 +216,12 @@
 				<p id="email">Email:</p>
 				
 				<h4>Dados da Disciplina</h4>
-				<p id="disciplina">Disciplica:</p>
+				<p id="disciplina">Disciplina:</p>
 				
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+				<a id="gerarPDF" type="button" class="btn btn-primary" href="gerarPDFSolicitacao" target="_blankk">Gerar PDF</a>
 			</div>
 		</div>
 	</div>
