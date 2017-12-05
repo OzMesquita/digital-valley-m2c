@@ -157,8 +157,7 @@ public class FacadeSolicitacoes {
 		Solicitacao solicitacao = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorId(id);
 		solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
 		solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
-		solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
-		solicitacao.getDisciplina().setNome("criarDAO");
+		solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(solicitacao.getDisciplina().getId()));
 		return solicitacao;
 	}
 
@@ -167,8 +166,7 @@ public class FacadeSolicitacoes {
 				.buscarPorAluno(aluno, inicio, fim);
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
-			solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
-			solicitacao.getDisciplina().setNome("criarDAO");
+			solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(solicitacao.getDisciplina().getId()));
 		}
 		return solicitacoes;
 	}
@@ -178,8 +176,7 @@ public class FacadeSolicitacoes {
 				.buscarPorProfessor(professor, inicio, fim);
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
-			solicitacao.getDisciplina().setProfessor(professor);
-			solicitacao.getDisciplina().setNome("criarDAO");
+			solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(solicitacao.getDisciplina().getId()));
 		}
 		return solicitacoes;
 	}
@@ -190,8 +187,7 @@ public class FacadeSolicitacoes {
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
 			solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
-			solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
-			solicitacao.getDisciplina().setNome("criarDAO");
+			solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(solicitacao.getDisciplina().getId()));
 		}
 		return solicitacoes;
 	}

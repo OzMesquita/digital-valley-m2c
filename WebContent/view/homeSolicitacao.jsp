@@ -129,7 +129,7 @@
 									</div>
 									<!--col-md-2-->
 									<div class="col-md-6 sem-padding-left form-group">
-										<select class="complete_disciplinas">
+										<select name="inputDisciplina" class="complete_disciplinas">
 											<option value="" disabled="disabled" selected="selected">Selecione
 												uma Disciplina</option>
 										</select>
@@ -254,7 +254,7 @@
 									</div>
 									<!--col-md-4-->
 									<div class="col-md-10 sem-padding-left form-group">
-										<select class="complete_disciplinas">
+										<select name="inputDisciplina" class="complete_disciplinas">
 											<option value="" disabled="disabled" selected="selected">Selecione
 												uma Disciplina</option>
 										</select>

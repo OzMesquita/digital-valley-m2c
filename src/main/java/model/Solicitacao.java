@@ -18,7 +18,7 @@ public class Solicitacao implements Serializable {
 	private LocalDateTime dataEHoraProva;
 	private LocalDate dataSolicitacao;
 	private LocalDate dataDivulgacaoResultadoProva;
-	private String justificativa;	
+	private String justificativa;
 
 	public Solicitacao() {
 	}
@@ -49,7 +49,6 @@ public class Solicitacao implements Serializable {
 		this.tipoSolicitacao = tipoSolicitacao;
 	}
 
-	
 	public void setTipoSolicitacao(String tipoSolicitacao) {
 		switch (tipoSolicitacao) {
 		case "Segunda Chamada":
@@ -62,7 +61,6 @@ public class Solicitacao implements Serializable {
 			this.tipoSolicitacao = null;
 		}
 	}
-	
 
 	public Aluno getAluno() {
 		return aluno;
@@ -108,20 +106,37 @@ public class Solicitacao implements Serializable {
 		String[] data = dataEHoraProva.split(" ");
 		if (data.length == 2) {
 			LocalDate dataProva = null;
-			//data
+			// data
 			String[] dataP = data[0].split("-");
 			if (dataP.length == 3) {
-				dataProva =LocalDate.of(Integer.valueOf(dataP[0]), Integer.valueOf(dataP[1]), Integer.valueOf(dataP[2]));
-				//hora
+				dataProva = LocalDate.of(Integer.valueOf(dataP[0]), Integer.valueOf(dataP[1]),
+						Integer.valueOf(dataP[2]));
+				// hora
 				LocalTime horaProva = null;
 				String[] horaP = data[1].split(":");
 				if (horaP.length == 3) {
 					horaProva = LocalTime.of(Integer.valueOf(horaP[0]), Integer.valueOf(horaP[1]));
-					//data e hora
+					// data e hora
 					this.setDataEHoraProva(LocalDateTime.of(dataProva, horaProva));
 					return;
 				}
-			}			
+			} else {
+				dataP = data[0].split("/");
+				System.out.println("data p "+dataP.toString());
+				System.out.println("data p "+dataP[0]);
+				if (dataP.length == 3) {
+					dataProva = LocalDate.of(Integer.valueOf(dataP[2]), Integer.valueOf(dataP[1]), Integer.valueOf(dataP[0]));
+					// hora
+					LocalTime horaProva = null;
+					String[] horaP = data[1].split(":");
+					if (horaP.length == 2) {
+						horaProva = LocalTime.of(Integer.valueOf(horaP[0]), Integer.valueOf(horaP[1]));
+						// data e hora
+						this.setDataEHoraProva(LocalDateTime.of(dataProva, horaProva));
+						return;
+					}
+				}
+			}
 		}
 		throw new RuntimeException("Erro: A data não está no formato correto, valor informado " + dataEHoraProva);
 	}
@@ -154,10 +169,11 @@ public class Solicitacao implements Serializable {
 	}
 
 	/**
-	 * @param dataDivulgacaoResultadoProva the dataDivulgacaoResultadoProva to set
+	 * @param dataDivulgacaoResultadoProva
+	 *            the dataDivulgacaoResultadoProva to set
 	 */
 	public void setDataDivulgacaoResultadoProva(LocalDate dataDivulgacaoResultadoProva) {
 		this.dataDivulgacaoResultadoProva = dataDivulgacaoResultadoProva;
 	}
-	
+
 }
