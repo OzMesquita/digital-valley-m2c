@@ -29,10 +29,10 @@ public class FacadeSolicitacoes {
 		//
 	}
 
-	public static void gerarPDFDaSolicitacao(Solicitacao solicitacao) {
+	public static void gerarPDFDaSolicitacao(Solicitacao solicitacao, String localArquivo) {
 		try {
 			Document document = new Document();
-			PdfWriter.getInstance(document, new FileOutputStream(Constantes.getTEMP_PDF_SOLICITACAO()));
+			PdfWriter.getInstance(document, new FileOutputStream(localArquivo));
 			document.open();
 			// cabecalho
 			// logo
@@ -66,7 +66,7 @@ public class FacadeSolicitacoes {
 			} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.SEGUNDA_CHAMADA)) {
 				conteudo = new Paragraph(
 						"Prof.(a): "+solicitacao.getProfessor().getNome()+"\r\n"
-								+ "Coordenador do Curso/Prof.(a): _____________________________________\r\n"
+								+ "Coordenador do Curso/Prof.(a): "+solicitacao.getAluno().getCurso().getCoordenador().getNome()+"\r\n"
 								+ "Nome do aluno: "+solicitacao.getAluno().getNome()+"  Matrícula N°: "+solicitacao.getAluno().getMatricula()+"\r\n"
 								+ "Curso: "+solicitacao.getAluno().getCurso().getNome()+" Data da prova: "+dataProvaString+"\r\n"
 								+ "Disciplina: "+solicitacao.getDisciplina().getNome()+" Data deste requerimento: "+FacadeSolicitacoes.converterLocalDateToString(dataEHoraProva.toLocalDate())+"\r\n"
