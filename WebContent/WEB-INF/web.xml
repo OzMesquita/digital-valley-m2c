@@ -32,7 +32,7 @@
   </servlet>
   <servlet>
     <servlet-name>AutoCompleteProf</servlet-name>
-    <servlet-class>controller.AutoComplete</servlet-class>
+    <servlet-class>controller.AutoCompleteProf</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AutoCompleteDisc</servlet-name>

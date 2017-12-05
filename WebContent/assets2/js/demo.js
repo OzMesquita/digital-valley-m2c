@@ -8,7 +8,8 @@ $(function(){
 				minChars: 4,
 				serviceUrl : 'prof-complete?nome='+this.value,
 				onSelect : function(suggestion) {
-					if(suggestion!=null) {			
+					if(suggestion!=null) {
+						$('.valueIdProfessor').val(suggestion.data);
 						$.getJSON('disc-complete?idProfessor='+suggestion.data, function(j){
 							if(j !== null){
 								var options = '<option value="">Selecione uma Disciplina</option>';	

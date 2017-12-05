@@ -20,7 +20,6 @@ public class AutoCompleteDisc extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// pergar disciplina através de parametro idProfessor
-		System.out.println("param: "+request.getParameter("idProfessor"));
 		int param = Integer.parseInt(request.getParameter("idProfessor"));
 		ArrayList<Disciplina> disciplinas = (ArrayList<Disciplina>) DAOFactoryM2C.criarDisciplinaDAO().buscarPorProfessor(param);
 		String result = "";
@@ -31,7 +30,6 @@ public class AutoCompleteDisc extends HttpServlet {
 			}
 			result += "{\"value\": \"" + disciplinas.get(disciplinas.size()-1).getNome() + "\", \"data\": \""+ disciplinas.get(disciplinas.size()-1).getId() + "\"}";
 			result += "]";
-			System.out.println(result);
 		}
 		response.setContentType("application/json");
 		response.getWriter().print(result);
