@@ -10,7 +10,7 @@ $(function() {
 			success : function(data) {
 				$("#id").html("ID: "+data.id);
 				$("#tipoSolicitacao").html("Tipo Solicitação: "+data.tipoSolicitacao);
-				$("#dataProva").html("Data da Prova: "+data.dataProva.day+"/"+data.dataProva.month+"/"+data.dataProva.year);
+				$("#dataProva").html("Data da Prova: "+data.dataEHoraProva.date.day+"/"+data.dataEHoraProva.date.month+"/"+data.dataEHoraProva.date.year);
 				$("#dataSolicitacao").html("Data da Solicitação: "+data.dataSolicitacao.day+"/"+data.dataSolicitacao.month+"/"+data.dataSolicitacao.year);
 				$("#justificativa").html("Justificativa: "+data.justificativa);
 				$("#matricula").html("Matricula: "+data.aluno.matricula);
@@ -19,10 +19,11 @@ $(function() {
 				$("#nomeProfessor").html("Nome: "+data.professor.nome);
 				$("#email").html("Email: "+data.professor.email);
 				$("#disciplina").html("Disciplina: "+data.disciplina.nome);
-				
-				
-				
 				$("#curso").html("Curso: "+data.aluno.curso.nome);
+				$('#gerarPDF').attr({
+					   'href': "gerarPDFSolicitacao?id="+data.id
+					});
+				
 			}
 		});
 	});
