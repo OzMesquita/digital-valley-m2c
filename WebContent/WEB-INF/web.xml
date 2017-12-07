@@ -42,6 +42,10 @@
     <servlet-name>GerarPDFSolicitacao</servlet-name>
     <servlet-class>controller.GerarPDFSolicitacao</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>BuscarAlunoMatricula</servlet-name>
+    <servlet-class>controller.BuscarAlunoMatricula</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Autenticar</servlet-name>
     <url-pattern>/autentica</url-pattern>
@@ -69,6 +73,10 @@
   <servlet-mapping>
     <servlet-name>GerarPDFSolicitacao</servlet-name>
     <url-pattern>/view/gerarPDFSolicitacao</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BuscarAlunoMatricula</servlet-name>
+    <url-pattern>/view/buscarAlunoMatricula</url-pattern>
   </servlet-mapping>
   
   <filter>
