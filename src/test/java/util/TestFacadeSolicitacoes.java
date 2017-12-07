@@ -17,25 +17,15 @@ import model.Solicitacao;
 
 public class TestFacadeSolicitacoes {
 	
-	@Ignore
 	@Test
 	public void testEnviarEmailSegundaChamada(){
-		Aluno a = DAOFactory.criarAlunoDAO().buscar(73);
-		Professor p = new Professor();
-		p.setNome("Professor teste");
-		p.setEmail("deyvisonbill01@gmail.com");
-		Disciplina d = new Disciplina();
-		d.setNome("Disciplina teste");
-		Solicitacao s = new Solicitacao();
-		s.setAluno(a);
-		s.setProfessor(p);
-		s.setDataEHoraProva("10/09/2017");
-		s.setDisciplina(d);
-		s.setJustificativa("Teste da justificatica"); 
-		s.setTipoSolicitacao(EnumSolicitacao.RECORRECAO);
-		util.FacadeSolicitacoes.enviarEmailSolicitacao(s);
+		Solicitacao s = FacadeSolicitacoes.listar(0, 20).get(0);
+		s.getProfessor().setEmail("matheusdiogenesandrade@gmail.com");
+		System.out.println(s.getId());
+		util.FacadeSolicitacoes.enviarEmailSolicitacao(s, "");
 		
 	}
+	
 	@Test
 	public void testVerificarDias() {
 		Assert.assertTrue(util.FacadeSolicitacoes.verificarDias(LocalDate.of(2017, 11, 20)));

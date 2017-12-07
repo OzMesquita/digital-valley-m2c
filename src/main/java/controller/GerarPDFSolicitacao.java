@@ -57,7 +57,6 @@ public class GerarPDFSolicitacao extends HttpServlet {
 					response.setContentType(mime);
 					response.setContentLength((int) file.length());
 					//excluindo arquivo
-					File relatorioPDF = new File(localArquivo);
 		    		file.delete();		    				    		
 				}
 			} catch (Exception e) {
