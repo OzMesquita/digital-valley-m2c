@@ -26,42 +26,39 @@ public class SalvarSolicitacaoController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String nome = request.getParameter("inputName");
-		String matricula = request.getParameter("matricula");
-		String nomeProfessor = request.getParameter("inputProfessor");
-		String siape = request.getParameter("siape");
-		String idDisciplina = request.getParameter("inputDisciplina");
-		String dataProva = request.getParameter("inputDataProva");
-		LocalDate data = util.Facade.converterStringParaLocalDate(dataProva);
-		LocalTime lt = LocalTime.of(0, 0);
-		String justificativa = request.getParameter("justificativa");
-		String tipoS = request.getParameter("tipoS");
-		String tipoR = request.getParameter("tipoR");
-		String tipoSolicitacao = "";
-		String pagina = "homeSolicitacao.jsp?erroSalvar=1";
-		if(tipoS != null && tipoS.equals("Segunda Chamada")) {
-			tipoSolicitacao = tipoS;
-			
-		}else if(tipoR != null && tipoR.equals("Recorrecao")) {
-			tipoSolicitacao = tipoR;
-			lt = FacadeSolicitacoes.converterStringToLocalTime(request.getParameter("inputHoraProva"));
-					
-		}
-		
-		LocalDateTime ldt = LocalDateTime.of(data, lt);
 		HttpSession session = request.getSession();
-		try {
-			System.out.println(matricula);
+		String pagina = "homeSolicitacao.jsp?erroSalvar=1";
+	
+			String matricula = request.getParameter("matricula");
+			int idProfessor = Integer.valueOf(request.getParameter("valueIdProfessor"));
+			String idDisciplina = request.getParameter("inputDisciplina");
+			String dataProva = request.getParameter("inputDataProva");
+			LocalDate data = util.Facade.converterStringParaLocalDate(dataProva);
+			LocalTime lt = LocalTime.of(0, 0);
+			String justificativa = request.getParameter("justificativa");
+			String tipoS = request.getParameter("tipoS");
+			String tipoR = request.getParameter("tipoR");
+			String tipoSolicitacao = "";
+
+			if(tipoS != null && tipoS.equals("Segunda Chamada")) {
+				tipoSolicitacao = tipoS;
+			
+			}else if(tipoR != null && tipoR.equals("Recorrecao")) {
+				tipoSolicitacao = tipoR;
+				lt = FacadeSolicitacoes.converterStringToLocalTime(request.getParameter("inputHoraProva"));
+					
+			}
+		
+			LocalDateTime ldt = LocalDateTime.of(data, lt);
 			Aluno aluno = DAOFactory.criarAlunoDAO().buscarPorMatricula(matricula);
-			System.out.println(aluno.getNome());
-			Professor professor = DAOFactory.criarProfessorDAO().buscarPorSiape("4785698");
+			Professor professor = DAOFactory.criarProfessorDAO().buscar(idProfessor);
 			Disciplina disciplina = DAOFactoryM2C.criarDisciplinaDAO().getById(Integer.valueOf(idDisciplina));
 			
-
-			if (util.FacadeSolicitacoes.verificarDias(data)) {
+			if (util.FacadeSolicitacoes.verificarDias(data) || tipoSolicitacao.equals("Recorrecao") ) {
 				Solicitacao solicitacao = new Solicitacao();
 				solicitacao.setAluno(aluno);
 				solicitacao.setDataEHoraProva(FacadeSolicitacoes.converterLocalDateTimeToString(ldt));
+				solicitacao.setDataDivulgacaoResultadoProva(data);
 				solicitacao.setDisciplina(disciplina);
 				solicitacao.setDataSolicitacao(LocalDate.now());
 				solicitacao.setJustificativa(justificativa);
@@ -75,9 +72,6 @@ public class SalvarSolicitacaoController extends HttpServlet {
 				pagina = "homeSolicitacao.jsp?erroPrazo=1";
 			}
 
-		} catch (Exception e) {
-			session.setAttribute(Constantes.getSessionMsg(), "Erro ao pedir solcitacao :"+e.getMessage());
-		}
 		
 		response.sendRedirect(pagina);
 

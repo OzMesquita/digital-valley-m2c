@@ -20,6 +20,7 @@ import dao.DAOFactory;
 import dao.DAOFactoryM2C;
 import dao.SolicitacaoDAO;
 import model.Aluno;
+import model.Curso;
 import model.Email;
 import model.EnumSolicitacao;
 import model.Professor;
@@ -41,22 +42,23 @@ public class FacadeSolicitacoes {
 			image.scaleAbsoluteWidth(90);
 			image.scaleAbsoluteHeight(60);
 			document.add(image);
-			// campus
-			Paragraph cabecalho = new Paragraph(
-					"CAMPUS DA UFC DE RUSSAS\nCOORDENAÇÃO DO CURSO DE ENGENHARIA DE SOFTWARE\n\n\n\n\n");
-			cabecalho.setAlignment(Paragraph.ALIGN_CENTER);
-			document.add(cabecalho);
 			// conteudo
 			Aluno aluno = solicitacao.getAluno();
 			LocalDateTime dataEHoraProva = solicitacao.getDataEHoraProva();
 			String dataProvaString = FacadeSolicitacoes.converterLocalDateToString(dataEHoraProva.toLocalDate());
+			Curso curso = solicitacao.getAluno().getCurso();
+			// campus
+			Paragraph cabecalho = new Paragraph(
+					"CAMPUS DA UFC DE RUSSAS\nCOORDENAÇÃO DO CURSO DE "+curso.getNome().toUpperCase()+"\n\n\n\n\n");
+			cabecalho.setAlignment(Paragraph.ALIGN_CENTER);
+			document.add(cabecalho);
 			Paragraph conteudo = null;
 			if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
 				conteudo = new Paragraph("Eu, " + aluno.getNome() + ", aluno(a) matriculado(a) no " + "Curso de "
-						+ aluno.getCurso() + ", no de matrícula " + aluno.getMatricula() + ", vem mui "
+						+ aluno.getCurso().getNome() + ", no de matrícula " + aluno.getMatricula() + ", vem mui "
 						+ "respeitosamente, perante Vossa Senhoria requerer recorreção da prova da disciplina "
-						+ solicitacao.getDisciplina().getNome() + ", que realizou-se no dia "
-						+ dataProvaString + ", no " + "horário de "
+						+ solicitacao.getDisciplina().getNome() + ", que realizou-se no dia " + dataProvaString
+						+ ", no " + "horário de "
 						+ FacadeSolicitacoes.converterLocalTimeToString(dataEHoraProva.toLocalTime())
 						+ ", e tive conhecimento do resultado no dia "
 						+ solicitacao.getDataDivulgacaoResultadoProva()
@@ -64,20 +66,21 @@ public class FacadeSolicitacoes {
 						+ ". Apresento este " + "requerimento devido ao(s) seguinte(s) motivo(s):\n"
 						+ solicitacao.getJustificativa() + ".");
 			} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.SEGUNDA_CHAMADA)) {
-				conteudo = new Paragraph(
-						"Prof.(a): "+solicitacao.getProfessor().getNome()+"\r\n"
-								+ "Coordenador do Curso/Prof.(a): "+solicitacao.getAluno().getCurso().getCoordenador().getNome()+"\r\n"
-								+ "Nome do aluno: "+solicitacao.getAluno().getNome()+"  Matrícula N°: "+solicitacao.getAluno().getMatricula()+"\r\n"
-								+ "Curso: "+solicitacao.getAluno().getCurso().getNome()+" Data da prova: "+dataProvaString+"\r\n"
-								+ "Disciplina: "+solicitacao.getDisciplina().getNome()+" Data deste requerimento: "+FacadeSolicitacoes.converterLocalDateToString(dataEHoraProva.toLocalDate())+"\r\n"
-								+ "E-mail do aluno: "+solicitacao.getAluno().getEmail()+"\r\n"
-								+ "Motivo da falta: "+solicitacao.getJustificativa()+"\r\n"
-								+ "Venho por meio do presente, solicitar a realização da prova de segunda chamada da disciplina acima "
-								+ "indicada, levando em conta a previsão do § 3o do Art. 110 do Regimento Geral da UFC, abaixo"
-								+ "transcrito:\n" + "Art. 110...\r\n"
-								+ "§ 3o. - Será assegurada ao aluno a segunda chamada das provas, desde que solicitada, por escrito, até"
-								+ "03 (três) dias úteis decorridos após a realização da prova em primeira chamada.\n\n\n\n"
-								+ "Atenciosamente,");
+				conteudo = new Paragraph("Prof.(a): " + solicitacao.getProfessor().getNome() + "\r\n"
+						+ "Coordenador do Curso/Prof.(a): "
+						+ solicitacao.getAluno().getCurso().getCoordenador().getNome() + "\r\n" + "Nome do aluno: "
+						+ solicitacao.getAluno().getNome() + "  Matrícula N°: " + solicitacao.getAluno().getMatricula()
+						+ "\r\n" + "Curso: " + curso.getNome() + " Data da prova: " + dataProvaString + "\r\n"
+						+ "Disciplina: " + solicitacao.getDisciplina().getNome() + " Data deste requerimento: "
+						+ FacadeSolicitacoes.converterLocalDateToString(dataEHoraProva.toLocalDate()) + "\r\n"
+						+ "E-mail do aluno: " + solicitacao.getAluno().getEmail() + "\r\n" + "Motivo da falta: "
+						+ solicitacao.getJustificativa() + "\r\n"
+						+ "Venho por meio do presente, solicitar a realização da prova de segunda chamada da disciplina acima "
+						+ "indicada, levando em conta a previsão do § 3o do Art. 110 do Regimento Geral da UFC, abaixo"
+						+ "transcrito:\n" + "Art. 110...\r\n"
+						+ "§ 3o. - Será assegurada ao aluno a segunda chamada das provas, desde que solicitada, por escrito, até"
+						+ "03 (três) dias úteis decorridos após a realização da prova em primeira chamada.\n\n\n\n"
+						+ "Atenciosamente,");
 			}
 			document.add(conteudo);
 			Paragraph assAluno = new Paragraph(
@@ -100,21 +103,22 @@ public class FacadeSolicitacoes {
 							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
 							+ solicitacao.getDataEHoraProva() + " com a justificativa de : \""
 							+ solicitacao.getJustificativa() + "\"";
-					
+
 					Email e = new Email();
 					e.sendEmail("Solicitação de Segunda chamada", msg, solicitacao.getProfessor().getEmail(),
 							"Usuário Controle de Acesso");
-					
+
 				} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
 					msg = "O Aluno " + solicitacao.getAluno().getNome() + " solicitou a Recorreção da prova de "
 							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
 							+ solicitacao.getDataEHoraProva() + " com a justificativa de : \""
 							+ solicitacao.getJustificativa() + "\"";
-					
+
 					Email e = new Email();
-					e.sendEmail("Solicitação de Segunda chamada", msg, solicitacao.getDisciplina().getCurso().getCoordenador().getEmail(),
+					e.sendEmail("Solicitação de Segunda chamada", msg,
+							solicitacao.getDisciplina().getCurso().getCoordenador().getEmail(),
 							"Usuário Controle de Acesso");
-					
+
 				}
 			} else {
 				throw new IllegalArgumentException("Tipo de solicitação não informado corretamente, valor informado: "
@@ -157,8 +161,7 @@ public class FacadeSolicitacoes {
 		Solicitacao solicitacao = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorId(id);
 		solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
 		solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
-		solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
-		solicitacao.getDisciplina().setNome("criarDAO");
+		solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(solicitacao.getDisciplina().getId()));
 		return solicitacao;
 	}
 
@@ -167,8 +170,7 @@ public class FacadeSolicitacoes {
 				.buscarPorAluno(aluno, inicio, fim);
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
-			solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
-			solicitacao.getDisciplina().setNome("criarDAO");
+			solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(solicitacao.getDisciplina().getId()));
 		}
 		return solicitacoes;
 	}
@@ -178,8 +180,7 @@ public class FacadeSolicitacoes {
 				.buscarPorProfessor(professor, inicio, fim);
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
-			solicitacao.getDisciplina().setProfessor(professor);
-			solicitacao.getDisciplina().setNome("criarDAO");
+			solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(solicitacao.getDisciplina().getId()));
 		}
 		return solicitacoes;
 	}
@@ -190,8 +191,7 @@ public class FacadeSolicitacoes {
 		for (Solicitacao solicitacao : solicitacoes) {
 			solicitacao.setAluno(DAOFactory.criarAlunoDAO().buscar(solicitacao.getAluno().getId()));
 			solicitacao.setProfessor(DAOFactory.criarProfessorDAO().buscar(solicitacao.getProfessor().getId()));
-			solicitacao.getDisciplina().setProfessor(solicitacao.getProfessor());
-			solicitacao.getDisciplina().setNome("criarDAO");
+			solicitacao.setDisciplina(DAOFactoryM2C.criarDisciplinaDAO().getById(solicitacao.getDisciplina().getId()));
 		}
 		return solicitacoes;
 	}
@@ -199,11 +199,11 @@ public class FacadeSolicitacoes {
 	public static String converterLocalDateTimeToString(LocalDateTime dataHora) {
 		return dataHora.format(DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm"));
 	}
-	
+
 	public static String converterLocalDateToString(LocalDate data) {
 		return data.format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
 	}
-	
+
 	public static String converterLocalTimeToString(LocalTime hora) {
 		return hora.format(DateTimeFormatter.ofPattern("HH:mm"));
 	}

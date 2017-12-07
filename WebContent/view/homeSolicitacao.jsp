@@ -97,38 +97,28 @@
 									if (aluno == null) {
 								%>
 								<div class="form-group col-md-1 sem-padding-left">
-									<button type="submit"
+									<button type="button"
 										class="btn btn-primary my-btn-primary buscarMatricula">
 										<span class="glyphicon glyphicon-search"></span>
 									</button>
 								</div>
 
+								<%
+									}
+								%>
+								
 								<!--col-md-1-->
 								<div class="col-md-1">
 									<label for="inputCurso">Curso:</label>
 								</div>
 								<!--col-md-1-->
-								<div class="col-md-7 sem-padding-right">
+								<div class="col-md-<%=aluno == null ? "6" : "7"%> sem-padding-right">
 									<input required class="form-control" type="text"
 										name="inputCurso"
 										value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
 										<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
 								</div>
 								<!-- form-group col-md-12 -->
-
-								<%
-									}
-								%>
-								<div class="col-md-1">
-									<label for="inputCurso">Curso:</label>
-								</div>
-								<div class="col-md-7 sem-padding-right">
-									<input required class="form-control inputCurso" type="text"
-										name="inputCurso"
-										value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
-										<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
-								</div>
-								<!-- form-group col-md-7 -->
 
 							</div>
 							<!-- row-->
@@ -239,15 +229,19 @@
 									<label for="inputMatricula">Matrícula:</label>
 								</div>
 								<!--col-md-2-->
-								<div class="col-md-2 sem-padding-left sem-padding-right">
-									<input class="form-control matricula" type="text"
+
+
+
+								<div
+									class="col-md-2 sem-padding-left sem-padding-right form-group ">
+									<input required class="form-control matricula" type="text"
 										value="<%=aluno != null ? aluno.getMatricula() : ""%>"
 										id="matricula" name="matricula" placeholder="Matricula"
 										<%if (aluno != null) {%> <%="readonly"%> <%}%>>
-								</div>
-								<!--col-md-2-->
 
-							<%
+
+								</div>
+								<%
 									if (aluno == null) {
 								%>
 								<div class="form-group col-md-1 sem-padding-left">
@@ -257,12 +251,14 @@
 									</button>
 								</div>
 
-								<!--col-md-1-->
+								<%
+									}
+								%><!--col-md-1-->
 								<div class="col-md-1">
 									<label for="inputCurso">Curso:</label>
 								</div>
 								<!--col-md-1-->
-								<div class="col-md-7 sem-padding-right">
+								<div class="col-md-<%=aluno == null ? "6" : "7"%> sem-padding-right">
 									<input required class="form-control" type="text"
 										name="inputCurso"
 										value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
@@ -270,19 +266,6 @@
 								</div>
 								<!-- form-group col-md-12 -->
 
-								<%
-									}
-								%>
-								<div class="col-md-1">
-									<label for="inputCurso">Curso:</label>
-								</div>
-								<div class="col-md-7 sem-padding-right">
-									<input required class="form-control inputCurso" type="text"
-										name="inputCurso"
-										value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
-										<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
-								</div>
-								<!-- form-group col-md-7 -->
 							</div>
 							<!-- row-->
 

@@ -17,8 +17,8 @@
 						|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 		%>
 
+		<div class="panel panel-primary" id="sem-margin-botton">
 
-		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h2 class="panel-title" align="center">Histórico de
 					Solicitações</h2>
@@ -117,9 +117,9 @@
 										</button>
 									</td>
 
-									<td><button type="button" class="btn btn-primary">
+									<td><a href="gerarPDFSolicitacao?id=<%=solicitacao.getId() %>" target="_blank" class="btn btn-primary">
 											<span class="glyphicon glyphicon-save-file"></span>
-										</button></td>
+										</a></td>
 								</tr>
 								<%
 									}
@@ -176,7 +176,6 @@
 								<td><%=solicitacao.getProfessor().getNome()%></td>
 								<td><%=solicitacao.getDisciplina().getNome()%></td>
 								<td><%=solicitacao.getTipoSolicitacao()%></td>
-								<td><%=solicitacao.getTipoSolicitacao()%></td>
 								<td>
 									<button type="button" class="btn btn-primary btn_detalhes"
 										id="<%=solicitacao.getId()%>" data-toggle="modal"
@@ -194,6 +193,8 @@
 						</tbody>
 					</table>
 				</div>
+
+
 			</div>
 		</div>
 		<div id="row-voltar" align="left">
@@ -206,20 +207,24 @@
 			}
 		%>
 	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="detalhes" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h2 class="modal-title" id="exampleModalLabel">Detalhes das
-						solicitação</h2>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
+
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="detalhes" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="modal-title" id="exampleModalLabel">Detalhes das
+					solicitação</h2>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="dados-modal">
 					<h4>Dados da Solicitaçao</h4>
 					<p id="id">ID:</p>
 					<p id="tipoSolicitacao">Tipo Solicitaçao:</p>
@@ -227,26 +232,30 @@
 					<p id="dataSolicitacao">Data da Solicitação:</p>
 					<p id="justificativa">Justificativa:</p>
 
+				</div>
+				<div class="dados-modal">
 					<h4>Dados do Aluno</h4>
 					<p id="matricula">Matricula:</p>
 					<p id="nome">Nome:</p>
 					<p id="curso">Curso:</p>
 
+				</div>
+				<div class="dados-modal">
 					<h4>Dados do Professor</h4>
 					<p id="siape">Siape:</p>
 					<p id="nomeProfessor">Nome:</p>
 					<p id="email">Email:</p>
-
+				</div>
+				<div class="dados-modal">
 					<h4>Dados da Disciplina</h4>
 					<p id="disciplina">Disciplina:</p>
+				</div>
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Fechar</button>
-					<a id="gerarPDF" type="button" class="btn btn-primary"
-						href="gerarPDFSolicitacao" target="_blankk">Gerar PDF</a>
-				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+				<a id="gerarPDF" type="button" class="btn btn-primary"
+					href="gerarPDFSolicitacao" target="_blankk">Gerar PDF</a>
 			</div>
 		</div>
 	</div>

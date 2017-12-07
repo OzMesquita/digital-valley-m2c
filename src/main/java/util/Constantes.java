@@ -44,7 +44,7 @@ public class Constantes {
 		USER_PROFILE_NONE_IMAGE_DIR =  USER_PROFILE_IMAGES_DIR + "none.png";
 		THIS_APP_DATABASE_SCHEMA="ctrl-acesso";
 		PUBLIC_DATABASE_SCHEMA="public";
-		TEMP_PDF_SOLICITACAO="C:\\Users\\Matheus Diógenes\\";
+		TEMP_PDF_SOLICITACAO="C:\\n2s\\solicitacao\\";
 		LOGO_UFC = "C:\\imagens\\ufc.jpg";
 	}
 
