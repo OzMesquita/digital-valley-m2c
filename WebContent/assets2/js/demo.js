@@ -33,8 +33,8 @@ $(function(){
 	$('.buscarMatricula').click(function() {
 		var encoding_uri = encodeURI($('.matricula').val());
 		console.log(encoding_uri);
-		$.getJSON('buscarAlunoMatricula?matriculas='+encoding_uri, function(data){
-			console.log(data.matricula);
+		$.getJSON('buscarAlunoMatricula?matricula='+encoding_uri, function(data){
+			$('.matricula').val(data.matricula);
 			$('.inputName').val(data.nome);
 			$('.inputCurso').val(data.curso.nome);
 		});
