@@ -107,7 +107,7 @@
 									<td><%=solicitacao.getDataSolicitacao()%></td>
 									<td><%=solicitacao.getProfessor().getNome()%></td>
 									<td><%=solicitacao.getDisciplina().getNome()%></td>
-									<td><%=solicitacao.getTipoSolicitacao()%></td>
+									<td><%=solicitacao.getTipoSolicitacaoToString()%></td>
 
 									<td>
 										<button type="button" class="btn btn-primary btn_detalhes"
@@ -168,7 +168,7 @@
 									<td><%=solicitacao.getProfessor().getNome()%></td>
 									<td><%=solicitacao.getDisciplina().getNome()%></td>
 									<td><%=solicitacao.getTipoSolicitacao()%></td>
-									<td><%=solicitacao.getTipoSolicitacao()%></td>
+									<td><%=solicitacao.getTipoSolicitacaoToString()%></td>
 									<td>
 										<button type="button" class="btn btn-primary btn_detalhes" id="<%=solicitacao.getId()%>"
 											data-toggle="modal" data-target="#detalhes">
@@ -204,29 +204,29 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
-				<div class="dados-modal">
-					<h4>Dados da Solicitaçao</h4>
+			<div class="modal-body"  >
+				<div class="dados-modal" >
+					<h4 align="center">Dados da Solicitaçao</h4>
 					<p id="id">ID:</p>
 					<p id="tipoSolicitacao">Tipo Solicitaçao:</p>
 					<p id="dataProva">Data da Prova:</p>
 					<p id="dataSolicitacao">Data da Solicitação:</p>
 					<p id="justificativa">Justificativa:</p>
 				</div>
-				<div class="dados-modal">
-					<h4>Dados do Aluno</h4>
+				<div class="dados-modal" >
+					<h4 align="center" >Dados do Aluno</h4>
 					<p id="matricula">Matricula:</p>
 					<p id="nome">Nome:</p>
 					<p id="curso">Curso:</p>
 				</div>
-				<div class="dados-modal">
-					<h4>Dados do Professor</h4>
+				<div class="dados-modal" >
+					<h4 align="center">Dados do Professor</h4>
 					<p id="siape">Siape:</p>
 					<p id="nomeProfessor">Nome:</p>
 					<p id="email">Email:</p>
 				</div>
 				<div class="dados-modal">
-					<h4>Dados da Disciplina</h4>
+					<h4 align="center">Dados da Disciplina</h4>
 					<p id="disciplina">Disciplina:</p>
 				</div>
 

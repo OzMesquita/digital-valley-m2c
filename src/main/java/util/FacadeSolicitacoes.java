@@ -102,9 +102,9 @@ public class FacadeSolicitacoes {
 			String msg = "";
 			if (solicitacao.getTipoSolicitacao() != null) {
 				if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.SEGUNDA_CHAMADA)) {
-					msg = "O Aluno " + solicitacao.getAluno().getNome() + " solicitou a Segunda Chamada da prova de "
+					msg = "O(A) Aluno(a) " + solicitacao.getAluno().getNome() + " solicitou a Segunda Chamada da prova de "
 							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
-							+ solicitacao.getDataEHoraProva() + " com a justificativa de : \""
+							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva()) + " com a justificativa de : \""
 							+ solicitacao.getJustificativa() + "\"";
 
 					Email e = new Email();
@@ -112,9 +112,9 @@ public class FacadeSolicitacoes {
 							"Usuário Controle de Acesso", localArquivo);
 
 				} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
-					msg = "O Aluno " + solicitacao.getAluno().getNome() + " solicitou a Recorreção da prova de "
+					msg = "O(A) Aluno(a) " + solicitacao.getAluno().getNome() + " solicitou a Recorreção da prova de "
 							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
-							+ solicitacao.getDataEHoraProva() + " com a justificativa de : \""
+							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva()) + " com a justificativa de : \""
 							+ solicitacao.getJustificativa() + "\"";
 
 					Email e = new Email();

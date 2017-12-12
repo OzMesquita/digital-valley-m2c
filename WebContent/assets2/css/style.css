@@ -245,7 +245,22 @@ footer{
 
 .dados-modal{
 	margin-bottom: 30px;
+	background: #BCD2EE;
+	border: 1.5px solid #000000;
+	border-radius: 3px;
+	font-weight:normal;
+  	font-size: 1.1em;
 }
+
+#dadoSolicitacao{
+	background: #BCD2EE;
+	border: 1.5px solid #000000;
+	border-radius: 3px;
+	font-weight:normal;
+  	font-size: 1.1em;
+	
+}
+
 
 .autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
 .autocomplete-suggestion { padding: 10px 5px; font-size: 1.2em; white-space: nowrap; overflow: hidden; }
