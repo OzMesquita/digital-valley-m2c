@@ -70,7 +70,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			// enviar email
 			String localArquivo = Constantes.getTEMP_PDF_SOLICITACAO() + "Aluno_" + solicitacao.getAluno().getId() + "_Disciplina_"
 					+ solicitacao.getDisciplina().getId() + "_Professor_" + solicitacao.getProfessor().getId()
-					+ "_Tipo_" + solicitacao.getTipoSolicitacao().toString()+"_DataHoraProva_"+solicitacao.getDataEHoraProva().format(DateTimeFormatter.ofPattern("ddMMyyyyhhmmss"));
+					+ "_Tipo_" + solicitacao.getTipoSolicitacao().toString()+"_DataHoraProva_"+solicitacao.getDataEHoraProva().format(DateTimeFormatter.ofPattern("ddMMyyyyhhmmss"))+".pdf";
 			FacadeSolicitacoes.gerarPDFDaSolicitacao(solicitacao, localArquivo);
 			FacadeSolicitacoes.enviarEmailSolicitacao(solicitacao, localArquivo);
 			File file = new File(localArquivo);
