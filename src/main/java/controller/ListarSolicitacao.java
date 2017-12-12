@@ -59,7 +59,7 @@ public class ListarSolicitacao extends HttpServlet {
 			request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
-			System.out.println(e);
+			
 
 			request.setAttribute("solicitacoes", solicitacoes);
 			request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);

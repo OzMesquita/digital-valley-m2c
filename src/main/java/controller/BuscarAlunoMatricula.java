@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 
 import dao.DAOFactory;
 import model.Aluno;
-import util.Facade;
 
 public class BuscarAlunoMatricula extends HttpServlet {
 

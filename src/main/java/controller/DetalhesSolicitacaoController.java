@@ -21,7 +21,6 @@ public class DetalhesSolicitacaoController extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		if (codigo != null && !codigo.equals("")) {
 			int id = Integer.valueOf(codigo);
-			System.out.println("id: "+ id);
 			try {
 				Solicitacao solicitacao = DAOFactoryM2C.criarSolicitacaoDAO().buscarPorId(id);
 				if (solicitacao != null) {
@@ -29,7 +28,6 @@ public class DetalhesSolicitacaoController extends HttpServlet {
 					solicitacao.getProfessor().setUsuario(null);
 					Gson gson = new Gson();
 					String json = gson.toJson(solicitacao);
-					System.out.println(json);
 					response.setContentType("application/json");					
 					response.getWriter().write(json);
 				}else {
