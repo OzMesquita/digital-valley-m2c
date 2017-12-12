@@ -116,7 +116,7 @@ public class FacadeSolicitacoes {
 		}
 	}
 
-	public static void enviarEmailSolicitacao(Solicitacao solicitacao, String localArquivo) {
+	public static void enviarEmailSolicitacao(Solicitacao solicitacao, String localArquivo, String nomeArquivo) {
 		if (solicitacao != null) {
 			String msg = "";
 			if (solicitacao.getTipoSolicitacao() != null) {
@@ -129,19 +129,30 @@ public class FacadeSolicitacoes {
 
 					Email e = new Email();
 					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg,
+<<<<<<< HEAD
 							solicitacao.getProfessor().getEmail(), "Usuário Controle de Acesso", localArquivo);
+=======
+							solicitacao.getProfessor().getEmail(), solicitacao.getProfessor().getNome(), localArquivo, nomeArquivo);
+>>>>>>> 64ffeeef9d884fb96795fd73c1246d81e028ff45
 
 				} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
 					msg = "O(A) Aluno(a) " + solicitacao.getAluno().getNome() + " solicitou a Recorreção da prova de "
 							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
+<<<<<<< HEAD
 							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva())
 							+ " com a justificativa de : \"" + solicitacao.getJustificativa() + "\"";
 
+=======
+							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva()) + ", "
+							+ "que teve o resultado divulgado em "
+							+ FacadeSolicitacoes
+									.converterLocalDateToString(solicitacao.getDataDivulgacaoResultadoProva())
+							+ " com a justificativa de : \"" + solicitacao.getJustificativa() + "\"";
+>>>>>>> 64ffeeef9d884fb96795fd73c1246d81e028ff45
 					Email e = new Email();
-					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg,
+					e.sendEmailWithAttachment("Solicitação de Recorreção", msg,
 							solicitacao.getDisciplina().getCurso().getCoordenador().getEmail(),
-							"Usuário Controle de Acesso", localArquivo);
-
+							solicitacao.getProfessor().getNome(), localArquivo, nomeArquivo);
 				}
 			} else {
 				throw new IllegalArgumentException("Tipo de solicitação não informado corretamente, valor informado: "
