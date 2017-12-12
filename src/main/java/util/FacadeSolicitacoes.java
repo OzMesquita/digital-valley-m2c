@@ -52,7 +52,7 @@ public class FacadeSolicitacoes {
 			Curso curso = solicitacao.getAluno().getCurso();
 			// campus
 			Paragraph cabecalho = new Paragraph(
-					"CAMPUS DA UFC DE RUSSAS\nCOORDENAÇÃO DO CURSO DE "+curso.getNome().toUpperCase()+"\n\n\n\n\n");
+					"CAMPUS DA UFC DE RUSSAS\nCOORDENAÇÃO DO CURSO DE " + curso.getNome().toUpperCase() + "\n\n\n\n\n");
 			cabecalho.setAlignment(Paragraph.ALIGN_CENTER);
 			document.add(cabecalho);
 			Paragraph conteudo = null;
@@ -80,7 +80,7 @@ public class FacadeSolicitacoes {
 						+ solicitacao.getJustificativa() + "\r\n"
 						+ "Venho por meio do presente, solicitar a realização da prova de segunda chamada da disciplina acima "
 						+ "indicada, levando em conta a previsão do § 3o do Art. 110 do Regimento Geral da UFC, abaixo"
-						+ "transcrito:\n" + "Art. 110...\r\n"
+						+ " transcrito:\n" + "Art. 110...\r\n"
 						+ "§ 3o. - Será assegurada ao aluno a segunda chamada das provas, desde que solicitada, por escrito, até"
 						+ "03 (três) dias úteis decorridos após a realização da prova em primeira chamada.\n\n\n\n"
 						+ "Atenciosamente,");
@@ -97,31 +97,33 @@ public class FacadeSolicitacoes {
 		}
 	}
 
-	public static void enviarEmailSolicitacao(Solicitacao solicitacao, String localArquivo) {
+	public static void enviarEmailSolicitacao(Solicitacao solicitacao, String localArquivo, String nomeArquivo) {
 		if (solicitacao != null) {
 			String msg = "";
 			if (solicitacao.getTipoSolicitacao() != null) {
 				if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.SEGUNDA_CHAMADA)) {
-					msg = "O(A) Aluno(a) " + solicitacao.getAluno().getNome() + " solicitou a Segunda Chamada da prova de "
-							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
-							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva()) + " com a justificativa de : \""
-							+ solicitacao.getJustificativa() + "\"";
+					msg = "O(A) Aluno(a) " + solicitacao.getAluno().getNome()
+							+ " solicitou a Segunda Chamada da prova de " + solicitacao.getDisciplina().getNome()
+							+ " realizada na data de: "
+							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva())
+							+ " com a justificativa de : \"" + solicitacao.getJustificativa() + "\"";
 
 					Email e = new Email();
-					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg, solicitacao.getProfessor().getEmail(),
-							"Usuário Controle de Acesso", localArquivo);
+					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg,
+							solicitacao.getProfessor().getEmail(), solicitacao.getProfessor().getNome(), localArquivo, nomeArquivo);
 
 				} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
 					msg = "O(A) Aluno(a) " + solicitacao.getAluno().getNome() + " solicitou a Recorreção da prova de "
 							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
-							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva()) + " com a justificativa de : \""
-							+ solicitacao.getJustificativa() + "\"";
-
+							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva()) + ", "
+							+ "que teve o resultado divulgado em "
+							+ FacadeSolicitacoes
+									.converterLocalDateToString(solicitacao.getDataDivulgacaoResultadoProva())
+							+ " com a justificativa de : \"" + solicitacao.getJustificativa() + "\"";
 					Email e = new Email();
-					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg,
+					e.sendEmailWithAttachment("Solicitação de Recorreção", msg,
 							solicitacao.getDisciplina().getCurso().getCoordenador().getEmail(),
-							"Usuário Controle de Acesso", localArquivo);
-
+							solicitacao.getProfessor().getNome(), localArquivo, nomeArquivo);
 				}
 			} else {
 				throw new IllegalArgumentException("Tipo de solicitação não informado corretamente, valor informado: "

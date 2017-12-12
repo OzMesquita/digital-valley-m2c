@@ -22,7 +22,7 @@ public class TestFacadeSolicitacoes {
 		Solicitacao s = FacadeSolicitacoes.listar(0, 20).get(0);
 		s.getProfessor().setEmail("deyvisonbill01@gmail.com");
 		System.out.println(s.getId());
-		util.FacadeSolicitacoes.enviarEmailSolicitacao(s, "");
+		//util.FacadeSolicitacoes.enviarEmailSolicitacao(s, "");
 		
 	}
 	
