@@ -2,19 +2,20 @@ package util;
 
 import model.Solicitacao;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -52,12 +53,12 @@ public class FacadeSolicitacoes {
 			Curso curso = solicitacao.getAluno().getCurso();
 			// campus
 			Paragraph cabecalho = new Paragraph(
-					"CAMPUS DA UFC DE RUSSAS\nCOORDENAÇÃO DO CURSO DE "+curso.getNome().toUpperCase()+"\n\n\n\n\n");
+					"CAMPUS DA UFC DE RUSSAS\nCOORDENAÇÃO DO CURSO DE " + curso.getNome().toUpperCase() + "\n\n\n\n\n");
 			cabecalho.setAlignment(Paragraph.ALIGN_CENTER);
 			document.add(cabecalho);
 			Paragraph conteudo = null;
 			if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
-				conteudo = new Paragraph("Eu, " + aluno.getNome() + ", aluno(a) matriculado(a) no " + "Curso de "
+				conteudo = new Paragraph("\tEu, " + aluno.getNome() + ", aluno(a) matriculado(a) no " + "Curso de "
 						+ aluno.getCurso().getNome() + ", no de matrícula " + aluno.getMatricula() + ", vem mui "
 						+ "respeitosamente, perante Vossa Senhoria requerer recorreção da prova da disciplina "
 						+ solicitacao.getDisciplina().getNome() + ", que realizou-se no dia " + dataProvaString
@@ -69,21 +70,39 @@ public class FacadeSolicitacoes {
 						+ ". Apresento este " + "requerimento devido ao(s) seguinte(s) motivo(s):\n"
 						+ solicitacao.getJustificativa() + ".");
 			} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.SEGUNDA_CHAMADA)) {
-				conteudo = new Paragraph("Prof.(a): " + solicitacao.getProfessor().getNome() + "\r\n"
-						+ "Coordenador do Curso/Prof.(a): "
-						+ solicitacao.getAluno().getCurso().getCoordenador().getNome() + "\r\n" + "Nome do aluno: "
-						+ solicitacao.getAluno().getNome() + "  Matrícula N°: " + solicitacao.getAluno().getMatricula()
-						+ "\r\n" + "Curso: " + curso.getNome() + " Data da prova: " + dataProvaString + "\r\n"
-						+ "Disciplina: " + solicitacao.getDisciplina().getNome() + " Data deste requerimento: "
-						+ FacadeSolicitacoes.converterLocalDateToString(dataEHoraProva.toLocalDate()) + "\r\n"
-						+ "E-mail do aluno: " + solicitacao.getAluno().getEmail() + "\r\n" + "Motivo da falta: "
-						+ solicitacao.getJustificativa() + "\r\n"
-						+ "Venho por meio do presente, solicitar a realização da prova de segunda chamada da disciplina acima "
-						+ "indicada, levando em conta a previsão do § 3o do Art. 110 do Regimento Geral da UFC, abaixo"
-						+ "transcrito:\n" + "Art. 110...\r\n"
-						+ "§ 3o. - Será assegurada ao aluno a segunda chamada das provas, desde que solicitada, por escrito, até"
-						+ "03 (três) dias úteis decorridos após a realização da prova em primeira chamada.\n\n\n\n"
-						+ "Atenciosamente,");
+				Font bold = new Font(FontFamily.UNDEFINED, 12, Font.BOLD, BaseColor.BLACK);
+				Font normal = new Font(FontFamily.UNDEFINED, 12, Font.NORMAL, BaseColor.BLACK);
+				conteudo = new Paragraph();
+				conteudo.add(new Chunk("Prof.(a): ", bold));
+				conteudo.add(new Chunk(solicitacao.getProfessor().getNome() + "\r\n", normal));
+				conteudo.add(new Chunk("Coordenador do Curso/Prof.(a): ", bold));
+				conteudo.add(new Chunk(solicitacao.getAluno().getCurso().getCoordenador().getNome() + "\r\n", normal));
+				conteudo.add(new Chunk("Nome do aluno: ", bold));
+				conteudo.add(new Chunk(solicitacao.getAluno().getNome() + "\r\n", normal));
+				conteudo.add(new Chunk("Matrícula N°: ", bold));
+				conteudo.add(new Chunk(solicitacao.getAluno().getMatricula() + "\r\n", normal));
+				conteudo.add(new Chunk("Curso: ", bold));
+				conteudo.add(new Chunk(curso.getNome() + "\r\n", normal));
+				conteudo.add(new Chunk("Data da prova: ", bold));
+				conteudo.add(new Chunk(dataProvaString + "\r\n", normal));
+				conteudo.add(new Chunk("Disciplina: ", bold));
+				conteudo.add(new Chunk(solicitacao.getDisciplina().getNome() + "\r\n", normal));
+				conteudo.add(new Chunk("Data deste requerimento: ", bold));
+				conteudo.add(new Chunk(
+						FacadeSolicitacoes.converterLocalDateToString(dataEHoraProva.toLocalDate()) + "\r\n", normal));
+				conteudo.add(new Chunk("E-mail do aluno: ", bold));
+				conteudo.add(new Chunk(solicitacao.getAluno().getEmail() + "\r\n", normal));
+				conteudo.add(new Chunk("Motivo da falta: ", bold));
+				conteudo.add(new Chunk(solicitacao.getJustificativa() + "\r\n", normal));
+				conteudo.add(new Chunk("\r\n\r\n\r\n\r\n\r\n", normal));
+				conteudo.add(new Chunk(
+						"Venho por meio do presente, solicitar a realização da prova de segunda chamada da disciplina acima "
+								+ "indicada, levando em conta a previsão do § 3o do Art. 110 do Regimento Geral da UFC, abaixo"
+								+ "transcrito:\n" + "Art. 110...\r\n"
+								+ "§ 3o. - Será assegurada ao aluno a segunda chamada das provas, desde que solicitada, por escrito, até"
+								+ "03 (três) dias úteis decorridos após a realização da prova em primeira chamada.\n\n\n\n"
+								+ "Atenciosamente,",
+						normal));
 			}
 			document.add(conteudo);
 			Paragraph assAluno = new Paragraph(
@@ -102,20 +121,21 @@ public class FacadeSolicitacoes {
 			String msg = "";
 			if (solicitacao.getTipoSolicitacao() != null) {
 				if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.SEGUNDA_CHAMADA)) {
-					msg = "O(A) Aluno(a) " + solicitacao.getAluno().getNome() + " solicitou a Segunda Chamada da prova de "
-							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
-							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva()) + " com a justificativa de : \""
-							+ solicitacao.getJustificativa() + "\"";
+					msg = "O(A) Aluno(a) " + solicitacao.getAluno().getNome()
+							+ " solicitou a Segunda Chamada da prova de " + solicitacao.getDisciplina().getNome()
+							+ " realizada na data de: "
+							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva())
+							+ " com a justificativa de : \"" + solicitacao.getJustificativa() + "\"";
 
 					Email e = new Email();
-					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg, solicitacao.getProfessor().getEmail(),
-							"Usuário Controle de Acesso", localArquivo);
+					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg,
+							solicitacao.getProfessor().getEmail(), "Usuário Controle de Acesso", localArquivo);
 
 				} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
 					msg = "O(A) Aluno(a) " + solicitacao.getAluno().getNome() + " solicitou a Recorreção da prova de "
 							+ solicitacao.getDisciplina().getNome() + " realizada na data de: "
-							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva()) + " com a justificativa de : \""
-							+ solicitacao.getJustificativa() + "\"";
+							+ FacadeSolicitacoes.converterLocalDateTimeToString(solicitacao.getDataEHoraProva())
+							+ " com a justificativa de : \"" + solicitacao.getJustificativa() + "\"";
 
 					Email e = new Email();
 					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg,
