@@ -17,8 +17,8 @@
 						|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 		%>
 
-
 		<div class="panel panel-primary" id="sem-margin-botton">
+
 			<div class="panel-heading">
 				<h2 class="panel-title" align="center">Histórico de
 					Solicitações</h2>
@@ -130,66 +130,84 @@
 
 				</div>
 			</div>
-		</div>
-	</div>
-	<%
-		}
-		} else if (usuario.getPessoa() instanceof Aluno) {
-	%>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title" align="center">Histórico de
-						Solicitações</h3>
-				</div>
-				<table class="table table-responsive table-hover" id="dev-table">
-
-				<thead>
-								<tr>
-									<th>ID</th>
-									<th>Nome do Aluno</th>
-									<th>Data da Solicitação</th>
-									<th>Nome do Professor</th>
-									<th>Disciplina</th>
-									<th>Tipo da Solicitação</th>
-									<th>Detalhes</th>
-									<th>Download</th>
-								</tr>
-							</thead>
-							<tbody>
-								<%
-									for (Solicitacao solicitacao : solicitacoes) {
-								%>
-								<tr>
-									<td><%=solicitacao.getId()%></td>
-									<td><%=solicitacao.getAluno().getNome()%></td>
-									<td><%=solicitacao.getDataSolicitacao()%></td>
-									<td><%=solicitacao.getProfessor().getNome()%></td>
-									<td><%=solicitacao.getDisciplina().getNome()%></td>
-									<td><%=solicitacao.getTipoSolicitacao()%></td>
-									<td><%=solicitacao.getTipoSolicitacaoToString()%></td>
-									<td>
-										<button type="button" class="btn btn-primary btn_detalhes" id="<%=solicitacao.getId()%>"
-											data-toggle="modal" data-target="#detalhes">
-											<span class="glyphicon glyphicon-option-horizontal  "></span>
-										</button>
-									</td>
-									<td><a href="gerarPDFSolicitacao?id=<%=solicitacao.getId() %>" target="_blank" class="btn btn-primary">
-											<span class="glyphicon glyphicon-save-file"></span>
-										</a></td>
-								</tr>
-								<%
-									}
-								%>
-							</tbody>
-				</table>
+			<div id="row-voltar" align="left">
+				<button class="btn btn-primary">
+					<span class="glyphicon glyphicon-arrow-left"></span> <a
+						id="link-voltar" href="homeSolicitacao.jsp">Voltar</a>
+				</button>
 			</div>
+
+
 		</div>
+
+
+		<%
+			}
+			} else if (usuario.getPessoa() instanceof Aluno) {
+		%>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-primary" id="sem-margin-botton">
+					<div class="panel-heading">
+						<h3 class="panel-title" align="center">Histórico de
+							Solicitações</h3>
+					</div>
+					<table class="table table-responsive table-hover" id="dev-table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nome do Aluno</th>
+								<th>Data da Solicitação</th>
+								<th>Nome do Professor</th>
+								<th>Disciplina</th>
+								<th>Tipo da Solicitação</th>
+								<th>Detalhes</th>
+								<th>Download</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								for (Solicitacao solicitacao : solicitacoes) {
+							%>
+							<tr>
+								<td><%=solicitacao.getId()%></td>
+								<td><%=solicitacao.getAluno().getNome()%></td>
+								<td><%=solicitacao.getDataSolicitacao()%></td>
+								<td><%=solicitacao.getProfessor().getNome()%></td>
+								<td><%=solicitacao.getDisciplina().getNome()%></td>
+								<td><%=solicitacao.getTipoSolicitacao()%></td>
+								<td>
+									<button type="button" class="btn btn-primary btn_detalhes"
+										id="<%=solicitacao.getId()%>" data-toggle="modal"
+										data-target="#detalhes">
+										<span class="glyphicon glyphicon-option-horizontal  "></span>
+									</button>
+								</td>
+								<td><button type="button" class="btn btn-primary">
+										<span class="glyphicon glyphicon-save-file"></span>
+									</button></td>
+							</tr>
+							<%
+								}
+							%>
+						</tbody>
+					</table>
+				</div>
+
+		</div>
+		</div>
+		<div id="row-voltar" align="left">
+			<button class="btn btn-primary">
+				<span class="glyphicon glyphicon-arrow-left"></span> <a
+					id="link-voltar" href="homeSolicitacao.jsp">Voltar</a>
+			</button>
+		</div>
+		<%
+			}
+		%>
 	</div>
-	<%
-		}
-	%>
+
+
 </div>
 <!-- Modal -->
 <div class="modal fade" id="detalhes" tabindex="-1" role="dialog"
@@ -212,12 +230,14 @@
 					<p id="dataProva">Data da Prova:</p>
 					<p id="dataSolicitacao">Data da Solicitação:</p>
 					<p id="justificativa">Justificativa:</p>
+
 				</div>
 				<div class="dados-modal" >
 					<h4 align="center" >Dados do Aluno</h4>
 					<p id="matricula">Matricula:</p>
 					<p id="nome">Nome:</p>
 					<p id="curso">Curso:</p>
+
 				</div>
 				<div class="dados-modal" >
 					<h4 align="center">Dados do Professor</h4>
@@ -238,8 +258,7 @@
 			</div>
 		</div>
 	</div>
-</div>
-<!-- formulario_solicitacao -->
+	<!-- formulario_solicitacao -->
 
 
 </div>
