@@ -2,8 +2,11 @@ package util;
 
 import model.Solicitacao;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -94,7 +97,7 @@ public class FacadeSolicitacoes {
 		}
 	}
 
-	public static void enviarEmailSolicitacao(Solicitacao solicitacao) {
+	public static void enviarEmailSolicitacao(Solicitacao solicitacao, String localArquivo) {
 		if (solicitacao != null) {
 			String msg = "";
 			if (solicitacao.getTipoSolicitacao() != null) {
@@ -105,8 +108,8 @@ public class FacadeSolicitacoes {
 							+ solicitacao.getJustificativa() + "\"";
 
 					Email e = new Email();
-					e.sendEmail("Solicitação de Segunda chamada", msg, solicitacao.getProfessor().getEmail(),
-							"Usuário Controle de Acesso");
+					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg, solicitacao.getProfessor().getEmail(),
+							"Usuário Controle de Acesso", localArquivo);
 
 				} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
 					msg = "O Aluno " + solicitacao.getAluno().getNome() + " solicitou a Recorreção da prova de "
@@ -115,9 +118,9 @@ public class FacadeSolicitacoes {
 							+ solicitacao.getJustificativa() + "\"";
 
 					Email e = new Email();
-					e.sendEmail("Solicitação de Segunda chamada", msg,
+					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg,
 							solicitacao.getDisciplina().getCurso().getCoordenador().getEmail(),
-							"Usuário Controle de Acesso");
+							"Usuário Controle de Acesso", localArquivo);
 
 				}
 			} else {
