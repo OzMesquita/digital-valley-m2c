@@ -20,12 +20,13 @@ public class TestFacadeSolicitacoes {
 	@Test
 	public void testEnviarEmailSegundaChamada(){
 		Solicitacao s = FacadeSolicitacoes.listar(0, 20).get(0);
-		s.getProfessor().setEmail("matheusdiogenesandrade@gmail.com");
+		s.getProfessor().setEmail("deyvisonbill01@gmail.com");
 		System.out.println(s.getId());
 		util.FacadeSolicitacoes.enviarEmailSolicitacao(s, "");
 		
 	}
 	
+	@Ignore
 	@Test
 	public void testVerificarDias() {
 		Assert.assertTrue(util.FacadeSolicitacoes.verificarDias(LocalDate.of(2017, 11, 20)));

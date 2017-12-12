@@ -44,6 +44,10 @@ public class Solicitacao implements Serializable {
 	public EnumSolicitacao getTipoSolicitacao() {
 		return tipoSolicitacao;
 	}
+	
+	public String getTipoSolicitacaoToString() {
+		return tipoSolicitacao.tipoSolicitacao;
+	}
 
 	public void setTipoSolicitacao(EnumSolicitacao tipoSolicitacao) {
 		this.tipoSolicitacao = tipoSolicitacao;

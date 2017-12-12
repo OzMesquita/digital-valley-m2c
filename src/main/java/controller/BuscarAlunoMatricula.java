@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import dao.DAOFactory;
+import model.Aluno;
 import util.Facade;
 
 public class BuscarAlunoMatricula extends HttpServlet {
@@ -21,7 +22,10 @@ public class BuscarAlunoMatricula extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Gson gson = new Gson();
-		String result = gson.toJson(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("matricula")));
+		Aluno aluno = DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("matricula"));
+		aluno.setUsuario(null);
+		String result = gson.toJson(aluno);
+		System.out.println(result);
 		response.setContentType("application/json");
 		response.getWriter().print(result);
 	}
