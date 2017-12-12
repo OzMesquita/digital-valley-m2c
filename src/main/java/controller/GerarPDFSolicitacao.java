@@ -4,12 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +16,6 @@ import dao.DAOFactoryM2C;
 import model.Solicitacao;
 import model.Usuario;
 import util.Constantes;
-import util.Facade;
 import util.FacadeSolicitacoes;
 
 /**
