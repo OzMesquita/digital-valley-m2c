@@ -113,7 +113,7 @@
 								</div>
 								<!--col-md-1-->
 								<div class="col-md-<%=aluno == null ? "6" : "7"%> sem-padding-right">
-									<input required class="form-control" type="text"
+									<input required class="form-control inputCurso" type="text"
 										name="inputCurso"
 										value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
 										<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
@@ -259,7 +259,7 @@
 								</div>
 								<!--col-md-1-->
 								<div class="col-md-<%=aluno == null ? "6" : "7"%> sem-padding-right">
-									<input required class="form-control" type="text"
+									<input required class="form-control inputCurso" type="text"
 										name="inputCurso"
 										value="<%=aluno != null ? aluno.getCurso().getNome() : ""%>"
 										<%if (aluno != null) {%> <%="readonly"%> <%}%> readonly>
