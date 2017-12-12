@@ -82,7 +82,6 @@
 							</form>
 						</div>
 					</div>
-
 					<div class="panel panel-primary">
 						<table class="table table-responsive table-hover" id="dev-table">
 							<thead>
@@ -125,19 +124,17 @@
 									}
 								%>
 							</tbody>
-						</table>
+						</table>						
 					</div>
-
+					<div align="left">
+						<button class="btn btn-primary">
+							<span class="glyphicon glyphicon-arrow-left"></span> <a
+								id="link-voltar" href="homeSolicitacao.jsp">Voltar</a>
+						</button>
+					</div>
 				</div>
 			</div>
-			<div id="row-voltar" align="left">
-				<button class="btn btn-primary">
-					<span class="glyphicon glyphicon-arrow-left"></span> <a
-						id="link-voltar" href="homeSolicitacao.jsp">Voltar</a>
-				</button>
-			</div>
-
-
+			
 		</div>
 
 
