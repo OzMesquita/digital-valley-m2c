@@ -35,13 +35,13 @@
 					}
 				%>
 				<%
-					if (session.getAttribute(Constantes.getSessionMsg()) != null) {
+					if (session.getAttribute(Constantes.getSESSION_MSG_SUCCESS()) != null) {
 				%>
 				<div class="alert alert-success" role="alert">
-					<%=session.getAttribute(Constantes.getSessionMsg())%>
+					<%=session.getAttribute(Constantes.getSESSION_MSG_SUCCESS())%>
 				</div>
 				<%
-					session.setAttribute(Constantes.getSessionMsg(), null);
+					session.setAttribute(Constantes.getSESSION_MSG_SUCCESS(), null);
 					}
 				%>
 				<%

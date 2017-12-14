@@ -78,7 +78,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			file.delete();
 			pagina = "homeSolicitacao.jsp?sucessoSalvar=1";
 
-			session.setAttribute(Constantes.getSessionMsg(), "Solicitação enviada com sucesso!");	
+			session.setAttribute(Constantes.getSESSION_MSG_SUCCESS(), "Solicitação enviada com sucesso!");	
 			
 		} else {
 			session.setAttribute(Constantes.getSessionMsg(), "Prazo de solicitação expirado!");
