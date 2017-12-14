@@ -15,6 +15,11 @@ import dao.DAOFactory;
 import util.Facade;
 
 public class Autenticacao extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("json")!=null){
 			String json = request.getParameter("json");
