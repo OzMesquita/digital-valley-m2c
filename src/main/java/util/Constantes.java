@@ -1,5 +1,9 @@
 package util;
 
+import java.util.Map;
+
+import com.github.shyiko.dotenv.DotEnv;
+
 public class Constantes {
 
 	private static String APP_URL;
@@ -10,6 +14,7 @@ public class Constantes {
 	private static String APP_CSS_URL;
 	private static Integer NUMBER_OF_ROWS_PER_PAGE;
 	private static String SESSION_MSG;
+	private static String SESSION_MSG_SUCCESS;
 	private static String DATABASE_CONF_DIR;
 	private static String EMAIL_CONF_DIR;
 	private static String MODULES_IMAGES_DIR;
@@ -26,26 +31,32 @@ public class Constantes {
 		//
 	}
 
-	static {
-		DATABASE_CONF_DIR = "C:\\n2s\\bd.txt";
-		EMAIL_CONF_DIR = "C:\\n2s\\email.txt";
-		APP_URL = "/digital-valley-m2c";
-		setAPP_GUARDIAO_URL("/Controle_de_Acesso");
-		ADM_URL = APP_URL + "/view/adm";
-		APP_ASSETS_URL = APP_URL + "/assets2";
-		APP_JS_URL = APP_ASSETS_URL + "/js";
-		APP_IMG_URL = APP_ASSETS_URL + "/img";
+	static {		
+		Map<String, String> dotEnv = DotEnv.load();
+		DATABASE_CONF_DIR = dotEnv.get("DATABASE_CONF_DIR");
+		EMAIL_CONF_DIR = dotEnv.get("EMAIL_CONF_DIR");
+		APP_URL = dotEnv.get("APP_URL");
+		setAPP_GUARDIAO_URL(dotEnv.get("APP_GUARDIAO_URL"));
+		ADM_URL = dotEnv.get("ADM_URL");
+		APP_ASSETS_URL = dotEnv.get("APP_ASSETS_URL");
+		APP_JS_URL = dotEnv.get("APP_JS_URL");
+		APP_IMG_URL = dotEnv.get("APP_IMG_URL");
 		//APP_IMG_USER_DIR ="C:\\n2s\\img\\";
-		APP_CSS_URL = APP_ASSETS_URL + "/css";
-		NUMBER_OF_ROWS_PER_PAGE = 10;
-		SESSION_MSG = "msg";
-		MODULES_IMAGES_DIR = "C:\\imagens\\modulo";
-		USER_PROFILE_IMAGES_DIR = "C:\\n2s\\img\\";
-		USER_PROFILE_NONE_IMAGE_DIR =  USER_PROFILE_IMAGES_DIR + "none.png";
-		THIS_APP_DATABASE_SCHEMA="ctrl-acesso";
-		PUBLIC_DATABASE_SCHEMA="public";
-		TEMP_PDF_SOLICITACAO="C:\\n2s\\solicitacao\\";
-		LOGO_UFC = "C:\\imagens\\ufc.jpg";
+		APP_CSS_URL = dotEnv.get("APP_CSS_URL");
+		NUMBER_OF_ROWS_PER_PAGE = Integer.valueOf(dotEnv.get("NUMBER_OF_ROWS_PER_PAGE"));
+		SESSION_MSG = dotEnv.get("SESSION_MSG");
+		SESSION_MSG_SUCCESS = dotEnv.get("SESSION_MSG_SUCCESS");
+		MODULES_IMAGES_DIR = dotEnv.get("MODULES_IMAGES_DIR");
+		USER_PROFILE_IMAGES_DIR = dotEnv.get("USER_PROFILE_IMAGES_DIR");
+		USER_PROFILE_NONE_IMAGE_DIR = dotEnv.get("USER_PROFILE_NONE_IMAGE_DIR");
+		THIS_APP_DATABASE_SCHEMA=dotEnv.get("THIS_APP_DATABASE_SCHEMA");
+		PUBLIC_DATABASE_SCHEMA=dotEnv.get("PUBLIC_DATABASE_SCHEMA");
+		TEMP_PDF_SOLICITACAO=dotEnv.get("TEMP_PDF_SOLICITACAO");
+		LOGO_UFC = dotEnv.get("LOGO_UFC");
+	}
+
+	public static String getSESSION_MSG_SUCCESS() {
+		return SESSION_MSG_SUCCESS;
 	}
 
 	/**
