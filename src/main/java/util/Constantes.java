@@ -14,6 +14,7 @@ public class Constantes {
 	private static String APP_CSS_URL;
 	private static Integer NUMBER_OF_ROWS_PER_PAGE;
 	private static String SESSION_MSG;
+	private static String SESSION_MSG_SUCCESS;
 	private static String DATABASE_CONF_DIR;
 	private static String EMAIL_CONF_DIR;
 	private static String MODULES_IMAGES_DIR;
@@ -44,6 +45,7 @@ public class Constantes {
 		APP_CSS_URL = dotEnv.get("APP_CSS_URL");
 		NUMBER_OF_ROWS_PER_PAGE = Integer.valueOf(dotEnv.get("NUMBER_OF_ROWS_PER_PAGE"));
 		SESSION_MSG = dotEnv.get("SESSION_MSG");
+		SESSION_MSG_SUCCESS = dotEnv.get("SESSION_MSG_SUCCESS");
 		MODULES_IMAGES_DIR = dotEnv.get("MODULES_IMAGES_DIR");
 		USER_PROFILE_IMAGES_DIR = dotEnv.get("USER_PROFILE_IMAGES_DIR");
 		USER_PROFILE_NONE_IMAGE_DIR = dotEnv.get("USER_PROFILE_NONE_IMAGE_DIR");
@@ -51,6 +53,10 @@ public class Constantes {
 		PUBLIC_DATABASE_SCHEMA=dotEnv.get("PUBLIC_DATABASE_SCHEMA");
 		TEMP_PDF_SOLICITACAO=dotEnv.get("TEMP_PDF_SOLICITACAO");
 		LOGO_UFC = dotEnv.get("LOGO_UFC");
+	}
+
+	public static String getSESSION_MSG_SUCCESS() {
+		return SESSION_MSG_SUCCESS;
 	}
 
 	/**

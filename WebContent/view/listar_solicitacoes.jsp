@@ -1,6 +1,16 @@
+<%@page import="dao.DAOFactoryM2C"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Solicitacao"%>
+
+<%
+	int pagina = request.getParameter("pagina") == null ? 1	: Math.abs(Integer.valueOf(request.getParameter("pagina")));
+	int fim = pagina * Constantes.getNumberOfRowsPerPage();
+	int inicio = fim - Constantes.getNumberOfRowsPerPage();
+	double a = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoes();
+	double b = Constantes.getNumberOfRowsPerPage();
+	double quantidadeDeItensPaginacao = Math.ceil(a/b);
+%>
 
 <div class="row">
 	<div
@@ -45,7 +55,7 @@
 						%>
 						<div class="col-md-6 espacamentoHorizontal">
 							<form class="espacamentoHorizontal" action="listarSolicitacao"
-								method="post">
+								method="get">
 								<div class="col-md-2">
 									<label id="labelBuscarSoli" for="buscarSoliMatricula">Aluno:</label>
 								</div>
@@ -131,11 +141,33 @@
 							<span class="glyphicon glyphicon-arrow-left"></span> <a
 								id="link-voltar" href="homeSolicitacao.jsp">Voltar</a>
 						</button>
-					</div>
+						<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<%
+								if (pagina > 1 && quantidadeDeItensPaginacao > 1) {
+							%>
+							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>&inputMatricula=<%=request.getParameter("inputMatricula")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Anterior</a></li>
+							<%
+								}
+								for (int i = 1; i <= quantidadeDeItensPaginacao; i++) {
+							%>
+							<li class="page-item <%=i == pagina ? "active" : ""%>"><a
+								class="page-link" href="?pagina=<%=i%>"><%=i%></a></li>
+							<%
+								}
+								if (pagina >= 0 && quantidadeDeItensPaginacao >= 1 && pagina < quantidadeDeItensPaginacao) {
+							%>
+							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>&inputMatricula=<%=request.getParameter("inputMatricula")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Próximo</a></li>
+							<%
+								}
+							%>
+						</ul>
+					</nav>
 				</div>
 			</div>
-			
 		</div>
+			
+	</div>
 
 
 		<%
@@ -198,6 +230,28 @@
 				<span class="glyphicon glyphicon-arrow-left"></span> <a
 					id="link-voltar" href="homeSolicitacao.jsp">Voltar</a>
 			</button>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<%
+								if (pagina > 1 && quantidadeDeItensPaginacao > 1) {
+							%>
+							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>">Anterior</a></li>
+							<%
+								}
+								for (int i = 1; i <= quantidadeDeItensPaginacao; i++) {
+							%>
+							<li class="page-item <%=i == pagina ? "active" : ""%>"><a
+								class="page-link" href="?pagina=<%=i%>"><%=i%></a></li>
+							<%
+								}
+								if (pagina >= 0 && quantidadeDeItensPaginacao >= 1 && pagina < quantidadeDeItensPaginacao) {
+							%>
+							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>">Próximo</a></li>
+							<%
+								}
+							%>
+				</ul>
+			</nav>
 		</div>
 		<%
 			}

@@ -29,9 +29,8 @@ public class ListarSolicitacao extends HttpServlet {
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		HttpSession session = request.getSession();
 		try {
-
+			int fim = 10;
 			int inicio = 0;
-			int fim = 20;
 			if (usuario.getPessoa() instanceof Servidor) {
 				if (((Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO)
 						|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
@@ -40,14 +39,13 @@ public class ListarSolicitacao extends HttpServlet {
 						solicitacoes = FacadeSolicitacoes.buscarPorAluno(
 								DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")),
 								inicio, fim);
-					} else if (request.getParameter("tipoBusca") != null && request.getParameter("tipoBusca") != null
+					} else if (request.getParameter("tipoBusca") != null
 							&& request.getParameter("tipoBusca").equals("listarPorProfessor")) {
 						solicitacoes = FacadeSolicitacoes.buscarPorProfessor(
 								DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")),
 								inicio, fim);
-					} else if (request.getParameter("inicioPag") != null && request.getParameter("fimPag") != null) {
-						solicitacoes = FacadeSolicitacoes.listar(Integer.parseInt(request.getParameter("inicioPag")),
-								Integer.parseInt(request.getParameter("fimPag")));
+					} else if (request.getParameter("pagina") != null && request.getParameter("pagina") != null) {
+						solicitacoes = FacadeSolicitacoes.listar((Integer.parseInt(request.getParameter("pagina"))* Constantes.getNumberOfRowsPerPage()) - Constantes.getNumberOfRowsPerPage(),Integer.parseInt(request.getParameter("pagina"))* Constantes.getNumberOfRowsPerPage());
 					} else {
 						solicitacoes = FacadeSolicitacoes.listar(0, 10);
 					}
@@ -59,8 +57,6 @@ public class ListarSolicitacao extends HttpServlet {
 			request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);
 		} catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
-			
-
 			request.setAttribute("solicitacoes", solicitacoes);
 			request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);
 		}
