@@ -73,4 +73,5 @@
 			<!-- /.navbar-collapse -->
 		</nav>
 	</header>
-	<div class="container" id="container-principal">
+
+	<div class="container"  >

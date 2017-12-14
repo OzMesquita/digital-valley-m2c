@@ -67,14 +67,15 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			solicitacao.setProfessor(professor);
 			solicitacao.setTipoSolicitacao(tipoSolicitacao);
 			util.FacadeSolicitacoes.salvarSolicitacao(solicitacao);
-			
-			String localArquivo = Constantes.getTEMP_PDF_SOLICITACAO() + "Aluno_" + solicitacao.getAluno().getId() + "_Disciplina_"
-					+ solicitacao.getDisciplina().getId() + "_Professor_" + solicitacao.getProfessor().getId()
-					+ "_Tipo_" + solicitacao.getTipoSolicitacao().toString()+"_DataHoraProva_"+solicitacao.getDataEHoraProva().format(DateTimeFormatter.ofPattern("ddMMyyyyhhmmss"));
+
+			String nomeArquivo = solicitacao.getId() + "_"
+					+ solicitacao.getTipoSolicitacaoToString() + "_"
+					+ solicitacao.getDataEHoraProva().format(DateTimeFormatter.ofPattern("ddMMyyyyhhmmss")) + ".pdf";
+			String localArquivo = Constantes.getTEMP_PDF_SOLICITACAO() + nomeArquivo; 
 			FacadeSolicitacoes.gerarPDFDaSolicitacao(solicitacao, localArquivo);
-			FacadeSolicitacoes.enviarEmailSolicitacao(solicitacao, localArquivo);
+			FacadeSolicitacoes.enviarEmailSolicitacao(solicitacao, localArquivo, nomeArquivo);
 			File file = new File(localArquivo);
-			file.delete();		
+			file.delete();
 			pagina = "homeSolicitacao.jsp?sucessoSalvar=1";
 
 			session.setAttribute(Constantes.getSessionMsg(), "Solicitação enviada com sucesso!");	
