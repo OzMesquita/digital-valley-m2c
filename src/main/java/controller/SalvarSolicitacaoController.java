@@ -67,7 +67,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			solicitacao.setProfessor(professor);
 			solicitacao.setTipoSolicitacao(tipoSolicitacao);
 			util.FacadeSolicitacoes.salvarSolicitacao(solicitacao);
-			// enviar email
+			
 			String localArquivo = Constantes.getTEMP_PDF_SOLICITACAO() + "Aluno_" + solicitacao.getAluno().getId() + "_Disciplina_"
 					+ solicitacao.getDisciplina().getId() + "_Professor_" + solicitacao.getProfessor().getId()
 					+ "_Tipo_" + solicitacao.getTipoSolicitacao().toString()+"_DataHoraProva_"+solicitacao.getDataEHoraProva().format(DateTimeFormatter.ofPattern("ddMMyyyyhhmmss"));
@@ -77,8 +77,10 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			file.delete();		
 			pagina = "homeSolicitacao.jsp?sucessoSalvar=1";
 
+			session.setAttribute(Constantes.getSessionMsg(), "Solicitação enviada com sucesso!");	
+			
 		} else {
-			session.setAttribute(Constantes.getSessionMsg(), "Prazo de solicitação expirado");
+			session.setAttribute(Constantes.getSessionMsg(), "Prazo de solicitação expirado!");
 			pagina = "homeSolicitacao.jsp?erroPrazo=1";
 		}
 

@@ -34,7 +34,16 @@
 
 					}
 				%>
-
+				<%
+					if (session.getAttribute(Constantes.getSessionMsg()) != null) {
+				%>
+				<div class="alert alert-success" role="alert">
+					<%=session.getAttribute(Constantes.getSessionMsg())%>
+				</div>
+				<%
+					session.setAttribute(Constantes.getSessionMsg(), null);
+					}
+				%>
 				<%
 					if (session.getAttribute(Constantes.getSessionMsg()) != null) {
 				%>
@@ -43,11 +52,9 @@
 				</div>
 				<%
 					session.setAttribute(Constantes.getSessionMsg(), null);
-				%>
-
-				<%
 					}
 				%>
+
 
 
 				<div class="tab-content">
