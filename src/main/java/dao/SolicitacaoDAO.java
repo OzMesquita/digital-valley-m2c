@@ -20,4 +20,6 @@ public interface SolicitacaoDAO {
 	public List<Solicitacao> listar(int inicio, int fim);
 	
 	public List<Solicitacao> buscarPorTipo(EnumSolicitacao tipo, int inicio, int fim);
+	
+	public int buscarQntdDeSolicitacoes();
 }

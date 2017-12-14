@@ -37,7 +37,7 @@ public class Constantes {
 		APP_IMG_URL = APP_ASSETS_URL + "/img";
 		//APP_IMG_USER_DIR ="C:\\n2s\\img\\";
 		APP_CSS_URL = APP_ASSETS_URL + "/css";
-		NUMBER_OF_ROWS_PER_PAGE = 20;
+		NUMBER_OF_ROWS_PER_PAGE = 10;
 		SESSION_MSG = "msg";
 		MODULES_IMAGES_DIR = "C:\\imagens\\modulo";
 		USER_PROFILE_IMAGES_DIR = "C:\\n2s\\img\\";
