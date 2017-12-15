@@ -213,7 +213,7 @@
 							if (aluno == null) {
 						%>
 						<div class="form-group col-md-1 sem-padding-left">
-							<button 
+							<button  
 								class="btn btn-primary my-btn-primary buscarMatricula">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>

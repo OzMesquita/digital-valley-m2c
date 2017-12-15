@@ -98,7 +98,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		try {
 			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
-					+ "\".solicitacao AS s WHERE s.id_aluno = ? LIMIT ? OFFSET ?";
+					+ "\".solicitacao AS s WHERE s.id_aluno = ?  ORDER BY id_solicitacao DESC LIMIT ? OFFSET ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, aluno.getId());
 			ps.setInt(2, fim - inicio);
@@ -141,7 +141,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		try {
 			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
-					+ "\".solicitacao AS s WHERE s.id_professor = ? LIMIT ? OFFSET ?";
+					+ "\".solicitacao AS s WHERE s.id_professor = ? ORDER BY id_solicitacao DESC LIMIT ? OFFSET ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, professor.getId());
 			ps.setInt(2, fim - inicio);
@@ -180,7 +180,7 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 		List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 		try {
 			String SQL = "SELECT * FROM \"" + Constantes.getTHIS_APP_DATABASE_SCHEMA()
-					+ "\".solicitacao AS s ORDER BY data_solicitacao DESC LIMIT ? OFFSET ?";
+					+ "\".solicitacao AS s ORDER BY id_solicitacao DESC LIMIT ? OFFSET ?";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, fim - inicio);
 			ps.setInt(2, inicio);
@@ -247,6 +247,68 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao buscar por tipo solcitacoes em JDBCSolicitacaoDAO", e);
 
+		} finally {
+			super.close();
+		}
+	}
+	
+	@Override
+	public int buscarQntdDeSolicitacoes() {
+		try {
+			super.open();
+			String SQL = "SELECT COUNT(*) AS quantidade FROM \""+Constantes.getTHIS_APP_DATABASE_SCHEMA()+"\".solicitacao;";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int quantidade = rs.getInt("quantidade");
+			rs.close();
+			ps.close();
+			return quantidade;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			super.close();
+		}
+	}
+	
+	@Override
+	public int buscarQntdDeSolicitacoesAlu(int id) {
+		try {
+			super.open();
+			String SQL = "SELECT COUNT(*) AS quantidade FROM \""+Constantes.getTHIS_APP_DATABASE_SCHEMA()+"\".solicitacao WHERE id_aluno = ?;";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int quantidade = rs.getInt("quantidade");
+			rs.close();
+			ps.close();
+			return quantidade;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			super.close();
+		}
+	}
+	
+	@Override
+	public int buscarQntdDeSolicitacoesProf(int id) {
+		try {
+			super.open();
+			String SQL = "SELECT COUNT(*) AS quantidade FROM \""+Constantes.getTHIS_APP_DATABASE_SCHEMA()+"\".solicitacao WHERE id_professor = ?;";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int quantidade = rs.getInt("quantidade");
+			rs.close();
+			ps.close();
+			return quantidade;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
 		} finally {
 			super.close();
 		}

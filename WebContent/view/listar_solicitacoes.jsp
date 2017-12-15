@@ -1,6 +1,28 @@
+<%@page import="util.Facade"%>
+<%@page import="dao.DAOFactory"%>
+<%@page import="dao.DAOFactoryM2C"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Solicitacao"%>
+
+<%
+	int pagina = request.getParameter("pagina") == null ? 1	: Math.abs(Integer.valueOf(request.getParameter("pagina")));
+	int fim = pagina * Constantes.getNumberOfRowsPerPage();
+	int inicio = fim - Constantes.getNumberOfRowsPerPage();
+	double a = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoes();
+	double quantidadeDeItensPagProf = 1;
+	double quantidadeDeItensPagAlu = 1;
+	double b = Constantes.getNumberOfRowsPerPage();
+	if(request.getParameter("inputMatricula")!=null){
+		double al = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")).getId());	
+		quantidadeDeItensPagAlu = Math.ceil(al/b);
+	}else if(request.getParameter("inputSiape")!=null){
+		double p = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesProf(DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")).getId());	
+		quantidadeDeItensPagProf = Math.ceil(p/b);
+	}
+	double quantidadeDeItensPaginacao = Math.ceil(a/b);
+	
+%>
 
 <div class="row">
 	<div class="col-md-12">
@@ -18,6 +40,7 @@
 				<h2 class="panel-title" align="center">Histórico de
 					Solicitações</h2>
 			</div>
+<<<<<<< HEAD
 			<div class="panel-body">
 				<div class="row">
 					<%
@@ -36,6 +59,32 @@
 					<div class="col-md-6">
 						<form action="listarSolicitacao" method="post">
 							<div class="row">
+=======
+
+
+		</div>
+		<div class="tab-pane active col-md-12" id="todas_solicitacoes">
+			<div class="row" id="buscaSolicitacao">
+				<div class="col-md-12">
+					<div class="row">
+						<%
+							if (session.getAttribute(Constantes.getSessionMsg()) != null) {
+						%>
+						<div class="alert alert-danger" role="alert">
+							<%=session.getAttribute(Constantes.getSessionMsg())%>
+						</div>
+						<%
+							session.setAttribute(Constantes.getSessionMsg(), null);
+						%>
+
+						<%
+							}
+						%>
+						<div class="col-md-6 espacamentoHorizontal">
+							<form class="espacamentoHorizontal" action="listarSolicitacao"
+								method="get">
+								<input name="pagina" value="1" hidden>
+>>>>>>> 5bf8c30f85676def3de3a8755c1cb365545239b2
 								<div class="col-md-2">
 									<label id="labelBuscarSoli" for="buscarSoliMatricula">Aluno:</label>
 								</div>
@@ -49,12 +98,22 @@
 										</button>
 									</div>
 								</div>
+<<<<<<< HEAD
 							</div>
 						</form>
 					</div>
 					<div class="col-md-6">
 						<form action="listarSolicitacao" method="post">
 							<div class="row">
+=======
+
+							</form>
+						</div>
+						<div class="col-md-6 espacamentoHorizontal">
+							<form class="espacamentoHorizontal" action="listarSolicitacao"
+								method="get">
+								<input name="pagina" value="1" hidden>
+>>>>>>> 5bf8c30f85676def3de3a8755c1cb365545239b2
 								<div class="col-md-3">
 									<label id="labelBuscarSoli" for="buscarSoliSiape">Professor:</label>
 								</div>
@@ -120,10 +179,71 @@
 							<span class="glyphicon glyphicon-arrow-left"></span> <a
 								id="link-voltar" href="homeSolicitacao.jsp">Voltar</a>
 						</button>
-					</div>
+						<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<%if(request.getParameter("inputMatricula") == null && request.getParameter("inputSiape")== null ){
+								if (pagina > 1 && quantidadeDeItensPaginacao > 1) {
+							%>
+							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>">Anterior</a></li>
+							<%
+								}
+								for (int i = 1; i <= quantidadeDeItensPaginacao; i++) {
+							%>
+							<li class="page-item <%=i == pagina ? "active" : ""%>"><a
+								class="page-link" href="?pagina=<%=i%>"><%=i%></a></li>
+							<%
+								}
+								if (pagina >= 0 && quantidadeDeItensPaginacao >= 1 && pagina < quantidadeDeItensPaginacao) {
+							%>
+							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>">Próximo</a></li>
+							<%
+								}
+							}else{
+								if(request.getParameter("inputMatricula") != null){
+									if (pagina > 1 && quantidadeDeItensPagAlu > 1) {
+										%>
+										<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>&inputMatricula=<%=request.getParameter("inputMatricula")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Anterior</a></li>
+										<%
+											}
+											for (int i = 1; i <= quantidadeDeItensPagAlu; i++) {
+										%>
+										<li class="page-item <%=i == pagina ? "active" : ""%>"><a
+											class="page-link" href="?pagina=<%=i%>&inputMatricula=<%=request.getParameter("inputMatricula")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>"><%=i%></a></li>
+										<%
+											}
+											if (pagina >= 0 && quantidadeDeItensPagAlu >= 1 && pagina < quantidadeDeItensPagAlu) {
+										%>
+										<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>&inputMatricula=<%=request.getParameter("inputMatricula")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Próximo</a></li>
+										<%
+											}
+								}else if(request.getParameter("inputSiape") != null){
+										if (pagina > 1 && quantidadeDeItensPagProf > 1) {
+											%>
+											<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>&inputSiape=<%=request.getParameter("inputSiape")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Anterior</a></li>
+											<%
+										}
+												for (int i = 1; i <= quantidadeDeItensPagProf; i++) {
+											%>
+											<li class="page-item <%=i == pagina ? "active" : ""%>"><a
+												class="page-link" href="?pagina=<%=i%>&inputSiape=<%=request.getParameter("inputSiape")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>"><%=i%></a></li>
+											<%
+											}
+												if (pagina >= 0 && quantidadeDeItensPagProf >= 1 && pagina < quantidadeDeItensPagProf) {
+											%>
+											<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>&inputSiape=<%=request.getParameter("inputSiape")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Próximo</a></li>
+											<%
+												}
+										
+								}
+							}
+								%>										
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>
+			
+	</div>
 
 		<%
 			}
@@ -185,6 +305,30 @@
 				<span class="glyphicon glyphicon-arrow-left"></span> <a
 					id="link-voltar" href="homeSolicitacao.jsp">Voltar</a>
 			</button>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<%
+						double al = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(usuario.getPessoa().getId());	
+						quantidadeDeItensPagAlu = Math.ceil(al/Constantes.getNumberOfRowsPerPage());
+						if (pagina > 1 && quantidadeDeItensPagAlu > 1) {
+							%>
+							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>">Anterior</a></li>
+							<%
+								}
+								for (int i = 1; i <= quantidadeDeItensPagAlu; i++) {
+							%>
+							<li class="page-item <%=i == pagina ? "active" : ""%>"><a
+								class="page-link" href="?pagina=<%=i%>"><%=i%></a></li>
+							<%
+								}
+								if (pagina >= 0 && quantidadeDeItensPagAlu >= 1 && pagina < quantidadeDeItensPagAlu) {
+							%>
+							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>">Próximo</a></li>
+							<%
+								}
+							%>	
+				</ul>
+			</nav>
 		</div>
 		<%
 			}
