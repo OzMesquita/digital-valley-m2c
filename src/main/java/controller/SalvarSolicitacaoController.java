@@ -31,6 +31,8 @@ public class SalvarSolicitacaoController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String pagina = "homeSolicitacao.jsp?erroSalvar=1";
 
+		try {
+		
 		String matricula = request.getParameter("matricula");
 		int idProfessor = Integer.valueOf(request.getParameter("valueIdProfessor"));
 		String idDisciplina = request.getParameter("inputDisciplina");
@@ -84,7 +86,9 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			session.setAttribute(Constantes.getSessionMsg(), "Prazo de solicitação expirado!");
 			pagina = "homeSolicitacao.jsp?erroPrazo=1";
 		}
-
+		}catch (Exception e) {
+			session.setAttribute(Constantes.getSessionMsg(), "Erro ao pedir solicitação, "+e.getMessage());
+		}
 		response.sendRedirect(pagina);
 
 	}
