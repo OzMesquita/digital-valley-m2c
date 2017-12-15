@@ -56,7 +56,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 		Professor professor = DAOFactory.criarProfessorDAO().buscar(idProfessor);
 		Disciplina disciplina = DAOFactoryM2C.criarDisciplinaDAO().getById(Integer.valueOf(idDisciplina));
 
-		if (util.FacadeSolicitacoes.verificarDias(data) || tipoSolicitacao.equals("Recorrecao")) {
+		if (util.FacadeSolicitacoes.verificarDias(data) ) {
 			Solicitacao solicitacao = new Solicitacao();
 			solicitacao.setAluno(aluno);
 			solicitacao.setDataEHoraProva(FacadeSolicitacoes.converterLocalDateTimeToString(ldt));
@@ -67,6 +67,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			solicitacao.setProfessor(professor);
 			solicitacao.setTipoSolicitacao(tipoSolicitacao);
 			util.FacadeSolicitacoes.salvarSolicitacao(solicitacao);
+
 			String nomeArquivo = solicitacao.getId() + "_"
 					+ solicitacao.getTipoSolicitacaoToString() + "_"
 					+ solicitacao.getDataEHoraProva().format(DateTimeFormatter.ofPattern("ddMMyyyyhhmmss")) + ".pdf";
@@ -77,8 +78,10 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			file.delete();
 			pagina = "homeSolicitacao.jsp?sucessoSalvar=1";
 
+			session.setAttribute(Constantes.getSESSION_MSG_SUCCESS(), "Solicitação enviada com sucesso!");	
+			
 		} else {
-			session.setAttribute(Constantes.getSessionMsg(), "Prazo de solicitação expirado");
+			session.setAttribute(Constantes.getSessionMsg(), "Prazo de solicitação expirado!");
 			pagina = "homeSolicitacao.jsp?erroPrazo=1";
 		}
 
