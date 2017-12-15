@@ -56,7 +56,7 @@ public class SalvarSolicitacaoController extends HttpServlet {
 		Professor professor = DAOFactory.criarProfessorDAO().buscar(idProfessor);
 		Disciplina disciplina = DAOFactoryM2C.criarDisciplinaDAO().getById(Integer.valueOf(idDisciplina));
 
-		if (util.FacadeSolicitacoes.verificarDias(data) || tipoSolicitacao.equals("Recorrecao")) {
+		if (util.FacadeSolicitacoes.verificarDias(data) ) {
 			Solicitacao solicitacao = new Solicitacao();
 			solicitacao.setAluno(aluno);
 			solicitacao.setDataEHoraProva(FacadeSolicitacoes.converterLocalDateTimeToString(ldt));

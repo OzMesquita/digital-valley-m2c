@@ -3,6 +3,7 @@ package util;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -19,10 +20,15 @@ public class TestFacadeSolicitacoes {
 	
 	@Test
 	public void testEnviarEmailSegundaChamada(){
-		Solicitacao s = FacadeSolicitacoes.listar(0, 20).get(0);
-		s.getProfessor().setEmail("deyvisonbill01@gmail.com");
-		System.out.println(s.getId());
-		//util.FacadeSolicitacoes.enviarEmailSolicitacao(s, "");
+		Solicitacao solicitacao = FacadeSolicitacoes.listar(0, 20).get(0);
+		solicitacao.getProfessor().setEmail("matheusdiogenesandrade@gmail.com");
+		String nomeArquivo = solicitacao.getId() + "_"
+				+ solicitacao.getTipoSolicitacaoToString() + "_"
+				+ solicitacao.getDataEHoraProva().format(DateTimeFormatter.ofPattern("ddMMyyyyhhmmss")) + ".pdf";
+		String localArquivo = Constantes.getTEMP_PDF_SOLICITACAO() + nomeArquivo; 
+		FacadeSolicitacoes.gerarPDFDaSolicitacao(solicitacao, localArquivo);
+		FacadeSolicitacoes.enviarEmailSolicitacao(solicitacao, localArquivo, nomeArquivo);
+		util.FacadeSolicitacoes.enviarEmailSolicitacao(solicitacao, localArquivo, nomeArquivo);
 		
 	}
 	
