@@ -1,3 +1,5 @@
+<%@page import="util.Facade"%>
+<%@page import="dao.DAOFactory"%>
 <%@page import="dao.DAOFactoryM2C"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -8,15 +10,22 @@
 	int fim = pagina * Constantes.getNumberOfRowsPerPage();
 	int inicio = fim - Constantes.getNumberOfRowsPerPage();
 	double a = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoes();
+	double quantidadeDeItensPagProf = 1;
+	double quantidadeDeItensPagAlu = 1;
 	double b = Constantes.getNumberOfRowsPerPage();
+	if(request.getParameter("inputMatricula")!=null){
+		double al = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")).getId());	
+		quantidadeDeItensPagAlu = Math.ceil(al/b);
+	}else if(request.getParameter("inputSiape")!=null){
+		double p = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesProf(DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")).getId());	
+		quantidadeDeItensPagProf = Math.ceil(p/b);
+	}
 	double quantidadeDeItensPaginacao = Math.ceil(a/b);
+	
 %>
 
 <div class="row">
-	<div
-		class=" col-md-6 col-md-offset-3 sem-padding-left sem-padding-right"
-		id="formulario_solicitacao">
-
+	<div class="col-md-12">
 		<%
 			ArrayList<Solicitacao> solicitacoes = (ArrayList<Solicitacao>) request.getAttribute("solicitacoes");
 
@@ -26,13 +35,31 @@
 				if (((Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO)
 						|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)) {
 		%>
-
-		<div class="panel panel-primary" id="sem-margin-botton">
-
+		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h2 class="panel-title" align="center">Histórico de
 					Solicitações</h2>
 			</div>
+<<<<<<< HEAD
+			<div class="panel-body">
+				<div class="row">
+					<%
+						if (session.getAttribute(Constantes.getSessionMsg()) != null) {
+					%>
+					<div class="alert alert-danger" role="alert">
+						<%=session.getAttribute(Constantes.getSessionMsg())%>
+					</div>
+					<%
+						session.setAttribute(Constantes.getSessionMsg(), null);
+					%>
+
+					<%
+						}
+					%>
+					<div class="col-md-6">
+						<form action="listarSolicitacao" method="post">
+							<div class="row">
+=======
 
 
 		</div>
@@ -56,6 +83,8 @@
 						<div class="col-md-6 espacamentoHorizontal">
 							<form class="espacamentoHorizontal" action="listarSolicitacao"
 								method="get">
+								<input name="pagina" value="1" hidden>
+>>>>>>> 5bf8c30f85676def3de3a8755c1cb365545239b2
 								<div class="col-md-2">
 									<label id="labelBuscarSoli" for="buscarSoliMatricula">Aluno:</label>
 								</div>
@@ -69,17 +98,26 @@
 										</button>
 									</div>
 								</div>
+<<<<<<< HEAD
+							</div>
+						</form>
+					</div>
+					<div class="col-md-6">
+						<form action="listarSolicitacao" method="post">
+							<div class="row">
+=======
 
 							</form>
 						</div>
 						<div class="col-md-6 espacamentoHorizontal">
 							<form class="espacamentoHorizontal" action="listarSolicitacao"
-								method="post">
+								method="get">
+								<input name="pagina" value="1" hidden>
+>>>>>>> 5bf8c30f85676def3de3a8755c1cb365545239b2
 								<div class="col-md-3">
 									<label id="labelBuscarSoli" for="buscarSoliSiape">Professor:</label>
 								</div>
 								<div class="input-group col-md-4">
-
 									<input class="form-control siape" placeholder="SIAPE"
 										name="inputSiape" id="buscarSoliSiape" type="text"> <input
 										type="hidden" value="listarPorProfessor" name="tipoBusca">
@@ -89,53 +127,53 @@
 										</button>
 									</div>
 								</div>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
-					<div class="panel panel-primary">
-						<table class="table table-responsive table-hover" id="dev-table">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Nome do Aluno</th>
-									<th>Data da Solicitação</th>
-									<th>Nome do Professor</th>
-									<th>Disciplina</th>
-									<th>Tipo da Solicitação</th>
-									<th>Detalhes</th>
-									<th>Download</th>
-								</tr>
-							</thead>
-							<tbody>
-								<%
-									for (Solicitacao solicitacao : solicitacoes) {
-								%>
-								<tr>
-									<td><%=solicitacao.getId()%></td>
-									<td><%=solicitacao.getAluno().getNome()%></td>
-									<td><%=solicitacao.getDataSolicitacao()%></td>
-									<td><%=solicitacao.getProfessor().getNome()%></td>
-									<td><%=solicitacao.getDisciplina().getNome()%></td>
-									<td><%=solicitacao.getTipoSolicitacaoToString()%></td>
-
-									<td>
-										<button type="button" class="btn btn-primary btn_detalhes"
-											id="<%=solicitacao.getId()%>" data-toggle="modal"
-											data-target="#detalhes">
-											<span class="glyphicon glyphicon-option-horizontal  "></span>
-										</button>
-									</td>
-
-									<td><a href="gerarPDFSolicitacao?id=<%=solicitacao.getId() %>" target="_blank" class="btn btn-primary">
-											<span class="glyphicon glyphicon-save-file"></span>
-										</a></td>
-								</tr>
-								<%
-									}
-								%>
-							</tbody>
-						</table>						
-					</div>
+				</div>
+				<div class="tab-pane active">
+					<table class="table table-responsive table-hover">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nome do Aluno</th>
+								<th>Data da Solicitação</th>
+								<th>Nome do Professor</th>
+								<th>Disciplina</th>
+								<th>Tipo da Solicitação</th>
+								<th>Detalhes</th>
+								<th>Download</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								for (Solicitacao solicitacao : solicitacoes) {
+							%>
+							<tr>
+								<td><%=solicitacao.getId()%></td>
+								<td><%=solicitacao.getAluno().getNome()%></td>
+								<td><%=solicitacao.getDataSolicitacao()%></td>
+								<td><%=solicitacao.getProfessor().getNome()%></td>
+								<td><%=solicitacao.getDisciplina().getNome()%></td>
+								<td><%=solicitacao.getTipoSolicitacaoToString()%></td>
+								<td>
+									<button type="button" class="btn btn-primary btn_detalhes"
+										id="<%=solicitacao.getId()%>" data-toggle="modal"
+										data-target="#detalhes">
+										<span class="glyphicon glyphicon-option-horizontal  "></span>
+									</button>
+								</td>
+								<td><a
+									href="gerarPDFSolicitacao?id=<%=solicitacao.getId()%>"
+									target="_blank" class="btn btn-primary"> <span
+										class="glyphicon glyphicon-save-file"></span>
+								</a></td>
+							</tr>
+							<%
+								}
+							%>
+						</tbody>
+					</table>
 					<div align="left">
 						<button class="btn btn-primary">
 							<span class="glyphicon glyphicon-arrow-left"></span> <a
@@ -143,10 +181,10 @@
 						</button>
 						<nav aria-label="Page navigation example">
 						<ul class="pagination">
-							<%
+							<%if(request.getParameter("inputMatricula") == null && request.getParameter("inputSiape")== null ){
 								if (pagina > 1 && quantidadeDeItensPaginacao > 1) {
 							%>
-							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>&inputMatricula=<%=request.getParameter("inputMatricula")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Anterior</a></li>
+							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>">Anterior</a></li>
 							<%
 								}
 								for (int i = 1; i <= quantidadeDeItensPaginacao; i++) {
@@ -157,10 +195,48 @@
 								}
 								if (pagina >= 0 && quantidadeDeItensPaginacao >= 1 && pagina < quantidadeDeItensPaginacao) {
 							%>
-							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>&inputMatricula=<%=request.getParameter("inputMatricula")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Próximo</a></li>
+							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>">Próximo</a></li>
 							<%
 								}
-							%>
+							}else{
+								if(request.getParameter("inputMatricula") != null){
+									if (pagina > 1 && quantidadeDeItensPagAlu > 1) {
+										%>
+										<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>&inputMatricula=<%=request.getParameter("inputMatricula")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Anterior</a></li>
+										<%
+											}
+											for (int i = 1; i <= quantidadeDeItensPagAlu; i++) {
+										%>
+										<li class="page-item <%=i == pagina ? "active" : ""%>"><a
+											class="page-link" href="?pagina=<%=i%>&inputMatricula=<%=request.getParameter("inputMatricula")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>"><%=i%></a></li>
+										<%
+											}
+											if (pagina >= 0 && quantidadeDeItensPagAlu >= 1 && pagina < quantidadeDeItensPagAlu) {
+										%>
+										<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>&inputMatricula=<%=request.getParameter("inputMatricula")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Próximo</a></li>
+										<%
+											}
+								}else if(request.getParameter("inputSiape") != null){
+										if (pagina > 1 && quantidadeDeItensPagProf > 1) {
+											%>
+											<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>&inputSiape=<%=request.getParameter("inputSiape")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Anterior</a></li>
+											<%
+										}
+												for (int i = 1; i <= quantidadeDeItensPagProf; i++) {
+											%>
+											<li class="page-item <%=i == pagina ? "active" : ""%>"><a
+												class="page-link" href="?pagina=<%=i%>&inputSiape=<%=request.getParameter("inputSiape")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>"><%=i%></a></li>
+											<%
+											}
+												if (pagina >= 0 && quantidadeDeItensPagProf >= 1 && pagina < quantidadeDeItensPagProf) {
+											%>
+											<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>&inputSiape=<%=request.getParameter("inputSiape")%>&tipoBusca=<%=request.getParameter("tipoBusca")%>">Próximo</a></li>
+											<%
+												}
+										
+								}
+							}
+								%>										
 						</ul>
 					</nav>
 				</div>
@@ -168,7 +244,6 @@
 		</div>
 			
 	</div>
-
 
 		<%
 			}
@@ -223,7 +298,7 @@
 					</table>
 				</div>
 
-		</div>
+			</div>
 		</div>
 		<div id="row-voltar" align="left">
 			<button class="btn btn-primary">
@@ -233,23 +308,25 @@
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
 					<%
-								if (pagina > 1 && quantidadeDeItensPaginacao > 1) {
+						double al = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(usuario.getPessoa().getId());	
+						quantidadeDeItensPagAlu = Math.ceil(al/Constantes.getNumberOfRowsPerPage());
+						if (pagina > 1 && quantidadeDeItensPagAlu > 1) {
 							%>
 							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina-1%>">Anterior</a></li>
 							<%
 								}
-								for (int i = 1; i <= quantidadeDeItensPaginacao; i++) {
+								for (int i = 1; i <= quantidadeDeItensPagAlu; i++) {
 							%>
 							<li class="page-item <%=i == pagina ? "active" : ""%>"><a
 								class="page-link" href="?pagina=<%=i%>"><%=i%></a></li>
 							<%
 								}
-								if (pagina >= 0 && quantidadeDeItensPaginacao >= 1 && pagina < quantidadeDeItensPaginacao) {
+								if (pagina >= 0 && quantidadeDeItensPagAlu >= 1 && pagina < quantidadeDeItensPagAlu) {
 							%>
 							<li class="page-item"><a class="page-link" href="?pagina=<%=pagina+1%>">Próximo</a></li>
 							<%
 								}
-							%>
+							%>	
 				</ul>
 			</nav>
 		</div>
@@ -273,8 +350,8 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body"  >
-				<div class="dados-modal" >
+			<div class="modal-body">
+				<div class="dados-modal">
 					<h4 align="center">Dados da Solicitaçao</h4>
 					<p id="id">ID:</p>
 					<p id="tipoSolicitacao">Tipo Solicitaçao:</p>
@@ -283,14 +360,14 @@
 					<p id="justificativa">Justificativa:</p>
 
 				</div>
-				<div class="dados-modal" >
-					<h4 align="center" >Dados do Aluno</h4>
+				<div class="dados-modal">
+					<h4 align="center">Dados do Aluno</h4>
 					<p id="matricula">Matricula:</p>
 					<p id="nome">Nome:</p>
 					<p id="curso">Curso:</p>
 
 				</div>
-				<div class="dados-modal" >
+				<div class="dados-modal">
 					<h4 align="center">Dados do Professor</h4>
 					<p id="siape">Siape:</p>
 					<p id="nomeProfessor">Nome:</p>

@@ -38,20 +38,24 @@ public class ListarSolicitacao extends HttpServlet {
 							&& request.getParameter("tipoBusca").equals("listarPorAluno")) {
 						solicitacoes = FacadeSolicitacoes.buscarPorAluno(
 								DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")),
-								inicio, fim);
+								(Integer.parseInt(request.getParameter("pagina"))* Constantes.getNumberOfRowsPerPage()) - Constantes.getNumberOfRowsPerPage(),Integer.parseInt(request.getParameter("pagina"))* Constantes.getNumberOfRowsPerPage());
 					} else if (request.getParameter("tipoBusca") != null
 							&& request.getParameter("tipoBusca").equals("listarPorProfessor")) {
 						solicitacoes = FacadeSolicitacoes.buscarPorProfessor(
 								DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")),
-								inicio, fim);
-					} else if (request.getParameter("pagina") != null && request.getParameter("pagina") != null) {
+								(Integer.parseInt(request.getParameter("pagina"))* Constantes.getNumberOfRowsPerPage()) - Constantes.getNumberOfRowsPerPage(),Integer.parseInt(request.getParameter("pagina"))* Constantes.getNumberOfRowsPerPage());
+					} else if (request.getParameter("pagina") != null) {
 						solicitacoes = FacadeSolicitacoes.listar((Integer.parseInt(request.getParameter("pagina"))* Constantes.getNumberOfRowsPerPage()) - Constantes.getNumberOfRowsPerPage(),Integer.parseInt(request.getParameter("pagina"))* Constantes.getNumberOfRowsPerPage());
 					} else {
 						solicitacoes = FacadeSolicitacoes.listar(0, 10);
 					}
 				}
 			} else if (usuario.getPessoa() instanceof Aluno) {
-				solicitacoes = FacadeSolicitacoes.buscarPorAluno((Aluno) usuario.getPessoa(), inicio, fim);
+				if(request.getParameter("pagina")!=null){
+					solicitacoes = FacadeSolicitacoes.buscarPorAluno((Aluno) usuario.getPessoa(), (Integer.parseInt(request.getParameter("pagina"))* Constantes.getNumberOfRowsPerPage()) - Constantes.getNumberOfRowsPerPage(),Integer.parseInt(request.getParameter("pagina"))* Constantes.getNumberOfRowsPerPage());
+				}else{
+					solicitacoes = FacadeSolicitacoes.buscarPorAluno((Aluno) usuario.getPessoa(), (Constantes.getNumberOfRowsPerPage() - Constantes.getNumberOfRowsPerPage()), Constantes.getNumberOfRowsPerPage());
+				}
 			}
 			request.setAttribute("solicitacoes", solicitacoes);
 			request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);

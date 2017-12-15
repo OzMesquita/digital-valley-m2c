@@ -271,5 +271,47 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 			super.close();
 		}
 	}
+	
+	@Override
+	public int buscarQntdDeSolicitacoesAlu(int id) {
+		try {
+			super.open();
+			String SQL = "SELECT COUNT(*) AS quantidade FROM \""+Constantes.getTHIS_APP_DATABASE_SCHEMA()+"\".solicitacao WHERE id_aluno = ?;";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int quantidade = rs.getInt("quantidade");
+			rs.close();
+			ps.close();
+			return quantidade;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			super.close();
+		}
+	}
+	
+	@Override
+	public int buscarQntdDeSolicitacoesProf(int id) {
+		try {
+			super.open();
+			String SQL = "SELECT COUNT(*) AS quantidade FROM \""+Constantes.getTHIS_APP_DATABASE_SCHEMA()+"\".solicitacao WHERE id_professor = ?;";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int quantidade = rs.getInt("quantidade");
+			rs.close();
+			ps.close();
+			return quantidade;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			super.close();
+		}
+	}
 
 }

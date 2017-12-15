@@ -7,20 +7,12 @@ body {
 	padding-top: 5px;
 }
 
-header{
-    width: 100%;
-    height: 40px;
-    position: absolute;
-    display: block;
-
-}
-
 .dropdown-menu{
     background-color: steelblue;
 }
 
 .fundo-claro{
-	background-color: white;
+	background-color: #ffffff;
 }
 
 
@@ -33,10 +25,6 @@ header{
 }
 
 #formulario_solicitacao,#tabela_solicitacoes{
-	margin-left:auto;
-    position: absolute;
-    margin-top: 200px;
-    background-color: white;
 }
 
 #tipo_solicitacao{
@@ -150,8 +138,9 @@ header ul li {
 }
 /* ---------------------------------------------------------------------*/
 
-#buscaSolicitacao{
-	display: flex;
+#conteudo{
+	position: relative;
+	margin-top: 50px;
 }
 
 .espacamentoHorizontal{
@@ -164,7 +153,6 @@ header ul li {
 	height: 33.5px;
 	border-radius: 0px;
 }
-
 #sem-margin-botton{
 	margin-bottom: 0px;
 }
@@ -179,27 +167,15 @@ header ul li {
 }
 					
 footer{
+	text-align: center;
+	position: absolute;
     background-color: steelblue;
-    position: fixed;
     bottom: 0;
     width: 100%;
     height: 50px;
 }
 
-#logos {
-    position: absolute;
-    bottom: 5%;
-    left: 45%;
-}
-
-#logo-n2s{
-    margin: 5px;
-    border-radius: 50px;
-    width: 55px;
-    height:45px;
-}
-
-#logo-ufc{
+.logo-rodape{
     margin: 5px;
     padding-top: 3px;
     border-radius: 50px;
