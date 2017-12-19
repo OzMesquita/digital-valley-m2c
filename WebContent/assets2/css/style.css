@@ -28,7 +28,6 @@ body {
 }
 
 #tipo_solicitacao{
-	margin-bottom: 10px;
 	padding-bottom: 5px;
 }
 
@@ -143,6 +142,11 @@ header ul li {
 	margin-top: 50px;
 }
 
+.conteudo{
+	background-color: white;
+}
+
+
 .espacamentoHorizontal{
 	margin-top: 5px;
 	margin-bottom: 10px;
@@ -168,7 +172,7 @@ header ul li {
 					
 footer{
 	text-align: center;
-	position: absolute;
+	position: fixed;
     background-color: steelblue;
     bottom: 0;
     width: 100%;

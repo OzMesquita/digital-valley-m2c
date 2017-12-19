@@ -1,4 +1,5 @@
 <%@page import="model.Aluno"%>
+<div class="conteudo">
 <div id="page-wrapper">
 	<div class="wizard-navigation">
 		<ul class="nav nav-pills tab-menu" id="tipo_solicitacao">
@@ -36,9 +37,9 @@
 			session.setAttribute(Constantes.getSessionMsg(), null);
 			}
 		%>
-		<div class="tab-content">
-			<div class="tab-pane active col-md-12" id="segunda_chamada">
-				<div class="row">
+		<div class="tab-content ">
+			<div class="tab-pane active col-md-12 conteudo" id="segunda_chamada">
+				<div class="row ">
 					<form action="salvarSolicitacao">
 						<input value="Segunda Chamada" type="hidden" name="tipoS">
 						<div class="row">
@@ -170,7 +171,12 @@
 					</form>
 				</div>
 			</div>
-			<div class="tab-pane col-md-12" id="recorrecao">
+			
+			
+			
+			
+			
+			<div class="tab-pane col-md-12 conteudo" id="recorrecao">
 				<div class="row">
 					<form action="salvarSolicitacao">
 						<input value="Recorrecao" type="hidden" name="tipoR">
@@ -331,7 +337,7 @@
 		</div>
 		<!-- row-->
 	</div>
-</div>
+</div>	</div>
 <script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"></script>
 <script src="<%=Constantes.getAppJsUrl()%>/bootstrap.min.js"></script>
 <script type="text/javascript"
