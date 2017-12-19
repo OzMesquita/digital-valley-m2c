@@ -301,10 +301,12 @@ public class JDBCSolicitacaoDAO extends JDBCDAO implements SolicitacaoDAO {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			rs.next();
-			int quantidade = rs.getInt("quantidade");
-			rs.close();
-			ps.close();
+			int quantidade = 0;
+			if(rs.next()) {
+				quantidade = rs.getInt("quantidade");
+				rs.close();
+				ps.close();
+			}
 			return quantidade;
 		} catch (SQLException e) {
 			e.printStackTrace();

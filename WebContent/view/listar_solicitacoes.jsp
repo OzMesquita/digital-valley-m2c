@@ -14,7 +14,12 @@
 	double quantidadeDeItensPagAlu = 1;
 	double b = Constantes.getNumberOfRowsPerPage();
 	if(request.getParameter("inputMatricula")!=null){
-		double al = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")).getId());	
+		
+		double al = 0;
+		if(DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")).getId()) != 0){
+			al =  DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")).getId());	
+		}
+			
 		quantidadeDeItensPagAlu = Math.ceil(al/b);
 	}else if(request.getParameter("inputSiape")!=null){
 		double p = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesProf(DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")).getId());	
