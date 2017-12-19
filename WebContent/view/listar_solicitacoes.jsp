@@ -40,7 +40,6 @@
 				<h2 class="panel-title" align="center">Histórico de
 					Solicitações</h2>
 			</div>
-<<<<<<< HEAD
 			<div class="panel-body">
 				<div class="row">
 					<%
@@ -59,32 +58,7 @@
 					<div class="col-md-6">
 						<form action="listarSolicitacao" method="post">
 							<div class="row">
-=======
 
-
-		</div>
-		<div class="tab-pane active col-md-12" id="todas_solicitacoes">
-			<div class="row" id="buscaSolicitacao">
-				<div class="col-md-12">
-					<div class="row">
-						<%
-							if (session.getAttribute(Constantes.getSessionMsg()) != null) {
-						%>
-						<div class="alert alert-danger" role="alert">
-							<%=session.getAttribute(Constantes.getSessionMsg())%>
-						</div>
-						<%
-							session.setAttribute(Constantes.getSessionMsg(), null);
-						%>
-
-						<%
-							}
-						%>
-						<div class="col-md-6 espacamentoHorizontal">
-							<form class="espacamentoHorizontal" action="listarSolicitacao"
-								method="get">
-								<input name="pagina" value="1" hidden>
->>>>>>> 5bf8c30f85676def3de3a8755c1cb365545239b2
 								<div class="col-md-2">
 									<label id="labelBuscarSoli" for="buscarSoliMatricula">Aluno:</label>
 								</div>
@@ -98,22 +72,15 @@
 										</button>
 									</div>
 								</div>
-<<<<<<< HEAD
+
 							</div>
 						</form>
 					</div>
 					<div class="col-md-6">
 						<form action="listarSolicitacao" method="post">
 							<div class="row">
-=======
 
-							</form>
-						</div>
-						<div class="col-md-6 espacamentoHorizontal">
-							<form class="espacamentoHorizontal" action="listarSolicitacao"
-								method="get">
 								<input name="pagina" value="1" hidden>
->>>>>>> 5bf8c30f85676def3de3a8755c1cb365545239b2
 								<div class="col-md-3">
 									<label id="labelBuscarSoli" for="buscarSoliSiape">Professor:</label>
 								</div>
