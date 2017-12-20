@@ -70,12 +70,12 @@ public class ListarSolicitacao extends HttpServlet {
 				}
 			}
 			request.setAttribute("solicitacoes", solicitacoes);
-			request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/view/listar_solicitacoes.jsp").forward(request, response);
 		} catch (Exception e) {
 			
-			session.setAttribute(Constantes.getSessionMsg(), "");
+			session.setAttribute(Constantes.getSessionMsg(), e.getMessage());
 			request.setAttribute("solicitacoes", solicitacoes);
-			request.getRequestDispatcher("listar_solicitacoes.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/view/listar_solicitacoes.jsp").forward(request, response);
 		}
 
 	}

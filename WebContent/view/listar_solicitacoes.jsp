@@ -1,3 +1,4 @@
+<%@page import="model.Professor"%>
 <%@page import="util.Facade"%>
 <%@page import="dao.DAOFactory"%>
 <%@page import="dao.DAOFactoryM2C"%>
@@ -14,15 +15,24 @@
 	double quantidadeDeItensPagAlu = 1;
 	double b = Constantes.getNumberOfRowsPerPage();
 	if(request.getParameter("inputMatricula")!=null){
-		
+		System.out.println("matricula= "+request.getParameter("inputMatricula"));
 		double al = 0;
-		if(DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")).getId()) != 0){
-			al =  DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")).getId());	
+		Aluno aluno =DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula"));
+		if (aluno != null){
+			if(DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(aluno.getId()) != 0){
+				al =  DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesAlu(DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula")).getId());	
+			}
 		}
 			
 		quantidadeDeItensPagAlu = Math.ceil(al/b);
 	}else if(request.getParameter("inputSiape")!=null){
-		double p = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesProf(DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape")).getId());	
+		double p = 0;
+		Professor professor =DAOFactory.criarProfessorDAO().buscarPorSiape(request.getParameter("inputSiape"));
+		if(professor!= null){
+			
+		
+			p = DAOFactoryM2C.criarSolicitacaoDAO().buscarQntdDeSolicitacoesProf(professor.getId());
+		}
 		quantidadeDeItensPagProf = Math.ceil(p/b);
 	}
 	double quantidadeDeItensPaginacao = Math.ceil(a/b);
