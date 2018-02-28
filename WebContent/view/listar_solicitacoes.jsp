@@ -281,7 +281,7 @@
 
 			</div>
 		</div>
-		<div id="row-voltar" align="left"> <a
+		<div id="row-voltar" align="left"><a
 					id="link-voltar" href="homeSolicitacao.jsp" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
