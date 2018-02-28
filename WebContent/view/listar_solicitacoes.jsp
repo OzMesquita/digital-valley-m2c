@@ -156,11 +156,8 @@
 							%>
 						</tbody>
 					</table>
-					<div align="left">
-						<button class="btn btn-primary">
-							<span class="glyphicon glyphicon-arrow-left"></span> <a
-								id="link-voltar" href="homeSolicitacao.jsp">Voltar</a>
-						</button>
+					<div align="left"> <a
+								id="link-voltar" href="homeSolicitacao.jsp" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
 						<nav aria-label="Page navigation example">
 						<ul class="pagination">
 							<%if(request.getParameter("inputMatricula") == null && request.getParameter("inputSiape")== null ){
@@ -269,9 +266,11 @@
 										<span class="glyphicon glyphicon-option-horizontal  "></span>
 									</button>
 								</td>
-								<td><button type="button" class="btn btn-primary">
-										<span class="glyphicon glyphicon-save-file"></span>
-									</button></td>
+								<td><a
+									href="gerarPDFSolicitacao?id=<%=solicitacao.getId()%>"
+									target="_blank" class="btn btn-primary"> <span
+										class="glyphicon glyphicon-save-file"></span>
+								</a></td>
 							</tr>
 							<%
 								}
@@ -282,11 +281,8 @@
 
 			</div>
 		</div>
-		<div id="row-voltar" align="left">
-			<button class="btn btn-primary">
-				<span class="glyphicon glyphicon-arrow-left"></span> <a
-					id="link-voltar" href="homeSolicitacao.jsp">Voltar</a>
-			</button>
+		<div id="row-voltar" align="left"> <a
+					id="link-voltar" href="homeSolicitacao.jsp" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
 					<%
