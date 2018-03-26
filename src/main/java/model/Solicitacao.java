@@ -126,8 +126,6 @@ public class Solicitacao implements Serializable {
 				}
 			} else {
 				dataP = data[0].split("/");
-				System.out.println("data p "+dataP.toString());
-				System.out.println("data p "+dataP[0]);
 				if (dataP.length == 3) {
 					dataProva = LocalDate.of(Integer.valueOf(dataP[2]), Integer.valueOf(dataP[1]), Integer.valueOf(dataP[0]));
 					// hora

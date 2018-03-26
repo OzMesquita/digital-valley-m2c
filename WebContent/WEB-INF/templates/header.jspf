@@ -37,7 +37,7 @@
 				Usuario usuario = (Usuario) session.getAttribute("usuario");
 					
 					if ( usuario.getPessoa() instanceof Servidor) {
-						if(((Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO)|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR)){
+						if(((Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO)|| usuario.getNivel().equals(EnumNivel.ADMINISTRADOR) || usuario.getNivel().equals(EnumCargo.FUNCIONARIO)){
 				%>
 				<ul class="nav navbar-nav" id="menu-left">
 					<li><a id="listar-solicitacoes"

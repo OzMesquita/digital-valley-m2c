@@ -15,7 +15,6 @@
 	double quantidadeDeItensPagAlu = 1;
 	double b = Constantes.getNumberOfRowsPerPage();
 	if(request.getParameter("inputMatricula")!=null){
-		System.out.println("matricula= "+request.getParameter("inputMatricula"));
 		double al = 0;
 		Aluno aluno =DAOFactory.criarAlunoDAO().buscarPorMatricula(request.getParameter("inputMatricula"));
 		if (aluno != null){
