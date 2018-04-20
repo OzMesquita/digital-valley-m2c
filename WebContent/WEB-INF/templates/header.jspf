@@ -42,10 +42,18 @@
 				<ul class="nav navbar-nav" id="menu-left">
 					<li><a id="listar-solicitacoes"
 								href="<%=Constantes.getAppUrl()%>/view/listarSolicitacao">Listar Solicitacoes</a></li>		
-				</ul>
+				</ul>		
+				
 				
 				<%
-						}
+						} else if(  ( (Servidor) usuario.getPessoa()).getCargo().equals(EnumCargo.SECRETARIO) || usuario.getNivel().equal(EnumNivel.ADMINISTRADOR)  ){
+						%>	
+						<ul class="nav navbar-nav" id="menu-left">
+							<li><a id="associar-disc-prof"
+										href="<%=Constantes.getAppUrl()%>/adm/associar-disc-prof">Associar Disciplinas</a></li>		
+						</ul>	
+												
+					<%	
 					} else if ( usuario.getPessoa() instanceof Aluno) {
 				%>
 				
