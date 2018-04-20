@@ -59,7 +59,7 @@ public class FacadeSolicitacoes {
 			Paragraph conteudo = null;
 			if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
 				conteudo = new Paragraph("\tEu, " + aluno.getNome() + ", aluno(a) matriculado(a) no " + "Curso de "
-						+ aluno.getCurso().getNome() + ", no de matrícula " + aluno.getMatricula() + ", vem mui "
+						+ aluno.getCurso().getNome() + ", no de matrícula " + aluno.getMatricula() + ", venho "
 						+ "respeitosamente, perante Vossa Senhoria requerer recorreção da prova da disciplina "
 						+ solicitacao.getDisciplina().getNome() + ", que realizou-se no dia " + dataProvaString
 						+ ", no " + "horário de "
@@ -99,7 +99,7 @@ public class FacadeSolicitacoes {
 						"Venho por meio do presente, solicitar a realização da prova de segunda chamada da disciplina acima "
 								+ "indicada, levando em conta a previsão do § 3o do Art. 110 do Regimento Geral da UFC, abaixo"
 								+ "transcrito:\n" + "Art. 110...\r\n"
-								+ "§ 3o. - Será assegurada ao aluno a segunda chamada das provas, desde que solicitada, por escrito, até"
+								+ "§ 3o. - Será assegurada ao aluno a segunda chamada das provas, desde que solicitada, por escrito, até "
 								+ "03 (três) dias úteis decorridos após a realização da prova em primeira chamada.\n\n\n\n"
 								+ "Atenciosamente,",
 						normal));
@@ -168,7 +168,7 @@ public class FacadeSolicitacoes {
 			hoje = hoje.minusDays(1);
 		}
 
-		if (dataProva.plusDays(4).isAfter(hoje)) {
+		if (dataProva.plusDays(4).isAfter(hoje) && dataProva.isBefore(LocalDate.now().plusDays(1))) {
 			return true;
 		} else {
 			return false;

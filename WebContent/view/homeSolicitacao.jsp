@@ -284,9 +284,9 @@
 							</div>
 							<!--col-md-4-->
 							<div class="col-md-2  sem-padding-left ">
-								<input class="form-control inputData" id="inputDataProva"
+								<input class="form-control inputData" id="inputEntregaDataProva"
 									placeholder="dd/mm/aaaa" maxlength="10" autocomplete="off"
-									type="text" name="inputDataProva">
+									type="text" name="inputEntregaDataProva">
 							</div>
 							<!--col-md-4-->
 							<div class="col-md-1 sem-padding-right ">

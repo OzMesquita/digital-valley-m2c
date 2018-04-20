@@ -191,6 +191,35 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 		}
 	}
 	
+	public List<Disciplina> buscarPorCurso(int idCurso){
+		super.open();
+		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+		try {
+			String SQL = "SELECT nome, d.id_disciplina FROM " + Constantes.getPUBLIC_DATABASE_SCHEMA()
+					+ ".professor_disciplina AS pd, "+ Constantes.getPUBLIC_DATABASE_SCHEMA()
+					+ ".disciplina AS d WHERE pd.id_professor = ? AND pd.id_disciplina = d.id_disciplina";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, idCurso);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Disciplina disciplina = new Disciplina();
+				disciplina.setNome(rs.getString("nome"));
+				disciplina.setId(rs.getInt("id_disciplina"));
+				disciplinas.add(disciplina);
+			}
+			ps.close();
+			rs.close();
+			return disciplinas;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar disciplinas em JDBCDisciplinaDAO", e);
+
+		} finally {
+			super.close();
+		}
+	}
 	
 	
 }

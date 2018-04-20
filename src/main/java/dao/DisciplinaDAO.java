@@ -18,4 +18,5 @@ public interface DisciplinaDAO {
 	public void deletar(Disciplina disciplina);
 	public Disciplina getById(int id);
 	public List<Disciplina> buscarPorProfessor(int idProfessor);
+	public List<Disciplina> buscarPorCurso(int idCurso);
 }

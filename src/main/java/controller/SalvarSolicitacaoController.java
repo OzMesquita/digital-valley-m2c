@@ -38,18 +38,24 @@ public class SalvarSolicitacaoController extends HttpServlet {
 		String idDisciplina = request.getParameter("inputDisciplina");
 		String dataProva = request.getParameter("inputDataProva");
 		LocalDate data = util.Facade.converterStringParaLocalDate(dataProva);
+		LocalDate dataEntrega = data;
 		LocalTime lt = LocalTime.of(0, 0);
 		String justificativa = request.getParameter("justificativa");
 		String tipoS = request.getParameter("tipoS");
 		String tipoR = request.getParameter("tipoR");
 		String tipoSolicitacao = "";
+		boolean prazoValido = false;
 
 		if (tipoS != null && tipoS.equals("Segunda Chamada")) {
 			tipoSolicitacao = tipoS;
+			prazoValido = util.FacadeSolicitacoes.verificarDias(data);
+			
 
 		} else if (tipoR != null && tipoR.equals("Recorrecao")) {
 			tipoSolicitacao = tipoR;
 			lt = FacadeSolicitacoes.converterStringToLocalTime(request.getParameter("inputHoraProva"));
+			dataEntrega = util.Facade.converterStringParaLocalDate(request.getParameter("inputEntregaDataProva"));
+			prazoValido = util.FacadeSolicitacoes.verificarDias(dataEntrega);
 
 		}
 
@@ -58,11 +64,11 @@ public class SalvarSolicitacaoController extends HttpServlet {
 		Professor professor = DAOFactory.criarProfessorDAO().buscar(idProfessor);
 		Disciplina disciplina = DAOFactoryM2C.criarDisciplinaDAO().getById(Integer.valueOf(idDisciplina));
 
-		if (util.FacadeSolicitacoes.verificarDias(data) ) {
+		if (prazoValido) {
 			Solicitacao solicitacao = new Solicitacao();
 			solicitacao.setAluno(aluno);
 			solicitacao.setDataEHoraProva(FacadeSolicitacoes.converterLocalDateTimeToString(ldt));
-			solicitacao.setDataDivulgacaoResultadoProva(data);
+			solicitacao.setDataDivulgacaoResultadoProva(dataEntrega);
 			solicitacao.setDisciplina(disciplina);
 			solicitacao.setDataSolicitacao(LocalDate.now());
 			solicitacao.setJustificativa(justificativa);
@@ -83,11 +89,12 @@ public class SalvarSolicitacaoController extends HttpServlet {
 			session.setAttribute(Constantes.getSESSION_MSG_SUCCESS(), "Solicitação enviada com sucesso!");	
 			
 		} else {
-			session.setAttribute(Constantes.getSessionMsg(), "Prazo de solicitação expirado!");
+			session.setAttribute(Constantes.getSessionMsg(), "Prazo de solicitação inválido !<br> A solicitação deve ser realizada até 3 dias após a realização da prova");
 			pagina = "homeSolicitacao.jsp?erroPrazo=1";
 		}
 		}catch (Exception e) {
 			session.setAttribute(Constantes.getSessionMsg(), "Erro ao pedir solicitação, "+e.getMessage());
+			e.printStackTrace();
 		}
 		response.sendRedirect(pagina);
 
