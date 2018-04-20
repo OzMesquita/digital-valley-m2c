@@ -70,7 +70,7 @@
 						}
 					%>
 					<div class="col-md-6">
-						<form action="listarSolicitacao" method="post">
+						<form action="listarSolicitacao" method="post" id="listarS">
 							<div class="row">
 
 								<div class="col-md-2">

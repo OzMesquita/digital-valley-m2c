@@ -18,6 +18,7 @@ import model.Solicitacao;
 
 public class TestFacadeSolicitacoes {
 	
+	@Ignore
 	@Test
 	public void testEnviarEmailSegundaChamada(){
 		Solicitacao solicitacao = FacadeSolicitacoes.listar(0, 20).get(0);
@@ -31,12 +32,13 @@ public class TestFacadeSolicitacoes {
 		util.FacadeSolicitacoes.enviarEmailSolicitacao(solicitacao, localArquivo, nomeArquivo);
 		
 	}
-	
-	@Ignore
+
+
 	@Test
 	public void testVerificarDias() {
-		Assert.assertTrue(util.FacadeSolicitacoes.verificarDias(LocalDate.of(2017, 11, 20)));
+		Assert.assertTrue(util.FacadeSolicitacoes.verificarDias(LocalDate.of(2018, 04, 17)));
 	}
+	
 	@Ignore
 	@Test
 	public void testLocalDataTimeToString() {
@@ -44,6 +46,7 @@ public class TestFacadeSolicitacoes {
 		System.out.println(FacadeSolicitacoes.converterLocalDateTimeToString(ld));
 	}
 	
+	@Ignore
 	@Test
 	public void testStringToLocalTime() {
 		String hora = "16:59";
