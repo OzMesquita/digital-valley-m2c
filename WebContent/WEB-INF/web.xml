@@ -79,12 +79,22 @@
     <url-pattern>/view/buscarAlunoMatricula</url-pattern>
   </servlet-mapping>
   
-  <filter>
-    <filter-name>FiltroAutenticado</filter-name>
-    <filter-class>filter.AutenticadoFiltro</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>FiltroAutenticado</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+	<filter>
+    	<filter-name>FiltroAutenticado</filter-name>
+    	<filter-class>filter.AutenticadoFiltro</filter-class>
+	</filter>
+	<filter>
+		<filter-name>FiltroAssociarDisc</filter-name>
+		<filter-class>controller.FiltroAssociarDisc</filter-class>
+	</filter>
+	
+	<filter-mapping>
+    	<filter-name>FiltroAutenticado</filter-name>
+    	<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+	<filter-mapping>
+		<filter-name>FiltroAssociarDisc</filter-name>
+		<url-pattern>/view/adm/*</url-pattern>
+	</filter-mapping>
 </web-app>

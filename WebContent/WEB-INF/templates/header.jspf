@@ -45,7 +45,7 @@
 				</ul>	
 				<ul class="nav navbar-nav" id="menu-left">
 					<li><a id="listar-solicitacoes"
-					href="<%=Constantes.getAppUrl()%>/adm/associar-disc-prof.jsp">Associar Disciplinas</a></li>		
+					href="<%=Constantes.getAppUrl()%>/view/adm/associar-disc-prof.jsp">Associar Disciplinas</a></li>		
 				</ul>	
 				
 				

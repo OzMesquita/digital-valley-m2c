@@ -36,6 +36,14 @@
 		<%
 			session.setAttribute(Constantes.getSessionMsg(), null);
 			}
+			
+		if (request.getParameter("erroPermissao") != null) {
+		%>
+		<div class="alert alert-danger" role="alert">
+			<p>Acesso negado </p>
+		</div>
+		<%
+			}
 		%>
 		<div class="tab-content ">
 			<div class="tab-pane active col-md-12 conteudo" id="segunda_chamada">
