@@ -24,6 +24,11 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 	 * 
 	 * @see dao.DisciplinaDAO#cadastrar(model.Disciplina)
 	 */
+	
+	public JDBCDisciplinaDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public void cadastrar(Disciplina disciplina) {
 		super.open();
@@ -195,11 +200,11 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 		super.open();
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		try {
-			String SQL = "SELECT nome, d.id_disciplina FROM " + Constantes.getPUBLIC_DATABASE_SCHEMA()
-					+ ".professor_disciplina AS pd, "+ Constantes.getPUBLIC_DATABASE_SCHEMA()
-					+ ".disciplina AS d WHERE pd.id_professor = ? AND pd.id_disciplina = d.id_disciplina";
+			String SQL = "SELECT nome, d.id_disciplina, d.id_professor FROM "+Constantes.getPUBLIC_DATABASE_SCHEMA()
+					+".curso as c, "+Constantes.getPUBLIC_DATABASE_SCHEMA()+".disciplina AS d WHERE c.id_curso = ? AND ? = d.id_curso;";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, idCurso);
+			ps.setInt(2, idCurso);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -219,6 +224,10 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 		} finally {
 			super.close();
 		}
+	}
+	
+	public void associarDiscProf(int idDisciplina, int idProfessor) {
+		
 	}
 	
 	

@@ -19,4 +19,5 @@ public interface DisciplinaDAO {
 	public Disciplina getById(int id);
 	public List<Disciplina> buscarPorProfessor(int idProfessor);
 	public List<Disciplina> buscarPorCurso(int idCurso);
+	public void associarDiscProf(int idDisciplina, int idProfessor);
 }
