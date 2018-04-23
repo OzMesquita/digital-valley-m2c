@@ -42,10 +42,14 @@
 				<ul class="nav navbar-nav" id="menu-left">
 					<li><a id="listar-solicitacoes"
 								href="<%=Constantes.getAppUrl()%>/view/listarSolicitacao">Listar Solicitacoes</a></li>		
-				</ul>
+				</ul>	
+				<ul class="nav navbar-nav" id="menu-left">
+					<li><a id="listar-solicitacoes"
+					href="<%=Constantes.getAppUrl()%>/adm/associar-disc-prof.jsp">Associar Disciplinas</a></li>		
+				</ul>	
 				
-				<%
-						}
+				
+				<%	
 					} else if ( usuario.getPessoa() instanceof Aluno) {
 				%>
 				
@@ -53,7 +57,7 @@
 					<li><a id="listar-solicitacoes"
 								href="<%=Constantes.getAppUrl()%>/view/listarSolicitacao">Histórico de Solicitações</a></li>		
 				</ul>
-				<%} %>
+				<%} }%>
 				
 				<ul class="nav navbar-nav navbar-right">
 					<li><img
