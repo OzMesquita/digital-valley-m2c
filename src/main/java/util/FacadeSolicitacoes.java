@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
@@ -25,6 +26,7 @@ import dao.DAOFactoryM2C;
 import dao.SolicitacaoDAO;
 import model.Aluno;
 import model.Curso;
+import model.Disciplina;
 import model.Email;
 import model.EnumSolicitacao;
 import model.Professor;
@@ -243,6 +245,22 @@ public class FacadeSolicitacoes {
 		} else {
 			throw new RuntimeException("Horário inválido, valor informado: " + horaProva);
 		}
+	}
+	
+	public void assosicarDiscProfessor(Professor professor, List<Disciplina> discSelecionadas, Curso curso){
+		List<Disciplina> todasdisciplinasCurso = DAOFactoryM2C.criarDisciplinaDAO().buscarPorCurso(curso.getId());
+		List<Disciplina> discProfessor = DAOFactoryM2C.criarDisciplinaDAO().buscarPorProfessor(professor.getId());
+		
+		for(Disciplina tdc: todasdisciplinasCurso) {
+			boolean has = false;
+			for(Disciplina ds: discSelecionadas) {
+				if(tdc.getId() == ds.getId()) {
+					has = true;
+				}
+			}
+
+		}
+		
 	}
 
 }

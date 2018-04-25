@@ -70,6 +70,7 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 				disciplina.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
 				disciplina.setId(rs.getInt("id_disciplina"));
 				disciplina.setNome(rs.getString("nome"));
+				disciplinas.add(disciplina);
 			}
 			ps.close();
 			rs.close();
@@ -84,6 +85,35 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 		}
 	}
 
+	@Override
+	public List<Disciplina> listar() {
+		try {
+			super.open();
+			List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+			String SQL = "SELECT * FROM " + Constantes.getPUBLIC_DATABASE_SCHEMA() + ".disciplina ";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Disciplina disciplina = new Disciplina();
+				disciplina.setCurso(DAOFactory.criarCursoDAO().buscar(rs.getInt("id_curso")));
+				disciplina.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
+				disciplina.setId(rs.getInt("id_disciplina"));
+				disciplina.setNome(rs.getString("nome"));
+				disciplinas.add(disciplina);
+			}
+			ps.close();
+			rs.close();
+			return disciplinas;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar disciplinas em JDBCDisciplinaDAO", e);
+
+		} finally {
+			super.close();
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -227,7 +257,21 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 	}
 	
 	public void associarDiscProf(int idDisciplina, int idProfessor) {
-		
+		super.open();
+		try {
+			String SQL = "UPDATE "+Constantes.getPUBLIC_DATABASE_SCHEMA()+".disciplina " + 
+					" SET id_professor = ?  WHERE id_disciplina = ? ";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, idProfessor);
+			ps.setInt(2, idDisciplina);
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao editar disciplina, erro: " + e.getMessage());
+		} finally {
+			super.close();
+		}
 	}
 	
 	

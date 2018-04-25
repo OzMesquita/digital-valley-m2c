@@ -14,6 +14,7 @@ import model.Disciplina;
 public interface DisciplinaDAO {
 	public void cadastrar(Disciplina disciplina);
 	public List<Disciplina> listar(int inicio, int fim);
+	public List<Disciplina> listar();
 	public void editar(Disciplina disciplina);
 	public void deletar(Disciplina disciplina);
 	public Disciplina getById(int id);
