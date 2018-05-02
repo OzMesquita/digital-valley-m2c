@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import dao.DAOFactory;
 import dao.DAOFactoryM2C;
-import model.Disciplina;
 import model.Professor;
 import util.Constantes;
 
@@ -27,11 +25,7 @@ public class AssociarDisciplinaProfessor extends HttpServlet {
 		String pagina = "associar-disc-prof.jsp?erroAssociar=1";
 		HttpSession session = request.getSession();
 		try {
-			
-		
 		Professor professor = DAOFactory.criarProfessorDAO().buscar(idProfessor);
-		
-		
 		if (professor != null) {
 			pagina = "associar-disc-prof.jsp";
 			if (disciplinasSelecionadas.length > 0) {

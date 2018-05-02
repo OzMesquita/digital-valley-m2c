@@ -14,85 +14,122 @@
       <include-coda>/WEB-INF/templates/footer.jspf</include-coda>
     </jsp-property-group>
   </jsp-config>
+  
+  <!-- Servlets -->
+  <!-- 1  -->
   <servlet>
     <servlet-name>Autenticar</servlet-name>
     <servlet-class>controller.Autenticacao</servlet-class>
   </servlet>
+  <!-- 2  -->
   <servlet>
     <servlet-name>SalvarSolicitacao</servlet-name>
     <servlet-class>controller.SalvarSolicitacaoController</servlet-class>
   </servlet>
+  <!-- 3  -->
   <servlet>
     <servlet-name>ListarSolicitacao</servlet-name>
     <servlet-class>controller.ListarSolicitacao</servlet-class>
   </servlet>
+  <!-- 4  -->
   <servlet>
     <servlet-name>DetalhesSolicitacao</servlet-name>
     <servlet-class>controller.DetalhesSolicitacaoController</servlet-class>
   </servlet>
+  <!-- 5  -->
   <servlet>
     <servlet-name>AutoCompleteProf</servlet-name>
     <servlet-class>controller.AutoCompleteProf</servlet-class>
   </servlet>
+  <!-- 6  -->
   <servlet>
     <servlet-name>AutoCompleteDisc</servlet-name>
     <servlet-class>controller.AutoCompleteDisc</servlet-class>
   </servlet>
+  <!-- 7  -->
   <servlet>
     <servlet-name>GerarPDFSolicitacao</servlet-name>
     <servlet-class>controller.GerarPDFSolicitacao</servlet-class>
   </servlet>
+  <!-- 8  -->
   <servlet>
     <servlet-name>BuscarAlunoMatricula</servlet-name>
     <servlet-class>controller.BuscarAlunoMatricula</servlet-class>
   </servlet>
+  <!-- 9  -->
+  <servlet>
+    <servlet-name>associarDiscProf</servlet-name>
+    <servlet-class>controller.AssociarDisciplinaProfessor</servlet-class>
+  </servlet>
+  
+  <!-- Mapeamento dos Servlets  -->
+  <!-- 1  -->  
   <servlet-mapping>
     <servlet-name>Autenticar</servlet-name>
     <url-pattern>/autentica</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+  <!-- 2  -->
     <servlet-name>SalvarSolicitacao</servlet-name>
     <url-pattern>/view/salvarSolicitacao</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+  <!-- 3  -->
     <servlet-name>ListarSolicitacao</servlet-name>
     <url-pattern>/view/listarSolicitacao</url-pattern>
   </servlet-mapping>
+  <!-- 4  -->
   <servlet-mapping>
     <servlet-name>DetalhesSolicitacao</servlet-name>
     <url-pattern>/view/detalhes</url-pattern>
   </servlet-mapping>
+  <!-- 5  -->
   <servlet-mapping>
     <servlet-name>AutoCompleteProf</servlet-name>
     <url-pattern>/view/prof-complete</url-pattern>
+    <url-pattern>/view/adm/prof-complete</url-pattern>
   </servlet-mapping>
+  <!-- 6  -->
   <servlet-mapping>
     <servlet-name>AutoCompleteDisc</servlet-name>
     <url-pattern>/view/disc-complete</url-pattern>
   </servlet-mapping>
+  <!-- 7  -->
   <servlet-mapping>
     <servlet-name>GerarPDFSolicitacao</servlet-name>
     <url-pattern>/view/gerarPDFSolicitacao</url-pattern>
   </servlet-mapping>
+  <!-- 8  -->
   <servlet-mapping>
     <servlet-name>BuscarAlunoMatricula</servlet-name>
     <url-pattern>/view/buscarAlunoMatricula</url-pattern>
   </servlet-mapping>
+  <!-- 9  -->
+  <servlet-mapping>
+    <servlet-name>BuscarAlunoMatricula</servlet-name>
+    <url-pattern>/view/adm/associarDiscProf</url-pattern>
+  </servlet-mapping>
   
+  
+  <!-- Filtro -->
+  <!-- 1  -->
 	<filter>
     	<filter-name>FiltroAutenticado</filter-name>
     	<filter-class>filter.AutenticadoFiltro</filter-class>
 	</filter>
+	<!-- 2  -->
 	<filter>
 		<filter-name>FiltroAssociarDisc</filter-name>
 		<filter-class>controller.FiltroAssociarDisc</filter-class>
 	</filter>
 	
+	<!-- Mapeamento dos filtros -->
+	<!-- 1  -->
 	<filter-mapping>
     	<filter-name>FiltroAutenticado</filter-name>
     	<url-pattern>/*</url-pattern>
 	</filter-mapping>
-  
+  <!-- 2  -->
 	<filter-mapping>
 		<filter-name>FiltroAssociarDisc</filter-name>
 		<url-pattern>/view/adm/*</url-pattern>
