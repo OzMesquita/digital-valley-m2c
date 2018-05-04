@@ -1,11 +1,19 @@
+<%@page import="dao.JDBCDisciplinaDAO"%>
+<%@page import="dao.DAOFactoryM2C"%>
+<%@page import="dao.DAOFactory"%>
 <%@page import="model.Disciplina"%>
 <div class="conteudo">
 <div id="page-wrapper">
-<div class="wizard-navigation">
-	<div class="page-header"><h2>Associar Disciplina ao Professor</h2></div>
-	<div class="tab-content">
+<div class="panel panel-primary"  id="sem-margin-botton">		
+	<div class="panel-heading">
+		<h2 class="panel-title" align="center">Associar Disciplina ao Professor</h2>
+	</div>
+
+	<div class="panel-body">
+		<div class="tab-content">
 	<div class=tab-pane">
 	<div class="row">
+	<form action="AssociarDisciplinaProfessor" method="POST">
 		<div class="row">
 			<div class="form-group col-md-12">
 				<div class="col-md-2">
@@ -29,35 +37,49 @@
 				
 							
 				<div class="col-md-10 sem-padding-left">
-					<select required="required" name="inputCurso" class="">
+					<select required="required" name="Curso" >
 						<option value="" disabled="disabled" selected="selected">Selecione um Curso</option>
+						<option value="software">Engenharia de Software</option>
+						<option value="civil">Engenharia Civíl</option>
+						<option value="computacao">Ciência da Computação</option>
+						<option value="mecanica">Engenharia Mecânica</option>
+						<option value="producao">Engenharia de Produção</option> 
 					</select>
 				</div>
 			</div>
 		</div>
-			<!-- Tabela de Turmas -->
-			<!-- Direitos autorais reservados a WenYi em http://bootstrap-table.wenzhixin.net.cn/ -->
+		
+			
 		<div class="row">
 		<div class="form-group col-md-12">	
-			<div class="table-responsive">          
+			<div class="col-md-2">          
 				<table class="table table-condensed">
 					<tr>
-						<th >Selecionados</th>
+						<th >Selecionado </th>
 						<th >Nome </th>
 					</tr>		
 						<tbody>
+						
 						<tr>
-							<td><div><input type="checkbox" id="1"><label></label></div></td>
-							<td>Programação Orientada a Gambiarra</td>
+							<td> <input type="checkbox" id="Fundamentos de Programação" name="disciplina" value="Fundamentos de Programação"></td>
+							
+						</tr>
+						<tr>
+							<td>	<label id="Fundamentos de Programação">Fundamentos de Programação</label>
+							</td>
 						</tr>
 						</tbody>
 				</table>
 			</div>
 		</div>	
-		</div>	
+		</div>
+		<div>
+			<input type="submit" value="Salvar" class="btn btn-primary my-btn-primary">
+		</div>			
 		</div>
 	</div>
 	</div>
+	</div>	
 	</div>
 	</div>
 </div>
@@ -65,8 +87,7 @@
 
 <script src="<%=Constantes.getAppJsUrl()%>/jquery-3.2.1.min.js"></script>
 <script src="<%=Constantes.getAppJsUrl()%>/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="<%=Constantes.getAppJsUrl()%>/jquery-1.8.2.min.js"></script>
+
 <script type="text/javascript"
 	src="<%=Constantes.getAppJsUrl()%>/jquery.mockjax.js"></script>
 <script type="text/javascript"
