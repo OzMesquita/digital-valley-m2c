@@ -211,6 +211,8 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 				Disciplina disciplina = new Disciplina();
 				disciplina.setNome(rs.getString("nome"));
 				disciplina.setId(rs.getInt("id_disciplina"));
+				disciplina.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
+				disciplina.setCurso(DAOFactory.criarCursoDAO().buscar(rs.getInt("id_curso")));
 				disciplinas.add(disciplina);
 			}
 			ps.close();
@@ -230,7 +232,7 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 		super.open();
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		try {
-			String SQL = "SELECT nome, d.id_disciplina, d.id_professor FROM "+Constantes.getPUBLIC_DATABASE_SCHEMA()
+			String SQL = "SELECT nome, d.id_disciplina, d.id_professor, d.id_curso FROM "+Constantes.getPUBLIC_DATABASE_SCHEMA()
 					+".curso as c, "+Constantes.getPUBLIC_DATABASE_SCHEMA()+".disciplina AS d WHERE c.id_curso = ? AND ? = d.id_curso;";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, idCurso);
@@ -241,6 +243,8 @@ public class JDBCDisciplinaDAO extends JDBCDAO implements DisciplinaDAO {
 				Disciplina disciplina = new Disciplina();
 				disciplina.setNome(rs.getString("nome"));
 				disciplina.setId(rs.getInt("id_disciplina"));
+				disciplina.setProfessor(DAOFactory.criarProfessorDAO().buscar(rs.getInt("id_professor")));
+				disciplina.setCurso(DAOFactory.criarCursoDAO().buscar(rs.getInt("id_curso")));	
 				disciplinas.add(disciplina);
 			}
 			ps.close();

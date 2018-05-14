@@ -4,6 +4,7 @@ package util;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -33,7 +34,7 @@ public class TestFacadeSolicitacoes {
 		
 	}
 
-
+	@Ignore
 	@Test
 	public void testVerificarDias() {
 		Assert.assertTrue(util.FacadeSolicitacoes.verificarDias(LocalDate.of(2018, 04, 17)));
@@ -52,6 +53,16 @@ public class TestFacadeSolicitacoes {
 		String hora = "16:59";
 		System.out.println(FacadeSolicitacoes.converterStringToLocalTime(hora));
 		System.out.println(FacadeSolicitacoes.converterStringToLocalTime(hora).getClass());
+	}
+	
+	@Test
+	public void testBuscarDiscPorCursoEProfDif() {
+		List<Disciplina> disciplinasLivres =  FacadeSolicitacoes.buscarDiscPorCursoEProfDif(1, 5);
+		for(Disciplina d: disciplinasLivres) {
+			System.out.println("Nome: "+ d.getNome());
+			System.out.println("Curso: "+d.getCurso().getNome());
+			System.out.println("Professor: "+d.getProfessor().getNome());
+		}
 	}
 }
 

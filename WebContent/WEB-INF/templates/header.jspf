@@ -49,7 +49,7 @@
 				</ul>	
 				
 				
-				<%	
+				<%	}
 					} else if ( usuario.getPessoa() instanceof Aluno) {
 				%>
 				
@@ -57,7 +57,9 @@
 					<li><a id="listar-solicitacoes"
 								href="<%=Constantes.getAppUrl()%>/view/listarSolicitacao">Histórico de Solicitações</a></li>		
 				</ul>
-				<%} }%>
+				<%} 
+				
+				%>
 				
 				<ul class="nav navbar-nav navbar-right">
 					<li><img

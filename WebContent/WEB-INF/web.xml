@@ -61,7 +61,11 @@
     <servlet-name>associarDiscProf</servlet-name>
     <servlet-class>controller.AssociarDisciplinaProfessor</servlet-class>
   </servlet>
-  
+  <!-- 10  -->
+  <servlet>
+    <servlet-name>BuscaDiscProfCurso</servlet-name>
+    <servlet-class>controller.BuscaDiscProfCurso</servlet-class>
+  </servlet>
   <!-- Mapeamento dos Servlets  -->
   <!-- 1  -->  
   <servlet-mapping>
@@ -109,7 +113,11 @@
     <servlet-name>BuscarAlunoMatricula</servlet-name>
     <url-pattern>/view/adm/associarDiscProf</url-pattern>
   </servlet-mapping>
-  
+  <!-- 10  -->
+  <servlet-mapping>
+    <servlet-name>BuscaDiscProfCurso</servlet-name>
+    <url-pattern>/view/adm/buscaDiscProfCurso</url-pattern>
+  </servlet-mapping>
   
   <!-- Filtro -->
   <!-- 1  -->

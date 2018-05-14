@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
@@ -25,6 +26,7 @@ import dao.DAOFactoryM2C;
 import dao.SolicitacaoDAO;
 import model.Aluno;
 import model.Curso;
+import model.Disciplina;
 import model.Email;
 import model.EnumSolicitacao;
 import model.Professor;
@@ -129,7 +131,8 @@ public class FacadeSolicitacoes {
 
 					Email e = new Email();
 					e.sendEmailWithAttachment("Solicitação de Segunda chamada", msg,
-							solicitacao.getProfessor().getEmail(), solicitacao.getProfessor().getNome(), localArquivo, nomeArquivo);
+							solicitacao.getProfessor().getEmail(), solicitacao.getProfessor().getNome(), localArquivo,
+							nomeArquivo);
 
 				} else if (solicitacao.getTipoSolicitacao().equals(EnumSolicitacao.RECORRECAO)) {
 					msg = "O(A) Aluno(a) " + solicitacao.getAluno().getNome() + " solicitou a Recorreção da prova de "
@@ -244,6 +247,23 @@ public class FacadeSolicitacoes {
 			throw new RuntimeException("Horário inválido, valor informado: " + horaProva);
 		}
 	}
-	
-	
+
+	public static List<Disciplina> buscarDiscPorCursoEProfDif(int idCurso, int idProfessor) {
+
+		List<Disciplina> disciplinasDoCurso = DAOFactoryM2C.criarDisciplinaDAO().buscarPorCurso(idCurso);
+		List<Disciplina> disciplinasfinais = new ArrayList<>();
+		
+		if (disciplinasDoCurso.size() > 0) {
+			
+			for (Disciplina dc : disciplinasDoCurso) {
+				if (dc.getProfessor().getId() != idProfessor) {
+					disciplinasfinais.add(dc);
+				}
+			}
+		}else {
+		}
+		return disciplinasfinais;
+
+	}
+
 }
