@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,9 @@ import com.google.gson.Gson;
 
 import dao.DAOFactory;
 import model.Curso;
+import model.Disciplina;
 import model.Professor;
+import util.FacadeSolicitacoes;
 
 public class BuscaDiscProfCurso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,10 +35,17 @@ public class BuscaDiscProfCurso extends HttpServlet {
 				try {
 					Professor professor = DAOFactory.criarProfessorDAO().buscar(idProfes);
 					Curso curso = DAOFactory.criarCursoDAO().buscar(idC);
+					
 					if (professor != null  && curso != null ) {
+				
 						System.out.println("Servlet4");
-						professor.setUsuario(null);
-						//professor.setDisciplinas(null);
+						List<Disciplina> disciplinas = FacadeSolicitacoes.buscarDiscPorCursoEProfDif(idC, idProfes);
+						
+						professor.getUsuario().setPessoa(null);
+						for(Disciplina d:disciplinas) {
+							professor.setDisciplinas(d);
+							
+						}
 						curso.getCoordenador().setUsuario(null);
 						Gson gson = new Gson();
 						String json = gson.toJson(professor);

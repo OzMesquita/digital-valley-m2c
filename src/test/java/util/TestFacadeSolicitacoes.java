@@ -59,6 +59,7 @@ public class TestFacadeSolicitacoes {
 	public void testBuscarDiscPorCursoEProfDif() {
 		List<Disciplina> disciplinasLivres =  FacadeSolicitacoes.buscarDiscPorCursoEProfDif(1, 5);
 		for(Disciplina d: disciplinasLivres) {
+			
 			System.out.println("Nome: "+ d.getNome());
 			System.out.println("Curso: "+d.getCurso().getNome());
 			System.out.println("Professor: "+d.getProfessor().getNome());
