@@ -66,7 +66,7 @@
 					</div>
 				</div>
 
-				<form action="AssociarDisciplinaProfessor" method="post" id="formDiscProf" >
+				<form action="buscaDiscProfCurso" method="post" id="formDiscProf" >
 					<div class="row">
 						<div class="form-group col-md-12">
 							<div class="col-md-4">

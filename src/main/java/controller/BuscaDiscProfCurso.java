@@ -41,14 +41,9 @@ public class BuscaDiscProfCurso extends HttpServlet {
 						System.out.println("Servlet4");
 						List<Disciplina> disciplinas = FacadeSolicitacoes.buscarDiscPorCursoEProfDif(idC, idProfes);
 						
-						professor.getUsuario().setPessoa(null);
-						for(Disciplina d:disciplinas) {
-							professor.setDisciplinas(d);
-							
-						}
-						curso.getCoordenador().setUsuario(null);
+						professor.getUsuario().setPessoa(null);						
 						Gson gson = new Gson();
-						String json = gson.toJson(professor);
+						String json = gson.toJson(disciplinas);
 						response.setContentType("application/json");
 						response.getWriter().write(json);
 					} else {
