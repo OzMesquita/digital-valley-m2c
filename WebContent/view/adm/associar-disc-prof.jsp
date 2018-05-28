@@ -75,13 +75,8 @@
 										<th>Selecionado</th>
 										<th>Nome</th>
 									</tr>
-									<tbody>
-										<%for(Disciplina d: discplinasdisponiveis){ %>
-										<tr>
-											<td><input type="checkbox" id="<%=d.getId() %>" name="disciplina" value="<%=d.getId() %>"></td>
-											<td><%=d.getNome() %></td>
-										</tr>
-										<%} %>
+									<tbody id="tabela">
+										
 									</tbody>
 								</table>
 							</div>
@@ -91,7 +86,7 @@
 						<input type="submit" value="Salvar" class="btn btn-primary my-btn-primary">
 
 
-
+					<div id="teste"></div>
 					</div>
 					</form>
 			</div>
