@@ -5,13 +5,14 @@ $(document).ready(function() {
                     var a = document.getElementById("curso");
                     var idCurso= a.selectedIndex;
                     var data = {idProfessor:idProfessor, idCurso:idCurso};
-                    if(true){
+                    if(data.idProfessor !== "" && idCurso !== ""){
                     	$.post('BuscaDiscProfCurso',data,function(response){
 	                    	var resposta = response;
+	                    	var informacoes = "<input type='hidden' name='idProfessor' value='"+idProfessor+"'";	                    	
 	                    	$("#tabela").empty();
 	                    	$.each(resposta, function(i, item){
 	                    		var variavel = "<tr><td><input type='checkbox' id='"+item.id+"' name='disciplina' value='"
-	                    		+item.nome+"'</td><td>"+item.nome+"</td></tr>";
+	                    		+item.id+"'</td><td>"+item.nome+"</td></tr>"+"<input type='hidden' name='idProfessor' value='"+idProfessor+"'";
 	                    		$("#tabela").append(variavel);	                    		
 	                    	});
 	                    	

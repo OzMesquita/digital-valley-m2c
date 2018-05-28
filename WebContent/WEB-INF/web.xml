@@ -58,7 +58,7 @@
   </servlet>
   <!-- 9  -->
   <servlet>
-    <servlet-name>associarDiscProf</servlet-name>
+    <servlet-name>AssociarDiscProf</servlet-name>
     <servlet-class>controller.AssociarDisciplinaProfessor</servlet-class>
   </servlet>
   <!-- 10  -->
@@ -110,8 +110,8 @@
   </servlet-mapping>
   <!-- 9  -->
   <servlet-mapping>
-    <servlet-name>BuscarAlunoMatricula</servlet-name>
-    <url-pattern>/view/adm/associarDiscProf</url-pattern>
+    <servlet-name>AssociarDiscProf</servlet-name>
+    <url-pattern>/view/adm/AssociarDiscProf</url-pattern>
   </servlet-mapping>
   <!-- 10  -->
   <servlet-mapping>

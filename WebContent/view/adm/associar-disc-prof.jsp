@@ -66,11 +66,12 @@
 					</div>
 				</div>
 
-				<form action="buscaDiscProfCurso" method="post" id="formDiscProf" >
+				<form action="AssociarDiscProf" method="post" id="formDiscProf" >
+					
 					<div class="row">
 						<div class="form-group col-md-12">
 							<div class="col-md-4">
-								<table class="table table-condensed">
+								<table id="divTabela" class="table table-condensed">
 									<tr>
 										<th>Selecionado</th>
 										<th>Nome</th>
@@ -83,10 +84,7 @@
 						</div>
 					</div>
 					<div class="col-md-8">
-						<input type="submit" value="Salvar" class="btn btn-primary my-btn-primary">
-
-
-					<div id="teste"></div>
+						<input type="submit" value="Salvar" class="btn btn-primary my-btn-primary">					
 					</div>
 					</form>
 			</div>
