@@ -3,7 +3,7 @@ $(function() {
 	$btnDetalhes.on('click', function($btnDetalhes) {
 		$.ajax({
 			type : "POST",
-			url : "/digital-valley-m2c/view/detalhes",
+			url : "/fenix/view/detalhes",
 			data : {
 				id : $btnDetalhes.currentTarget.attributes[2].nodeValue
 			},
